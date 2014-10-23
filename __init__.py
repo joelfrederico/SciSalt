@@ -1,26 +1,27 @@
+import classes
 import graphics
-from hist import hist
-from hist2d import hist2d
-from showfig import showfig
+import qt
+
+from LinLsqFit import LinLsqFit
+from Rectangle import Rectangle
 from addlabel import addlabel
-from gaussfit import gaussfit
+from chisquare import chisquare
+from create_group import create_group
+from curve_fit_unscaled import curve_fit_unscaled
+from derefdataset import *
+from figure import figure
+from findpinch import findpinch
+from fitimageslice import fitimageslice
 from gaussfit import _gauss
 from gaussfit import _gaussvar
-from chisquare import chisquare
-from curve_fit_unscaled import curve_fit_unscaled
-from plot_featured import plot_featured
-from figure import figure
-from linspacestep import linspacestep
+from gaussfit import gaussfit
+from hist import hist
+from hist2d import hist2d
 from linspaceborders import linspaceborders
-from findpinch import findpinch
-from derefdataset import *
-from fitimageslice import fitimageslice
-import qt
-from Rectangle import Rectangle
+from linspacestep import linspacestep
 from picklejar import picklejar
-from LinLsqFit import LinLsqFit
-from create_group import create_group
-import classes
+from plot_featured import plot_featured
+from showfig import showfig
 
 class Error(Exception):
 	"""Base class for exceptions in this module."""
