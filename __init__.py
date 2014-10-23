@@ -1,3 +1,4 @@
+import graphics
 from hist import hist
 from hist2d import hist2d
 from showfig import showfig
