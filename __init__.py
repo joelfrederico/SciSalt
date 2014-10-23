@@ -8,7 +8,6 @@ from gaussfit import _gaussvar
 from chisquare import chisquare
 from curve_fit_unscaled import curve_fit_unscaled
 from plot_featured import plot_featured
-import graphics
 from figure import figure
 from linspacestep import linspacestep
 from linspaceborders import linspaceborders
@@ -16,7 +15,6 @@ from findpinch import findpinch
 from derefdataset import *
 from fitimageslice import fitimageslice
 import qt
-import E200
 from Rectangle import Rectangle
 from picklejar import picklejar
 from LinLsqFit import LinLsqFit
