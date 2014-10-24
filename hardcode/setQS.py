@@ -6,6 +6,8 @@ energy0    = 20.35
 QS1_length = 1
 QS2_length = 1
 
+__all__ = ['setQS']
+
 class QS(object):
 	def __init__(self,K1,length):
 		self.K1     = K1
@@ -49,8 +51,8 @@ class setQS(object):
 		return QS2_BDES
 
 	def _get_energy(self):
-		return self._energy_offset + energy0
+		return self.energy_offset + energy0
 	def _set_energy(self,value):
-		self._energy_offset = value - energy0
+		self.energy_offset = value - energy0
 	energy = property(_get_energy,_set_energy)
 

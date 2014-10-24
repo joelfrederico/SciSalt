@@ -1,9 +1,9 @@
 import classes
 import graphics
+import hardcode
 import qt
 
 from LinLsqFit import LinLsqFit
-import hardcode
 
 from Rectangle import Rectangle
 from addlabel import addlabel
