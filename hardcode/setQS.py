@@ -1,3 +1,6 @@
+import logging
+logger=logging.getLogger(__name__)
+
 import slactrac as sltr
 energy0    = 20.35
 QS1_length = 1
@@ -9,6 +12,7 @@ class QS(object):
 	
 class setQS(object):
 	def __init__(self,energy_offset):
+		logger.critical('**************\n**************\nUSING HARDCODED FUNCTIONS!!!\n**************\n**************')
 		self.energy_offset = energy_offset
 
 		
