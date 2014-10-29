@@ -1,7 +1,8 @@
 import logging
 logger=logging.getLogger(__name__)
 
-import slactrac as sltr
+import mytools as mt
+import numpy as np
 energy0    = 20.35
 QS1_length = 1
 QS2_length = 1
@@ -9,12 +10,20 @@ QS2_length = 1
 __all__ = ['setQS']
 
 class QS(object):
-	def __init__(self,K1,length):
-		self.K1     = K1
+	def __init__(self,K1,length,energy):
+		self.K1      = K1
+		self.energy  = energy
+		self.length = length
+
+	def _get_BDES(self):
+		return mt.K2BDES(K=self.K1,quad_length=self.length,energy=self.energy)
+	def _set_BDES(self,value):
+		return mt.BDES2K(BDES=value,quad_length=self.length,energy=self.energy)
+	BDES = property(_get_BDES,_set_BDES)
 	
 class setQS(object):
 	def __init__(self,energy_offset):
-		logger.critical('**************\n**************\nUSING HARDCODED FUNCTIONS!!!\n**************\n**************')
+		logger.critical('****************************\n****************************\nUSING HARDCODED FUNCTIONS!!!\n****************************\n****************************')
 		self.energy_offset = energy_offset
 
 		
@@ -24,7 +33,8 @@ class setQS(object):
 	def _get_QS1(self):
 		out = QS(
 				K1     = self._get_QS1_K1(),
-				length = QS1_length
+				length = QS1_length,
+				energy = self.energy
 				)
 		return out
 	QS1 = property(_get_QS1)
@@ -32,7 +42,8 @@ class setQS(object):
 	def _get_QS2(self):
 		out = QS(
 				K1     = self._get_QS2_K1(),
-				length = QS2_length
+				length = QS2_length,
+				energy = self.energy
 				)
 		return out
 	QS2 = property(_get_QS2)
@@ -42,11 +53,11 @@ class setQS(object):
 	# ======================================
 	def _get_QS1_K1(self):
 		QS1_BDES = self._get_QS1_BDES()
-		return sltr.BDES2K(bdes=QS1_BDES,quad_length = QS1_length,energy=self.energy)
+		return mt.BDES2K(bdes=QS1_BDES,quad_length = QS1_length,energy=self.energy)
 
 	def _get_QS2_K1(self):
 		QS2_BDES = self._get_QS2_BDES()
-		return sltr.BDES2K(bdes=QS2_BDES,quad_length = QS2_length,energy=self.energy)
+		return mt.BDES2K(bdes=QS2_BDES,quad_length = QS2_length,energy=self.energy)
 
 	# ======================================
 	# Get QS1/2's BDES value
@@ -72,4 +83,5 @@ class setQS(object):
 	# Get ELANEX's y motor position
 	# ======================================
 	def elanex_y_motor(self):
-		ymotor = 40 - 55*self.energy_offset/(self.energy_offset+20.35)
+		ymotor = -np.float64(3.) - np.float64(55.)*self.energy_offset/(self.energy_offset+np.float64(20.35))
+		return ymotor
