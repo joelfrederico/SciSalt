@@ -3,8 +3,8 @@ import graphics
 import hardcode
 import qt
 
+from BDES2K import *
 from LinLsqFit import LinLsqFit
-
 from Rectangle import Rectangle
 from addlabel import addlabel
 from chisquare import chisquare
