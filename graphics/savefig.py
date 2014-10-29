@@ -1,19 +1,17 @@
+import logging
+logger=logging.getLogger(__name__)
+
 import os
 import matplotlib.pyplot as plt
 
 def savefig(filename,path="figs",fig=None,ext='eps',**kwargs):
-	# try:
-	#         os.remove(path)
-	# except OSError as e:
-	#         try:
-	#                 os.mkdir(path)
-	#         except:
-	#                 pass
-	if not os.path.exists(path):
-		os.makedirs(path)
-
-	filename       = ''.join([path,'/',filename])
+	filename       = os.path.join(path,filename)
 	final_filename = '{}.{}'.format(filename,ext).replace(" ","").replace("\n","")
+	final_filename = os.path.abspath(final_filename)
+
+	final_path = os.path.dirname(final_filename)
+	if not os.path.exists(final_path):
+		os.makedirs(final_path)
 
 	if fig != None:
 		fig.savefig(final_filename,bbox_inches='tight',**kwargs)
