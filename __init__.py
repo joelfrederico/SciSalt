@@ -5,7 +5,6 @@ import qt
 
 from BDES2K import *
 from LinLsqFit import LinLsqFit
-from Rectangle import Rectangle
 from addlabel import addlabel
 from chisquare import chisquare
 from create_group import create_group
@@ -21,6 +20,7 @@ from hist import hist
 from hist2d import hist2d
 from linspaceborders import linspaceborders
 from linspacestep import linspacestep
+from mylogger import *
 from picklejar import picklejar
 from plot_featured import plot_featured
 from showfig import showfig

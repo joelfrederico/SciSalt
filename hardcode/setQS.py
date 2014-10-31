@@ -23,7 +23,7 @@ class QS(object):
 	
 class setQS(object):
 	def __init__(self,energy_offset):
-		logger.critical('****************************\n****************************\nUSING HARDCODED FUNCTIONS!!!\n****************************\n****************************')
+		logger.critical('****************************USING HARDCODED FUNCTIONS!!!****************************')
 		self.energy_offset = energy_offset
 
 		
