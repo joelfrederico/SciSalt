@@ -1,9 +1,14 @@
-from PyQt4 import QtGui,QtCore
-import matplotlib as _mpl
-# import matplotlib.figure as plt
+from PyQt4                              import QtGui,QtCore
+from Rectangle                          import Rectangle
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as _FigureCanvas
 from matplotlib.backends.backend_qt4agg import NavigationToolbar2QTAgg as _NavigationToolbar
+import matplotlib as _mpl
 import numpy as _np
+
+import logging
+__all__ = ['mylogger','log']
+loggerlevel = logging.DEBUG
+logger = logging.getLogger(__name__)
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -154,7 +159,7 @@ class Mpl_Plot(_FigureCanvas):
 
 class Mpl_Image(QtGui.QWidget):
 	# Signal for when the rectangle is changed
-	rectChanged = QtCore.pyqtSignal(_mpl.patches.Rectangle)
+	rectChanged = QtCore.pyqtSignal(Rectangle)
 
 	def __init__(self, parent=None, rectbool = True, toolbarbool=False, image=None):
 		# Initialize things
@@ -188,7 +193,13 @@ class Mpl_Image(QtGui.QWidget):
 		if rectbool:
 			self.fig.canvas.mpl_connect('button_press_event', self.on_press)
 			self.fig.canvas.mpl_connect('button_release_event', self.on_release)
-			self.rect = _mpl.patches.Rectangle((-10,0),0,3,facecolor='w',edgecolor='r',alpha=0.5)
+                        self.Rectangle = Rectangle(
+                                x      = -10     ,
+				y      = 0       ,
+				width  = 0       ,
+				height = 3       ,
+				axes   = self.ax
+                                )
 
 		# Add image
 		self.image = image
@@ -201,7 +212,7 @@ class Mpl_Image(QtGui.QWidget):
 		if image is not None:
 			self._imgplot = self.ax.imshow(image,interpolation='none')
 			if self.rectbool:
-				self.ax.add_patch(self.rect)
+				self.ax.add_patch(self.Rectangle.get_rect())
 			imagemax = _np.max(_np.max(image))
 			# print 'Image max is {}.'.format(imagemax)
 			self.set_clim(self._clim_min,self._clim_max)
@@ -216,35 +227,49 @@ class Mpl_Image(QtGui.QWidget):
 			self.ax.figure.canvas.draw()
 
 	def on_press(self,event):
-		print 'press'
+		#  print 'press'
 		self.x0 = event.xdata
 		self.y0 = event.ydata
+		logger.log(level=loggerlevel,msg='Pressed: x0: {}, y0: {}'.format(self.x0,self.y0))
 
 	def on_release(self,event):
 		print 'release'
 		self.x1 = event.xdata
 		self.y1 = event.ydata
-		self.rect.set_width(self.x1 - self.x0)
-		self.rect.set_height(self.y1 - self.y0)
-		self.rect.set_xy((self.x0, self.y0))
+		width   = self.x1 - self.x0
+		height  = self.y1 - self.y0
+
+		logger.log(level=loggerlevel,msg='Released: x0: {}, y0: {}, x1: {}, y1: {}, width: {}, height: {}'.format(
+			self.x0 ,
+			self.y0 ,
+			self.x1 ,
+			self.y1 ,
+			width   ,
+			height
+			)
+			)
+
+                self.Rectangle.set_xy((self.x0,self.y0))
+		self.Rectangle.set_width(width)
+		self.Rectangle.set_height(height)
 		self.ax.figure.canvas.draw()
 
-		self.rectChanged.emit(self.rect)
+		self.rectChanged.emit(self.Rectangle)
 		# print self.rect
 
 	def zoom_rect(self,border=None,border_px=None):
 		# ======================================
 		# Get x coordinates
 		# ======================================
-		x0 = self.rect.get_x()
-		width = self.rect.get_width()
+		x0 = self.Rectangle.get_x()
+		width = self.Rectangle.get_width()
 		x1 = x0+width
 
 		# ======================================
 		# Get y coordinates
 		# ======================================
-		y0 = self.rect.get_y()
-		height = self.rect.get_height()
+		y0 = self.Rectangle.get_y()
+		height = self.Rectangle.get_height()
 		y1 = y0+height
 
 		# ======================================
@@ -337,11 +362,11 @@ class Mpl_Image_Plus_Slider(QtGui.QWidget):
 		return self._img.ax
 	ax = property(_get_ax)
 
-	def _get_rect(self):
-		return self._img.rect
-	def _set_rect(self,rect):
-		self._img.rect(rect)
-	rect = property(_get_rect,_set_rect)
+	def _get_Rectangle(self):
+		return self._img.Rectangle
+	#  def _set_rect(self,rect):
+	#          self._img.rect(rect)
+	Rectangle = property(_get_Rectangle)
 
 	def zoom_rect(self,border=None,border_px=None):
 		self._img.zoom_rect(border,border_px)
