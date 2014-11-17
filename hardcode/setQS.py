@@ -1,4 +1,5 @@
 import logging
+loggerlevel = logging.DEBUG
 logger=logging.getLogger(__name__)
 
 import mytools as mt
@@ -24,6 +25,7 @@ class QS(object):
 class setQS(object):
 	def __init__(self,energy_offset):
 		logger.critical('****************************USING HARDCODED FUNCTIONS!!!****************************')
+		logger.log(level=loggerlevel,msg='Energy offset: {}'.format(energy_offset))
 		self.energy_offset = energy_offset
 
 		
