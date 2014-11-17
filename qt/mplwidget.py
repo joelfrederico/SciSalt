@@ -1,7 +1,7 @@
 from PyQt4                              import QtGui,QtCore
 from Rectangle                          import Rectangle
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as _FigureCanvas
-from matplotlib.backends.backend_qt4agg import NavigationToolbar2QTAgg as _NavigationToolbar
+from matplotlib.backends.backend_qt4 import NavigationToolbar2QT as _NavigationToolbar
 import matplotlib as _mpl
 import numpy as _np
 
@@ -30,6 +30,7 @@ class Slider_and_Text(QtGui.QWidget):
 
 	def __init__(self,parent=None):
 		QtGui.QWidget.__init__(self)
+		self.setMaximumHeight(40)
 		# Enable tracking by default
 		self._tracking=True
 		self.hLayout = QtGui.QHBoxLayout()
@@ -41,7 +42,7 @@ class Slider_and_Text(QtGui.QWidget):
 		sizePolicy.setHorizontalStretch(0)
         	sizePolicy.setVerticalStretch(0)
 		sizePolicy.setHeightForWidth(self.leftbutton.sizePolicy().hasHeightForWidth())
-		self.leftbutton.setSizePolicy(sizePolicy)
+		#  self.leftbutton.setSizePolicy(sizePolicy)
 		self.leftbutton.clicked.connect(self._subone)
 
 		self.rightbutton = QtGui.QPushButton()
@@ -50,7 +51,7 @@ class Slider_and_Text(QtGui.QWidget):
 		sizePolicy.setHorizontalStretch(0)
         	sizePolicy.setVerticalStretch(0)
 		sizePolicy.setHeightForWidth(self.rightbutton.sizePolicy().hasHeightForWidth())
-		self.rightbutton.setSizePolicy(sizePolicy)
+		#  self.rightbutton.setSizePolicy(sizePolicy)
 		self.rightbutton.clicked.connect(self._addone)
 
 		self.v = QtGui.QIntValidator()
@@ -60,7 +61,7 @@ class Slider_and_Text(QtGui.QWidget):
 		sizePolicy.setHorizontalStretch(0)
         	sizePolicy.setVerticalStretch(0)
 		sizePolicy.setHeightForWidth(self.box.sizePolicy().hasHeightForWidth())
-		self.box.setSizePolicy(sizePolicy)
+		#  self.box.setSizePolicy(sizePolicy)
 
 		self.hLayout.addWidget(self.leftbutton)
 		self.hLayout.addWidget(self.slider)
@@ -182,6 +183,7 @@ class Mpl_Image(QtGui.QWidget):
 		# Setup the layout
 		if toolbarbool:
 			self.toolbar = _NavigationToolbar(self.canvas,self)
+			self.toolbar.setMaximumHeight(20)
 			self.vLayout.addWidget(self.toolbar)
 		self.vLayout.addWidget(self.canvas)
 		self.setLayout(self.vLayout)
