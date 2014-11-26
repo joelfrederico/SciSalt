@@ -3,11 +3,11 @@ __all__ = ['mylogger','log']
 
 import classes
 
-def mylogger(filename):
+def mylogger(filename,indent_offset=7):
 	logger = logging.getLogger()
 	logger.setLevel(logging.DEBUG)
 
-	fmtr         = classes.IndentFormatter(indent_offset=7)
+	fmtr         = classes.IndentFormatter(indent_offset=indent_offset)
 	fmtr_msgonly = classes.IndentFormatter('%(indent)s%(message)s')
 
 	debugh = logging.FileHandler(filename='{}_debug.log'.format(filename),mode='w')
