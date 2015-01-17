@@ -24,6 +24,7 @@ from mylogger import *
 from picklejar import picklejar
 from plot_featured import plot_featured
 from showfig import showfig
+from NonUniformImage import *
 
 class Error(Exception):
 	"""Base class for exceptions in this module."""
