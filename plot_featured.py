@@ -37,7 +37,7 @@ def plot_featured(*args,**kwargs):
         _plt.errorbar(*args,**kwargs)
 
     # Format plot as desired
-    _addlabel(toplabel,xlabel,ylabel)
+    _addlabel(toplabel,xlabel,ylabel,fig=fig)
     if ( legend != None ):
         _plt.legend(legend)
 
