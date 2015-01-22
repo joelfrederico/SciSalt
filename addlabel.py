@@ -6,6 +6,9 @@ def addlabel(toplabel=None,xlabel=None,ylabel=None,axes=None,clabel=None,cb=None
     if windowlabel!=None and fig!=None:
         fig.canvas.set_window_title(windowlabel)
 
+    if fig is None:
+        fig = plt.gcf()
+
     if fig is not None and axes is None:
         axes = fig.get_axes()
         if axes==[]:
