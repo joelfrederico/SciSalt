@@ -12,3 +12,5 @@ def NonUniformImage(x,y,z,ax):
 
     ax.set_xlim(xmin,xmax)
     ax.set_ylim(ymin,ymax)
+
+    return im
