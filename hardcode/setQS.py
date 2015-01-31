@@ -1,19 +1,20 @@
+import ipdb
 import logging
 loggerlevel = logging.DEBUG
 logger=logging.getLogger(__name__)
 
 import mytools as mt
 import numpy as np
-energy0    = 20.35
-QS1_length = 1
-QS2_length = 1
+energy0    = np.float(20.35)
+QS1_length = np.float(1)
+QS2_length = np.float(1)
 
 __all__ = ['setQS']
 
 class QS(object):
     def __init__(self,K1,length,energy):
-        self.K1      = K1
-        self.energy  = energy
+        self.K1     = K1
+        self.energy = energy
         self.length = length
 
     def _get_BDES(self):
@@ -27,7 +28,6 @@ class setQS(object):
         logger.critical('****************************USING HARDCODED FUNCTIONS!!!****************************')
         logger.log(level=loggerlevel,msg='Energy offset: {}'.format(energy_offset))
         self.energy_offset = energy_offset
-
         
     # ======================================
     # QS1, QS2 class objects
@@ -65,11 +65,11 @@ class setQS(object):
     # Get QS1/2's BDES value
     # ======================================
     def _get_QS1_BDES(self):
-        QS1_BDES = (1+self.energy_offset/20.35)*261.72
+        QS1_BDES = (np.float64(1)+self.energy_offset/np.float64(20.35))*np.float64(261.72)
         return QS1_BDES
 
     def _get_QS2_BDES(self):
-        QS2_BDES = -(1+self.energy_offset/20.35)*167.95
+        QS2_BDES = -(np.float64(1)+self.energy_offset/np.float64(20.35))*np.float64(167.95)
         return QS2_BDES
 
     # ======================================
