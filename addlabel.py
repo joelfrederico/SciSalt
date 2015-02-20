@@ -21,14 +21,15 @@ def addlabel(toplabel=None,xlabel=None,ylabel=None,axes=None,clabel=None,cb=None
             axes.set_xlabel(xlabel)
         if ylabel is not None:
             axes.set_ylabel(ylabel)
-        if (clabel is not None) or (cb is not None):
-            if (clabel is not None) and (cb is not None):
-                cb.set_label(clabel)
-            else:
-                if clabel is None:
-                    warn('Missing colorbar label')
-                else cb is None:
-                    warn('Missing colorbar instance')
+
+    if (clabel is not None) or (cb is not None):
+        if (clabel is not None) and (cb is not None):
+            cb.set_label(clabel)
+        else:
+            if clabel is None:
+                warn('Missing colorbar label')
+            else cb is None:
+                warn('Missing colorbar instance')
 
     else:
         warn('No labels added!',RuntimeWarning)
