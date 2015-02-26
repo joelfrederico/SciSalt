@@ -32,7 +32,7 @@ def addlabel(toplabel=None,xlabel=None,ylabel=None,axes=None,clabel=None,cb=None
         else:
             if clabel is None:
                 warn('Missing colorbar label')
-            else cb is None:
+            else:
                 warn('Missing colorbar instance')
 
     else:
