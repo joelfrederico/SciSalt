@@ -34,7 +34,3 @@ def addlabel(toplabel=None,xlabel=None,ylabel=None,axes=None,clabel=None,cb=None
                 warn('Missing colorbar label')
             else:
                 warn('Missing colorbar instance')
-
-    else:
-        warn('No labels added!',RuntimeWarning)
-
