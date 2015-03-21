@@ -26,10 +26,10 @@ class H5Drill(object):
                 else:
                     setattr(self, key, data[key])
 
-    def __repr__(self):
-        out = '\<E200.E200_load_data.Drill with keys:\n_hdf5'
-        for val in self._hdf5.keys():
-            out = out + '\n' + val
+    # def __repr__(self):
+    #     out = '\<E200.E200_load_data.Drill with keys:\n_hdf5'
+    #     for val in self._hdf5.keys():
+    #         out = out + '\n' + val
 
-        out = out[1:] + '\n>'
-        return out
+    #     out = out[1:] + '\n>'
+    #     return out
