@@ -1,4 +1,4 @@
-from gaussfit import gaussfit as _gaussfit
+from .gaussfit import gaussfit as _gaussfit
 import numpy as _np
 import pdb as _pdb
 import mytools as _mt

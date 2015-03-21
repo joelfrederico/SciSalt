@@ -1,6 +1,6 @@
 import numpy as _np
 import matplotlib.pyplot as _plt
-from addlabel import addlabel as _addlabel
+from .addlabel import addlabel as _addlabel
 
 def hist(x, bins=10, labels=None, aspect="auto", plot=True, ax=None, range=None):
 	"""Creates a 2D histogram of data."""

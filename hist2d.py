@@ -1,8 +1,8 @@
 import numpy as _np
 import matplotlib.pyplot as _plt
-from showfig import showfig as _showfig
-from addlabel import addlabel as _addlabel
-from figure import figure as _figure
+from .showfig import showfig as _showfig
+from .addlabel import addlabel as _addlabel
+from .figure import figure as _figure
 
 def hist2d(x, y, bins=10, labels=None, aspect="auto", plot=True, fig=None, range=None):
 	"""Creates a 2D histogram of data."""

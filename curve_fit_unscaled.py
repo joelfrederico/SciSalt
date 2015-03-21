@@ -1,6 +1,6 @@
 import numpy as _np
 import scipy.optimize as _spopt
-from chisquare import chisquare as _chisquare
+from .chisquare import chisquare as _chisquare
 
 
 def curve_fit_unscaled(*args, **kwargs):

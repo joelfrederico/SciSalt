@@ -2,8 +2,8 @@ import numpy as _np
 # import scipy.optimize as _spopt
 import matplotlib.pyplot as _plt
 # from chisquare import chisquare as _chisquare
-from curve_fit_unscaled import curve_fit_unscaled as _curve_fit_unscaled
-from figure import figure as _figure
+from .curve_fit_unscaled import curve_fit_unscaled as _curve_fit_unscaled
+from .figure import figure as _figure
 # import collections as _col
 
 
