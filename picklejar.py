@@ -11,6 +11,6 @@ def picklejar(filename, **kwargs):
     print("Pickling...")
     f = open(filename, 'wb')
     out = PickleJar(**kwargs)
-    cPickle.dump(out, f, protocol=-1)
+    pickle.dump(out, f, protocol=-1)
     f.close()
     print("Finished pickling!")
