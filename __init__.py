@@ -1,6 +1,7 @@
 from . import classes
 from . import graphics
 from . import hardcode
+from . import PWFA
 # from . import qt
 
 from .BDES2K import *
@@ -25,12 +26,15 @@ from .picklejar import picklejar
 from .plot_featured import plot_featured
 from .showfig import showfig
 from .NonUniformImage import *
+from .frexp10 import *
 
 from .h5drill import *
+
 
 class Error(Exception):
     """Base class for exceptions in this module."""
     pass
+
 
 class ArgumentError(Error):
     """Exception raised for errors in function arguments.
