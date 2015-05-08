@@ -1,5 +1,5 @@
 from PyQt4                              import QtGui,QtCore
-from Rectangle                          import Rectangle
+from .Rectangle                          import Rectangle
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as _FigureCanvas
 from matplotlib.backends.backend_qt4 import NavigationToolbar2QT as _NavigationToolbar
 import matplotlib as _mpl
@@ -87,11 +87,11 @@ class Slider_and_Text(QtGui.QWidget):
         self.valueChanged.emit(self.value)
 
     def _sliderReleased(self):
-        print 'Released'
+        print('Released')
         self.sliderReleased.emit(self.slider.value)
 
     def setTracking(self,val):
-        print 'Tracking set to {}'.format(val)
+        print('Tracking set to {}'.format(val))
         self._tracking=val
 
     def setMaximum(self,val):
@@ -121,7 +121,7 @@ class Slider_and_Text(QtGui.QWidget):
 
     def _sliderChanged_notracking(self):
         val = self.slider.value()
-        # print 'Value to be emitted is {}'.format(val)
+        # print('Value to be emitted is {}'.format(val))
         self.valueChanged.emit(val)
 
     def _textChanged(self):
@@ -221,7 +221,7 @@ class Mpl_Image(QtGui.QWidget):
             if self.rectbool:
                 self.ax.add_patch(self.Rectangle.get_rect())
             imagemax = _np.max(_np.max(image))
-            # print 'Image max is {}.'.format(imagemax)
+            # print('Image max is {}.'.format(imagemax))
             self.set_clim(self._clim_min,self._clim_max)
             # self.fig.colorbar(self._imgplot)
     image = property(_get_img,_set_img)
@@ -242,7 +242,7 @@ class Mpl_Image(QtGui.QWidget):
         #  if self.canvas._active == "PAN" or self._active == "ZOOM":
         if self.toolbar._active is None:
             self._pressed = True
-            #  print 'press'
+            #  print('press')
             self.x0 = event.xdata
             self.y0 = event.ydata
             logger.log(level=loggerlevel,msg='Pressed: x0: {}, y0: {}'.format(self.x0,self.y0))
@@ -250,7 +250,7 @@ class Mpl_Image(QtGui.QWidget):
     def on_release(self,event):
         if self._pressed:
             self._pressed = False
-            print 'release'
+            print('release')
             self.x1 = event.xdata
             self.y1 = event.ydata
             width   = self.x1 - self.x0
@@ -272,7 +272,7 @@ class Mpl_Image(QtGui.QWidget):
             self.ax.figure.canvas.draw()
 
             self.rectChanged.emit(self.Rectangle)
-            # print self.rect
+            # print(self.rect)
 
     def zoom_rect(self,border=None,border_px=None):
         # ======================================
@@ -318,13 +318,13 @@ class Mpl_Image(QtGui.QWidget):
         # unPythonic crash
         # ======================================
         if not ((0 <= x0 and x0 <= self.image.shape[1]) and (0 <= x1 and x1 <= self.image.shape[1])):
-            print 'X issue'
-            print 'Requested: x=({},{})'.format(x0,x1)
+            print('X issue')
+            print('Requested: x=({},{})'.format(x0,x1))
             x0 = 0
             x1 = self.image.shape[1]
         if not ((0 <= y0 and y0 <= self.image.shape[0]) and (0 <= y1 and y1 <= self.image.shape[0])):
-            print 'y issue'
-            print 'Requested: y=({},{})'.format(y0,y1)
+            print('y issue')
+            print('Requested: y=({},{})'.format(y0,y1))
             y0 = 0
             y1 = self.image.shape[0]
 

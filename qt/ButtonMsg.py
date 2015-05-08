@@ -1,6 +1,6 @@
 from PyQt4 import QtGui,QtCore
 import numpy as _np
-from get_app import get_app
+from .get_app import get_app
 
 class Button(object):
 	def __init__(self,*args,**kwargs):

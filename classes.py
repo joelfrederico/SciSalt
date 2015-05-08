@@ -13,7 +13,7 @@ class Keywords(object):
 class IndentFormatter(logging.Formatter):
     def __init__( self, fmt=None, datefmt=None, indent_offset=6):
         if fmt is None:
-            fmt = '%(indent)s------------------\n%(indent)s%(levelname)s - %(name)s:%(funcName)s:%(lineno)d\n%(indent)s%(message)s'
+            fmt = '%(indent)s==========================================================\n%(indent)s%(levelname)s - %(name)s:%(funcName)s:%(lineno)d\n%(indent)s%(message)s'
 
         super(IndentFormatter, self).__init__(fmt=fmt, datefmt=datefmt)
         #  print type(len(inspect.stack()))
