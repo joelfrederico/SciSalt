@@ -1,26 +1,36 @@
 import matplotlib.pyplot as plt
 from warnings import warn
 
-def addlabel(toplabel=None,xlabel=None,ylabel=None,axes=None,clabel=None,cb=None,windowlabel=None,fig=None):
-	"""Adds labels to a plot."""
-	if windowlabel!=None and fig!=None:
-		fig.canvas.set_window_title(windowlabel)
+def addlabel(toplabel=None,xlabel=None,ylabel=None,axes=None,clabel=None,cb=None,windowlabel=None,fig=None,ax=None):
+    """Adds labels to a plot."""
 
-	if fig is not None and axes is None:
-		axes = fig.get_axes()
-		if axes==[]:
-			warn('No axes found!',RuntimeWarning)
+    if (axes is None) and (ax is not None):
+        axes = ax
 
-	if axes is not None:
-		if toplabel is not None:
-			axes.set_title(toplabel)
-		if xlabel is not None:
-			axes.set_xlabel(xlabel)
-		if ylabel is not None:
-			axes.set_ylabel(ylabel)
-		if (clabel is not None) and (cb is not None):
-			cb.set_label(clabel)
+    if windowlabel!=None and fig!=None:
+        fig.canvas.set_window_title(windowlabel)
 
-	else:
-		warn('No labels added!',RuntimeWarning)
+    if fig is None:
+        fig = plt.gcf()
 
+    if fig is not None and axes is None:
+        axes = fig.get_axes()
+        if axes==[]:
+            warn('No axes found!',RuntimeWarning)
+
+    if axes is not None:
+        if toplabel is not None:
+            axes.set_title(toplabel)
+        if xlabel is not None:
+            axes.set_xlabel(xlabel)
+        if ylabel is not None:
+            axes.set_ylabel(ylabel)
+
+    if (clabel is not None) or (cb is not None):
+        if (clabel is not None) and (cb is not None):
+            cb.set_label(clabel)
+        else:
+            if clabel is None:
+                warn('Missing colorbar label')
+            else:
+                warn('Missing colorbar instance')
