@@ -5,6 +5,7 @@ import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
 import mytools as mt
 import numpy as _np
+import os
 import shlex
 import skimage.filters as skfilt
 import skimage.measure as skmeas
@@ -213,9 +214,14 @@ class BlobAnalysis(object):
                         ipdb.set_trace()
     
                 if self.movie:
-                    filename = 'movie/movie_{}_{:03d}.tif'.format(self.imgname, i)
-                    self.fig.savefig(filename)
-    
+                    filename = 'movie_files/movie_{}_{:03d}.tif'.format(self.imgname, i)
+
+                    try:
+                        self.fig.savefig(filename)
+                    except FileNotFoundError:
+                        os.makedirs(os.path.dirname(filename))
+                        self.fig.savefig(filename)
+                        
             if self.check or self.movie:
                 plt.close(self.fig)
 
@@ -242,7 +248,11 @@ class BlobAnalysis(object):
             print('Avg. Std. Dev.-\n\tX: {:0.2f}\tY: {:0.2f}'.format(_np.mean(sigma_x), _np.mean(sigma_y)))
             
             if self.movie:
-                command = 'ffmpeg -framerate 10 -i movie/movie_{val:}_%03d.tif -vcodec h264 -r 30 -pix_fmt yuv420p out_{val:}.mov'.format(val=self.imgname)
+                savedir = 'output'
+                if not os.path.isdir(savedir):
+                    os.makedirs(savedir)
+
+                command = 'ffmpeg -y -framerate 10 -i movie_files/movie_{val:}_%03d.tif -vcodec h264 -r 30 -pix_fmt yuv420p {savedir:}/out_{val:}.mov'.format(val=self.imgname, savedir=savedir)
                 subprocess.call(shlex.split(command))
     
             if self.debug:
@@ -298,9 +308,13 @@ class BlobAnalysis(object):
 
         if save:
             if savefig is None:
-                savefig = mainfigtitle + '.eps'
+                savefig = 'output/{}.eps'.format(mainfigtitle)
 
-            fig.savefig(savefig)
+            try:
+                fig.savefig(savefig)
+            except FileNotFoundError:
+                os.makedirs(os.path.dirname(savefig))
+                fig.savefig(savefig)
 
         if show:
             plt.show()
