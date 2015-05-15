@@ -27,6 +27,8 @@ from .plot_featured import plot_featured
 from .showfig import showfig
 from .NonUniformImage import *
 from .frexp10 import *
+from .pcolor_axes import pcolor_axes
+from .NonUniformImage_axes import NonUniformImage_axes
 
 from .h5drill import *
 

@@ -28,3 +28,7 @@ class Match(object):
     @property
     def sigma(self):
         return _np.power(2*_sltr.GeV2joule(self.E)*_sltr.epsilon_0 / (self.plasma.n_p * _np.power(_sltr.e, 2)) , 0.25) * _np.sqrt(self.emit)
+
+    def beta(self, E):
+        return 1.0 / _np.sqrt(self.plasma.k_ion(E))
+        # return 1.0 / _np.sqrt(2)
