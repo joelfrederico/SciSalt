@@ -20,7 +20,7 @@ class Button(object):
         allargs = _np.array(args, dtype=object)
         allargs = _np.append(allargs, kwargs.values())
 
-        ipdb.set_trace()
+        # ipdb.set_trace()
 
         if argnum == 1:
             if isinstance(allargs[0], QtGui.QMessageBox.StandardButton):
