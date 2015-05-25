@@ -1,11 +1,12 @@
 import argparse as _argparse
 import shlex as _shlex
 import subprocess as _subprocess
+# import ipdb
 
 
 def pdf2png(file_in, file_out):
     command = 'convert -display 37.5 {} -append {}'.format(file_in, file_out)
-    _subprocess.Popen(_shlex.split(command))
+    _subprocess.call(_shlex.split(command))
 
 if __name__ == '__main__':
     parser = _argparse.ArgumentParser(description=
