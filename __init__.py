@@ -1,4 +1,5 @@
 from . import classes
+from . import facettools
 from . import graphics
 from . import hardcode
 from . import PWFA
