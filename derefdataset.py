@@ -1,49 +1,51 @@
 import numpy as _np
 import matplotlib.pyplot as _plt
-import PIL.Image as Image
 import scipy as _sp
 
-def derefdataset(dataset,f):
-	# Get the dataset shape, initialize output
-	out = _np.empty(dataset.shape[0])
 
-	# Iterate over references, save to out.
-	for i,val in enumerate(dataset):
-		out[i] = f[val[0]][0,0]
+def derefdataset(dataset, f):
+    # Get the dataset shape, initialize output
+    out = _np.empty(dataset.shape[0])
 
-	return out
+    # Iterate over references, save to out.
+    for i, val in enumerate(dataset):
+        out[i] = f[val[0]][0, 0]
+
+    return out
+
 
 def derefstr(dataset):
-	intarr = _np.array(dataset)
-	strarr = intarr.view('S2')
-	strarr = strarr.flatten()
-	strarr = ''.join(strarr)
+    intarr = _np.array(dataset)
+    strarr = intarr.view('S2')
+    strarr = strarr.flatten()
+    strarr = ''.join(strarr)
 
-	return strarr
+    return strarr
 
-def derefimgs(dataset,datasetbg,f):
-	# Get the dataset shape, initialize output
-	out = _np.empty([dataset.shape[0],734,1292])
 
-	# Iterate over references, save to out.
-	for i,val in enumerate(dataset):
-		intarr = f[val[0]]
-		intarr = _np.array(intarr)
-		strarr = intarr.view('S2')
-		strarr = strarr.flatten()
-		strarr = ''.join(strarr)
-		img = _plt.imread(strarr)
+def derefimgs(dataset, datasetbg, f):
+    # Get the dataset shape, initialize output
+    out = _np.empty([dataset.shape[0], 734, 1292])
 
-		val = datasetbg[i]
-		intarr = f[val[0]]
-		intarr = _np.array(intarr)
-		strarr = intarr.view('S2')
-		strarr = strarr.flatten()
-		strarr = ''.join(strarr)
+    # Iterate over references, save to out.
+    for i, val in enumerate(dataset):
+        intarr = f[val[0]]
+        intarr = _np.array(intarr)
+        strarr = intarr.view('S2')
+        strarr = strarr.flatten()
+        strarr = ''.join(strarr)
+        img = _plt.imread(strarr)
 
-		img_bg = _sp.io.loadmat(strarr)
-		img_bg = img_bg['img']
+        val = datasetbg[i]
+        intarr = f[val[0]]
+        intarr = _np.array(intarr)
+        strarr = intarr.view('S2')
+        strarr = strarr.flatten()
+        strarr = ''.join(strarr)
 
-		out[i,:,:] = img-img_bg
+        img_bg = _sp.io.loadmat(strarr)
+        img_bg = img_bg['img']
 
-	return out
+        out[i, :, :] = img - img_bg
+
+    return out

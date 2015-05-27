@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import argparse
 import shlex
@@ -11,10 +11,11 @@ def githubtunnel(user1, server1, user2, server2, port, verbose, stanford=False):
         port_shift = 1
     else:
         port_shift = 0
-    # command1     = 'ssh -nNf -L {}:quickpicmac3.slac.stanford.edu:22 {}@{}'.format(port, user, server)
-    command1       = 'ssh -nNf -L {}:{}:22 {}@{}'.format(port-1-port_shift, server2, user1, server1)
-    command2       = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -nNf -L {}:cardinal.stanford.edu:22 -p {} {}@localhost'.format(port-port_shift, port-port_shift-1, user2)
-    command3       = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -nNf -L {}:github.com:22 -p {} {}@localhost'.format(port, port-1, user2)
+
+    # command1 = 'ssh -nNf -L {}:quickpicmac3.slac.stanford.edu:22 {}@{}'.format(port, user, server)
+    command1 = 'ssh -nNf -L {}:{}:22 {}@{}'.format(port-1-port_shift, server2, user1, server1)
+    command2 = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -nNf -L {}:cardinal.stanford.edu:22 -p {} {}@localhost'.format(port-port_shift, port-port_shift-1, user2)
+    command3 = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -nNf -L {}:github.com:22 -p {} {}@localhost'.format(port, port-1, user2)
     if verbose:
         print(command1)
         if stanford:
@@ -48,6 +49,7 @@ if __name__ == '__main__':
             help='Second server hop.')
     parser.add_argument('-su', '--stanford', action='store_true',
             help='Tunnel through Stanford')
+
     arg = parser.parse_args()
 
     githubtunnel(arg.user1.value, arg.server1, arg.user2.value, arg.server2, arg.port, arg.verbose, stanford=arg.stanford)

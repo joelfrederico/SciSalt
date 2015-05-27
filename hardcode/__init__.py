@@ -1,1 +1,1 @@
-from setQS import *
+from .setQS import *
