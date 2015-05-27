@@ -1,6 +1,8 @@
 import numpy as _np
 import matplotlib.pyplot as _plt
-import mytools as _mt
+from .figure import figure
+from .linspacestep import linspacestep
+from .gaussfit import gaussfit
 # import copy
 # import pdb as _pdb
 
@@ -28,7 +30,7 @@ def findpinch(img, xbounds=None, ybounds=None, step=1, verbose=False):
 
     img = img[yrange, xrange]
     if verbose:
-        fig = _mt.figure('To process')
+        fig = figure('To process')
         ax = fig.add_subplot(111)
         ax.imshow(img)
         _plt.show()
@@ -47,7 +49,7 @@ def findpinch(img, xbounds=None, ybounds=None, step=1, verbose=False):
     # ======================================
     # Fit individual slices
     # ======================================
-    for i, val in enumerate(_mt.linspacestep(0, ystop - ystart - step, step)):
+    for i, val in enumerate(linspacestep(0, ystop - ystart - step, step)):
         # Take a strip of the image
         strip = img[slice(val, val + step), :]
         
@@ -60,7 +62,7 @@ def findpinch(img, xbounds=None, ybounds=None, step=1, verbose=False):
         # plotbool = True
         plotbool = False
         varbool  = False
-        popt, pcov, chisq_red[i] = _mt.gaussfit(
+        popt, pcov, chisq_red[i] = gaussfit(
             x,
             histdata,
             sigma_y         = _np.ones(xbins),
@@ -74,8 +76,8 @@ def findpinch(img, xbounds=None, ybounds=None, step=1, verbose=False):
     # ======================================
     # Fit 2nd-deg poly to results
     # ======================================
-    yvar = _np.shape(_mt.linspacestep(ystart, ystop, step))[0] - 1
-    yvar = _mt.linspacestep(1, yvar)
+    yvar = _np.shape(linspacestep(ystart, ystop, step))[0] - 1
+    yvar = linspacestep(1, yvar)
     
     out = _np.polyfit(yvar, variance, 2)
 
