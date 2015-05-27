@@ -5,8 +5,7 @@ import datetime as _dt
 import shutil as _shutil
 import ipdb as _ipdb
 
-# basedir = '/u1/facet/physics/logbook/data'
-basedir = '/home/fphysics/joelfred/print2elog'
+basedir = '/u1/facet/physics/logbook/data'
 
 
 # ============================

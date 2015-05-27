@@ -5,7 +5,7 @@ import subprocess as _subprocess
 
 
 def pdf2png(file_in, file_out):
-    command = 'convert -display 37.5 {} -append {}'.format(file_in, file_out)
+    command = 'convert -display 37.5 {} -resize 600 -append {}'.format(file_in, file_out)
     _subprocess.call(_shlex.split(command))
 
 if __name__ == '__main__':

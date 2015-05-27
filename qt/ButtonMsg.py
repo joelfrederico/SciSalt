@@ -37,6 +37,8 @@ class Button(object):
 
 class ButtonMsg(QtGui.QMessageBox):
     def __init__(self, maintext, buttons, title=None, infotext=None):
+        self._clicked = None
+        self._buttons = buttons
         app = get_app()
 
         super(ButtonMsg, self).__init__()
@@ -73,6 +75,19 @@ class ButtonMsg(QtGui.QMessageBox):
 
     def clickedButton(self):
         return self.msgbox.clickedButton()
+
+    @property
+    def clickeditem(self):
+        return self._buttons[self.clicked]
+
+    @property
+    def clicked(self):
+        if self._clicked is None:
+            for i, val in enumerate(self.btnarray):
+                if (self.clickedButton() == val):
+                    self._clicked = i
+        
+        return self._clicked
 
     def _get_clickedArray(self):
         clicked = _np.empty(_np.size(self.btnarray), dtype=_np.bool_)
