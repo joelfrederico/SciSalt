@@ -35,6 +35,24 @@ class Button(object):
             raise ValueError('Incorrect arguments: {}'.format(allargs))
 
 
+class getDouble(QtGui.QWidget):
+    def __init__(self, **kwargs):
+        app = get_app()
+        super(getDouble, self).__init__()
+
+        title = kwargs.pop('title', '')
+        text = kwargs.pop('text', 'Double number:')
+
+        self._input, self._ok = QtGui.QInputDialog.getDouble(self, title, text, **kwargs)
+
+
+    @property
+    def input(self):
+        if self._ok:
+            return self._input
+        else:
+            raise IOError('User may have cancelled')
+
 class ButtonMsg(QtGui.QMessageBox):
     def __init__(self, maintext, buttons, title=None, infotext=None):
         self._clicked = None

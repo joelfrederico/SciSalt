@@ -1,12 +1,10 @@
 import numpy as _np
 import matplotlib.pyplot as _plt
-from .showfig import showfig as _showfig
 from .addlabel import addlabel as _addlabel
 from .figure import figure as _figure
-import ipdb
 
 
-def hist2d(x, y, bins=10, labels=None, aspect="auto", plot=True, fig=None, range=None, ax=None, **kwargs):
+def hist2d(x, y, bins=10, labels=None, aspect="auto", plot=True, fig=None, range=None, ax=None, interpolation='none', **kwargs):
     """Creates a 2D histogram of data."""
 
     h, xe, ye = _np.histogram2d(x, y, bins=bins, range=range)
@@ -19,7 +17,7 @@ def hist2d(x, y, bins=10, labels=None, aspect="auto", plot=True, fig=None, range
             ax = fig.gca()
             ax.clear()
 
-        img = ax.imshow(h.transpose(), extent=extent, interpolation='none', aspect=aspect, **kwargs)
+        img = ax.imshow(h.transpose(), extent=extent, interpolation=interpolation, aspect=aspect, **kwargs)
         _plt.colorbar(img)
 
         if labels is not None:
