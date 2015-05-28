@@ -45,7 +45,7 @@ def print2elog(author='', title='', text='', link=None, file=None, now=None):
     # ============================
     # Jinja templating
     # ============================
-    loader = _jj.PackageLoader('mytools.facettools', 'resources/templates')
+    loader = _jj.PackageLoader('pytools.facettools', 'resources/templates')
     env = _jj.Environment(loader=loader, trim_blocks=True)
     template = env.get_template('facetelog.xml')
     stream = template.stream(author=author, title=title, text=text, link=link_copied, file=file_copied, now=now)

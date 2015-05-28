@@ -2,7 +2,7 @@
 
 import argparse
 import shlex
-import mytools.classes as mtcl
+import pytools.classes as mtcl
 from subprocess import call
 
 
