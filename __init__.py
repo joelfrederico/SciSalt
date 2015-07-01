@@ -1,4 +1,5 @@
 from . import classes                                    # noqa
+from . import cmaps                                      # noqa
 from . import facettools                                 # noqa
 from . import graphics                                   # noqa
 from . import hardcode                                   # noqa
