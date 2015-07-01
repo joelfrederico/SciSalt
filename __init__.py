@@ -33,6 +33,7 @@ from .mylogger import *                                  # noqa
 from .pcolor_axes import pcolor_axes                     # noqa
 from .picklejar import picklejar                         # noqa
 from .plot_featured import plot_featured                 # noqa
+from .rgb2gray import rgb2gray                           # noqa
 from .showfig import showfig                             # noqa
 from .setup_figure import setup_figure                   # noqa
 

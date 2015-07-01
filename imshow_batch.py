@@ -1,9 +1,11 @@
-import ipdb
+import ipdb                              # noqa
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
-from matplotlib.backends.backend_pdf import PdfPages
 import numpy as _np
 import logging
+
+from matplotlib.backends.backend_pdf import PdfPages
+
 logger = logging.getLogger(__name__)
 
 
@@ -11,9 +13,10 @@ def imshow_batch(images, cbar=True, show=True, pdf=None, figsize=(16, 12), title
     # ======================================
     # Set up grid
     # ======================================
+    images = _np.array(images)
     gs = gridspec.GridSpec(rows, columns)
 
-    num_imgs = _np.size(images)
+    num_imgs = images.shape[0]
     max_ind = num_imgs-1
 
     # ======================================
@@ -49,7 +52,6 @@ def imshow_batch(images, cbar=True, show=True, pdf=None, figsize=(16, 12), title
             col_max_ind = _np.min([i_min_ind + columns - 1, max_ind])
             
             for j, image in enumerate(images[i_min_ind:col_max_ind+1]):
-                ipdb.set_trace()
                 ax = fig_array[p].add_subplot(gs[i, j])
 
                 try:
