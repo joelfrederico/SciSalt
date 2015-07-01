@@ -1,1 +1,1 @@
-from .parula import parula
+from . import parula
