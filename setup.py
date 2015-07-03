@@ -28,7 +28,7 @@ setup(
     long_description=long_description,
 
     # The project's main homepage.
-    url='https://github.com/joelfrederico/pytools',
+    url='https://github.com/joelfrederico/SciSalt',
 
     # Author details
     author='Joel Frederico, SLAC National Accelerator Laboratory',
