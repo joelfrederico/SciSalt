@@ -1,4 +1,4 @@
-PyTools
+SciSalt
 =======
 
 This project has slowly grown from frequently-used code snippets. The
