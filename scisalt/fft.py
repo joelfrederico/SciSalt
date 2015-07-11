@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-import ipdb  # NOQA
 import numpy as np
-import pytools as pt
-import pytools.qt as ptqt
+from .fill_missing_timestamps import fill_missing_timestamps
+from . import qt
 # import stability as st
 
 
@@ -11,11 +10,11 @@ def fft(values, freq=None, timestamps=None, fill_missing=False):
     # Get frequency
     # ======================================
     if freq is None:
-        freq = ptqt.getDouble(title='Fourier Analysis', text='Frequency samples taken at:', min=0, decimals=2, value=1.0)
+        freq = qt.getDouble(title='Fourier Analysis', text='Frequency samples taken at:', min=0, decimals=2, value=1.0)
         freq = freq.input
     
     if fill_missing:
-        (t_x, x_filled) = pt.fill_missing_timestamps(timestamps, values)
+        (t_x, x_filled) = fill_missing_timestamps(timestamps, values)
     else:
         x_filled = values
         

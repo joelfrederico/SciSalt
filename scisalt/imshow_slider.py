@@ -3,7 +3,6 @@
 from .setup_figure import setup_figure   # noqa
 import matplotlib.widgets as _wdg
 import numpy as _np
-import ipdb                              # noqa
 
 
 class imshow_slider(object):

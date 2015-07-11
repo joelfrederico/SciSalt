@@ -1,7 +1,6 @@
 import argparse as _argparse
 import shlex as _shlex
 import subprocess as _subprocess
-# import ipdb
 
 
 def pdf2png(file_in, file_out):

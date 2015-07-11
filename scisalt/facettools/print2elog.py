@@ -3,7 +3,6 @@ import tempfile as _tempfile
 import os as _os
 import datetime as _dt
 import shutil as _shutil
-import ipdb as _ipdb
 
 basedir = '/u1/facet/physics/logbook/data'
 
