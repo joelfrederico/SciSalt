@@ -5,5 +5,5 @@ The modules in this chapter make mathematical analysis easier. There are some fu
 
 .. toctree::
 
-   math/numpy
-   math/scipy
+   numpy <math/numpy>
+   scipy <math/scipy>

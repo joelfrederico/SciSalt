@@ -1,4 +1,4 @@
-NumPy
+numpy
 =====
 
 .. automodule:: scisalt.numpy

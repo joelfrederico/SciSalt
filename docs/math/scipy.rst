@@ -1,4 +1,4 @@
-SciPy
+scipy
 =====
 
 .. automodule:: scisalt.scipy
