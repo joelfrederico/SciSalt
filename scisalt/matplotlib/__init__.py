@@ -2,7 +2,6 @@ __all__ = [
     'NonUniformImage',
     'NonUniformImage_axes',
     'addlabel',
-    'parula',
     'figure',
     'hist',
     'hist2d',
@@ -14,11 +13,14 @@ __all__ = [
     'setup_figure',
     'showfig',
     ]
+import os as _os
+on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not on_rtd:
+    from .cmaps import parula
 
 from .NonUniformImage import NonUniformImage
 from .NonUniformImage_axes import NonUniformImage_axes
 from .addlabel import addlabel
-from .cmaps import parula
 from .figure import figure
 from .hist import hist
 from .hist2d import hist2d
