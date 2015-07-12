@@ -8,7 +8,9 @@ from .addlabel import addlabel as _addlabel
 
 
 def hist(x, bins=10, labels=None, aspect="auto", plot=True, ax=None, range=None):
-    """Creates a 2D histogram of data."""
+    """
+    Creates a histogram of data *x* with a *bins*, *labels* = :code:`[title, xlabel, ylabel]`.
+    """
 
     h, edge = _np.histogram(x, bins=bins, range=range)
     

@@ -9,6 +9,11 @@ def px_to_units(xpx, ypx):
 
 
 def pcolor_axes(array, px_to_units=px_to_units):
+    """
+    Return axes :code:`x, y` for *array* to be used with :func:`matplotlib.pyplot.color`.
+
+    *px_to_units* is a function to convert pixels to units. By default, returns pixels.
+    """
     # ======================================
     # Coords need to be +1 larger than array
     # ======================================

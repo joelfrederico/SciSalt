@@ -12,7 +12,16 @@ import logging as _logging
 logger = _logging.getLogger(__name__)
 
 
-def imshow_batch(images, cbar=True, show=True, pdf=None, figsize=(16, 12), title=None, rows=2, columns=2, cmap=None, **kwargs):
+def imshow_batch(images, cbar=True, show=True, pdf=None, figsize=(16, 12), rows=2, columns=2, cmap=None, **kwargs):
+    """
+    Plots an array of *images* to a single window of size *figsize* with *rows* and *columns*.
+
+    * *cmap*: Specifies color map
+    * *cbar*: Add color bars
+    * *show*: If false, dismisses each window after is created and optionally saved
+    * *pdf*: Save to a pdf of filename *pdf*
+    * *\*\*kwargs* passed to :class:`matplotlib.axis.imshow`
+    """
     # ======================================
     # Set up grid
     # ======================================

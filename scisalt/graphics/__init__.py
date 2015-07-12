@@ -1,4 +1,12 @@
-__all__ = ['savefig', 'axesfontsize', 'less_labels', 'latexfig']
+"""
+
+"""
+__all__ = [
+    'axesfontsize',
+    'latexfig',
+    'less_labels',
+    'savefig',
+    ]
 # from tile import tile
 from .savefig import savefig
 from .axesfontsize import axesfontsize

@@ -9,7 +9,15 @@ from .figure import figure as _figure
 
 
 def hist2d(x, y, bins=10, labels=None, aspect="auto", plot=True, fig=None, range=None, ax=None, interpolation='none', **kwargs):
-    """Creates a 2D histogram of data."""
+    """
+    Creates a 2-D histogram of data *x*, *y* with *bins*, *labels* = :code:`[title, xlabel, ylabel]`, aspect ration *aspect*. Attempts to use axis *ax* first, then the current axis of *fig*, then the last axis, to use an already-created window.
+    
+    Plotting (*plot*) is on by default, setting false doesn't attempt to create a figure.
+
+    *interpolation* sets the interpolation type of :meth:`matplotlib.axis.imshow`.
+
+    Returns a handle and extent as :code:`h, extent`
+    """
 
     h, xe, ye = _np.histogram2d(x, y, bins=bins, range=range)
     extent    = [xe[0], xe[-1], ye[-1], ye[0]]

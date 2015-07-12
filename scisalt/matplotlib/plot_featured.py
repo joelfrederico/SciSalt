@@ -11,6 +11,17 @@ from .figure import figure as _figure
 def plot_featured(*args, **kwargs):
     """
     Wrapper for matplotlib.pyplot.plot() / errorbar().
+
+    Takes options:
+
+    * 'error': if true, use :func:`matplotlib.pyplot.errorbar` instead of :func:`matplotlib.pyplot.plot`. *\*args* and *\*\*kwargs* passed through here.
+    * 'fig': figure to use.
+    * 'figlabel': figure label.
+    * 'legend': legend location.
+    * 'toplabel': top label of plot.
+    * 'xlabel': x-label of plot.
+    * 'ylabel': y-label of plot.
+
     """
     # Strip off options specific to plot_featured
     toplabel = kwargs.pop('toplabel', None)

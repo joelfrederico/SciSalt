@@ -10,6 +10,11 @@ from .setup_figure import setup_figure   # noqa
 
 
 class imshow_slider(object):
+    """
+    Convenience class for viewing images.
+    
+    Plots *image* to a to an instance of :class:`matplotlib.axis.imshow(**kwargs)`, with sliders for controlling bounds.
+    """
     def __init__(self, image, **kwargs):
         # ======================================
         # Save input info
@@ -32,7 +37,6 @@ class imshow_slider(object):
         # Imshow
         # ======================================
         self.p = self.ax_img.imshow(self._image, **kwargs)
-        self.p.set_cmap('jet')
 
         # ======================================
         # Add minimum slider
@@ -50,11 +54,20 @@ class imshow_slider(object):
 
         self.fig.tight_layout()
 
+    def set_cmap(self, cmap):
+        """
+        Sets color map to *cmap*.
+        """
+        self.p.set_cmap(cmap)
+
     # ======================================
     # Get min of image
     # ======================================
     @property
     def imgmax(self):
+        """
+        Maximum of color bar
+        """
         return _np.max(self._image)
 
     # ======================================
@@ -62,6 +75,9 @@ class imshow_slider(object):
     # ======================================
     @property
     def imgmin(self):
+        """
+        Minimum of color bar
+        """
         return _np.min(self._image)
 
     # ======================================
@@ -78,6 +94,9 @@ class imshow_slider(object):
     # ======================================
     @property
     def clim_min(self):
+        """
+        Slider value for minimum
+        """
         return self.minslider.val
 
     @clim_min.setter
@@ -86,6 +105,9 @@ class imshow_slider(object):
 
     @property
     def clim_max(self):
+        """
+        Slider value for maximum
+        """
         return self.maxslider.val
 
     @clim_max.setter

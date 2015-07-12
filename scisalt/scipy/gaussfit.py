@@ -14,15 +14,23 @@ class GaussResults(object):
     """
     def __init__(self, x, y, sigma_y, func, popt, pcov=None, chisq_red=None):
         # Populate default info
+        #: The fit values *(amp, mu, var)* where *var* is either *rms* or *rms\*\*2*
         self.popt      = popt
+        #: The covariance matrix
         self.pcov      = pcov
+        #: The reduced chi square value
         self.chisq_red = chisq_red
+        #: The :math:`x` data points
         self.x         = x
+        #: The :math:`y` data points
         self.y         = y
+        #: The error on :math:`y` data points
         self.sigma_y   = sigma_y
+        #: The function used to fit
         self.func      = func
 
-    def plot(self, ax, x_mult=None, **kwargs):
+
+def plot(self, ax, x_mult=None, **kwargs):
         """
         Plots the results to axis *ax*, with x-axis scale factor *x_mult*. *\*\*kwargs* is passed through to :meth:`matplotlib.axes.Axes.plot`.
         """

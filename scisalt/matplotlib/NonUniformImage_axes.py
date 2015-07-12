@@ -5,6 +5,9 @@ if not on_rtd:
 
 
 def NonUniformImage_axes(img):
+    """
+    Returns axes *x, y* for a given image *img* to be used with :func:`scisalt.matplotlib.NonUniformImage`.
+    """
     xmin = 0
     xmax = img.shape[1]-1
     ymin = 0

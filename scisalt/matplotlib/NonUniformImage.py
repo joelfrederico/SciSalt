@@ -7,6 +7,23 @@ if not on_rtd:
 
 
 def NonUniformImage(x, y, z, **kwargs):
+    """
+    Plots a set of coordinates where:
+
+    * *x* and *y* are 1-D ndarrays of lengths N and M, respectively, specifying pixel centers
+    * *z* is an (M, N) ndarray or masked array of values to be colormapped, or a (M, N, 3) RGB array, or a (M, N, 4) RGBA array.
+
+    *\*\*kwargs* can contain keywords:
+    
+    * *cmap* for set the colormap
+    * *alpha* to set transparency
+    * *scalex* to set the x limits to available data
+    * *scaley* to set the y limits to available data
+
+    Returns class :class:`matplotlib.image.NonUniformImage`.
+    
+    *(See http://matplotlib.org/api/image_api.html?highlight=nonuniformimage#matplotlib.image.NonUniformImage.)*
+    """
     ax = kwargs.pop('ax')
     im = _mplim.NonUniformImage(ax)
 

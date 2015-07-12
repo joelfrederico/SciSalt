@@ -1,5 +1,7 @@
 def showfig(fig, aspect="auto"):
-    """Shows a figure."""
+    """
+    Shows a figure with a typical orientation so that x and y axes are set up as expected.
+    """
 
     ax = fig.gca()
 
