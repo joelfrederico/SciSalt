@@ -2,7 +2,11 @@ import logging
 logger=logging.getLogger(__name__)
 
 import os
-import matplotlib.pyplot as plt
+import sys
+import os as _os
+on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not on_rtd:
+    import matplotlib.pyplot as plt
 
 def savefig(filename,path="figs",fig=None,ext='eps',**kwargs):
     filename       = os.path.join(path,filename)
