@@ -3,14 +3,27 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to SciSalt's documentation!
-===================================
+Welcome to SciSalt v\ |release|
+===============================
 
-Contents:
+.. automodule:: scisalt
+
+SciSalt Documentation
+---------------------
+
+This is the documentation for SciSalt v\ |release|, last updated |today|.
 
 .. toctree::
+   :numbered:
    :maxdepth: 2
 
+   introduction
+   data
+   math
+   visualization
+   science
+   programming
+   utilities
 
 
 Indices and tables
