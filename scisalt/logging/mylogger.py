@@ -1,27 +1,26 @@
-import logging
+import logging as _logging
+import inspect as _inspect
 __all__ = ['mylogger', 'log']
-
-from . import classes
 
 
 def mylogger(filename, indent_offset=7):
-    logger = logging.getLogger()
-    logger.setLevel(logging.DEBUG)
+    logger = _logging.getLogger()
+    logger.setLevel(_logging.DEBUG)
 
-    fmtr         = classes.IndentFormatter(indent_offset=indent_offset)
-    fmtr_msgonly = classes.IndentFormatter('%(indent)s%(message)s')
+    fmtr         = IndentFormatter(indent_offset=indent_offset)
+    fmtr_msgonly = IndentFormatter('%(indent)s%(message)s')
 
-    debugh = logging.FileHandler(filename='{}_debug.log'.format(filename), mode='w')
-    debugh.setLevel(logging.ERROR)
+    debugh = _logging.FileHandler(filename='{}_debug.log'.format(filename), mode='w')
+    debugh.setLevel(_logging.ERROR)
     debugh.setFormatter(fmtr_msgonly)
     logger.addHandler(debugh)
 
-    ch = logging.StreamHandler()
-    ch.setLevel(logging.DEBUG)
+    ch = _logging.StreamHandler()
+    ch.setLevel(_logging.DEBUG)
     ch.setFormatter(fmtr_msgonly)
     logger.addHandler(ch)
 
-    fh = logging.FileHandler(filename='{}.log'.format(filename), mode='w')
+    fh = _logging.FileHandler(filename='{}.log'.format(filename), mode='w')
     fh.setLevel(1)
     fh.setFormatter(fmtr)
     logger.addHandler(fh)
@@ -33,3 +32,23 @@ def log(logger, level):
     def log(msg):
         return logger.log(level=level, msg=msg)
     return log
+
+
+class IndentFormatter(_logging.Formatter):
+    def __init__( self, fmt=None, datefmt=None, indent_offset=6):
+        if fmt is None:
+            fmt = '%(indent)s==========================================================\n%(indent)s%(levelname)s - %(name)s:%(funcName)s:%(lineno)d\n%(indent)s%(message)s'
+
+        super(IndentFormatter, self).__init__(fmt=fmt, datefmt=datefmt)
+        self.baseline = len(_inspect.stack()) + indent_offset
+
+    def format( self, rec ):
+        stack = _inspect.stack()
+        stackdepth = len(stack)
+        stackdiff = stackdepth - self.baseline
+        rec.indent = '\t' * stackdiff
+        #  rec.function = stack[8][3]
+        out = _logging.Formatter.format(self, rec)
+        del rec.indent
+        #  del rec.function
+        return out

@@ -1,5 +1,10 @@
-import matplotlib.pyplot as plt
-from warnings import warn
+import os as _os
+on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not on_rtd:
+    import matplotlib.pyplot as _plt
+from logger.errorings import warn
+import logging as _logging
+logger = _logging.getLogger(__name__)
 
 
 def addlabel(ax=None, toplabel=None, xlabel=None, ylabel=None, zlabel=None, clabel=None, cb=None, windowlabel=None, fig=None, axes=None):
@@ -12,12 +17,12 @@ def addlabel(ax=None, toplabel=None, xlabel=None, ylabel=None, zlabel=None, clab
         fig.canvas.set_window_title(windowlabel)
 
     if fig is None:
-        fig = plt.gcf()
+        fig = _plt.gcf()
 
     if fig is not None and axes is None:
         axes = fig.get_axes()
         if axes == []:
-            warn('No axes found!', RuntimeWarning)
+            logger.error('No axes found!')
 
     if axes is not None:
         if toplabel is not None:
@@ -34,6 +39,6 @@ def addlabel(ax=None, toplabel=None, xlabel=None, ylabel=None, zlabel=None, clab
             cb.set_label(clabel)
         else:
             if clabel is None:
-                warn('Missing colorbar label')
+                logger.error('Missing colorbar label')
             else:
-                warn('Missing colorbar instance')
+                logger.error('Missing colorbar instance')

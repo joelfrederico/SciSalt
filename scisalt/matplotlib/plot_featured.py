@@ -1,6 +1,9 @@
 #!/usr/bin/env python
-# import numpy as _np
-import matplotlib.pyplot as _plt
+import os as _os
+on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not on_rtd:
+    import matplotlib.pyplot as _plt
+
 from .addlabel import addlabel as _addlabel
 from .figure import _figure
 

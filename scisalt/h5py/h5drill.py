@@ -1,4 +1,7 @@
-import h5py as _h5
+import os as _os
+on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not on_rtd:
+    import h5py as _h5
 
 __all__ = ['H5Drill']
 
@@ -25,11 +28,3 @@ class H5Drill(object):
                 #     setattr(self, key, dats.dat)
                 else:
                     setattr(self, key, data[key])
-
-    # def __repr__(self):
-    #     out = '\<E200.E200_load_data.Drill with keys:\n_hdf5'
-    #     for val in self._hdf5.keys():
-    #         out = out + '\n' + val
-
-    #     out = out[1:] + '\n>'
-    #     return out

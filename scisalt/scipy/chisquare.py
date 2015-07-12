@@ -1,4 +1,7 @@
-import numpy as _np
+import os as _os
+on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not on_rtd:
+    import numpy as _np
 
 
 def chisquare(observe, expect, error, ddof, verbose=True):

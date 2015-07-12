@@ -1,4 +1,7 @@
-from matplotlib.pyplot import figure as _figure
+import os as _os
+on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not on_rtd:
+    from matplotlib.pyplot import figure as _figure
 
 
 def figure(title=None, **kwargs):

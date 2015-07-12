@@ -1,11 +1,15 @@
-import matplotlib.pyplot as plt
-import matplotlib.gridspec as gridspec
-import numpy as _np
-import logging
+import os as _os
+on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not on_rtd:
+    import matplotlib.pyplot as _plt
+    import matplotlib.gridspec as _gridspec
+    import numpy as _np
+    from matplotlib.backends.backend_pdf import PdfPages as _PdfPages
 
-from matplotlib.backends.backend_pdf import PdfPages
+import logging as _logging
 
-logger = logging.getLogger(__name__)
+
+logger = _logging.getLogger(__name__)
 
 
 def imshow_batch(images, cbar=True, show=True, pdf=None, figsize=(16, 12), title=None, rows=2, columns=2, cmap=None, **kwargs):
@@ -13,7 +17,7 @@ def imshow_batch(images, cbar=True, show=True, pdf=None, figsize=(16, 12), title
     # Set up grid
     # ======================================
     images = _np.array(images)
-    gs = gridspec.GridSpec(rows, columns)
+    gs = _gridspec.GridSpec(rows, columns)
 
     num_imgs = images.shape[0]
     max_ind = num_imgs-1
@@ -29,13 +33,13 @@ def imshow_batch(images, cbar=True, show=True, pdf=None, figsize=(16, 12), title
         logger.info('Multiple pages necessary')
 
     if pdf is not None:
-        f = PdfPages(pdf)
+        f = _PdfPages(pdf)
 
     for p in range(num_pages):
         # ======================================
         # Make figure
         # ======================================
-        fig_array[p] = plt.figure(figsize=figsize)
+        fig_array[p] = _plt.figure(figsize=figsize)
 
         # ======================================
         # Get number of rows on page
@@ -71,7 +75,7 @@ def imshow_batch(images, cbar=True, show=True, pdf=None, figsize=(16, 12), title
             f.savefig(fig_array[p])
 
         if not show:
-            plt.close(fig_array[p])
+            _plt.close(fig_array[p])
 
     if pdf is not None:
         f.close()

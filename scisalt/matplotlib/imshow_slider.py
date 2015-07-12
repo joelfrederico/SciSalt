@@ -1,8 +1,12 @@
 # import matplotlib.pyplot as _plt
 
+import os as _os
+on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not on_rtd:
+    import matplotlib.widgets as _wdg
+    import numpy as _np
+
 from .setup_figure import setup_figure   # noqa
-import matplotlib.widgets as _wdg
-import numpy as _np
 
 
 class imshow_slider(object):

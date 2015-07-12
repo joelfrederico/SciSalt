@@ -1,7 +1,11 @@
-import logging
-import numpy as _np
-import scipy as _sp
-logger = logging.getLogger(__name__)
+import os as _os
+on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not on_rtd:
+    import numpy as _np
+    import scipy as _sp
+
+import logging as _logging
+logger = _logging.getLogger(__name__)
 
 
 def fill_missing_timestamps(timestamp, values):
@@ -16,7 +20,7 @@ def fill_missing_timestamps(timestamp, values):
     # step
     # ======================================
     offsets = timestamp[1:]-timestamp[:-1]
-    mode_res = _sp.stats.mode(offsets)
+    mode_res = _sp.stats.mstats.mode(offsets)
     dt = mode_res[0][0]
 
     # ======================================

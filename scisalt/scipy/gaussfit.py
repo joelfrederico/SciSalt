@@ -1,10 +1,11 @@
-import numpy as _np
-# import scipy.optimize as _spopt
-import matplotlib.pyplot as _plt
-# from chisquare import chisquare as _chisquare
+import os as _os
+on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not on_rtd:
+    import numpy as _np
+    import matplotlib.pyplot as _plt
+
 from .curve_fit_unscaled import curve_fit_unscaled as _curve_fit_unscaled
 from .figure import figure as _figure
-# import collections as _col
 
 
 class GaussResults(object):
@@ -139,9 +140,6 @@ def gaussfit(x, y, sigma_y=None, plot=True, p0=None, verbose=False, variance_boo
             y_fit = func(x_fit, popt[0], popt[1], popt[2], popt[3])
         else:
             y_fit = func(x_fit, popt[0], popt[1], popt[2])
-        # numfigs = _np.size(_plt.get_fignums())
-        # if numfigs > 0:
-        #         fig = _plt.gcf()
         _figure('MYTOOLS: Gauss Fit Routine')
         if use_error:
             sigma_y = sigma_y.flatten()

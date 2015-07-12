@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
-import numpy as np
+import os as _os
+on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not on_rtd:
+    import numpy as _np
+    import scipy as _sp
+
 from .fill_missing_timestamps import fill_missing_timestamps
-from . import qt
-# import stability as st
+from .. import qt
 
 
 def fft(values, freq=None, timestamps=None, fill_missing=False):
@@ -18,14 +22,14 @@ def fft(values, freq=None, timestamps=None, fill_missing=False):
     else:
         x_filled = values
         
-    num_samples = np.size(x_filled)
-    xfft = np.fft.rfft(x_filled)
+    num_samples = _np.size(x_filled)
+    xfft = _np.fftpack.rfft(x_filled)
     
     factor = freq/num_samples
-    num_fft = np.size(xfft)
-    f = factor * np.linspace(1, num_fft, num_fft)
+    num_fft = _np.size(xfft)
+    f = factor * _np.linspace(1, num_fft, num_fft)
     
-    xpow = np.abs(xfft*np.conj(xfft))
+    xpow = _np.abs(xfft*_np.conj(xfft))
 
     # ======================================
     # No DC term
