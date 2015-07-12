@@ -5,7 +5,6 @@ This project has slowly grown from frequently-used code snippets. The main objec
 __version__ = '0.0.3'
 from . import accelphys
 from . import facettools
-from . import graphics
 from . import logging
 from . import matplotlib
 from . import numpy
