@@ -1,6 +1,5 @@
 __version__ = '0.0.1'
 from . import accelphys
-from . import cmaps
 from . import facettools
 from . import graphics
 from . import h5py

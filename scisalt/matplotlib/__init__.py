@@ -1,6 +1,7 @@
 from .NonUniformImage import NonUniformImage
 from .NonUniformImage_axes import NonUniformImage_axes
 from .addlabel import addlabel
+from .cmaps import *
 from .figure import figure
 from .hist import hist
 from .hist2d import hist2d
