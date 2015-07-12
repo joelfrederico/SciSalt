@@ -9,12 +9,8 @@ from .figure import _figure
 
 
 def plot_featured(*args, **kwargs):
-    """Wrapper for matplotlib.pyplot.plot() / errorbar().
-    Example:  plot_featured(x, y, [arguments to matplotlib.pyplot.plot() / errorbar()],
-            [toplabel=], [xlabel=], [ylabel=],
-            [legend=],
-            [error=]
-            )
+    """
+    Wrapper for matplotlib.pyplot.plot() / errorbar().
     """
     # Strip off options specific to plot_featured
     toplabel = kwargs.pop('toplabel', None)

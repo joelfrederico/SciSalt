@@ -16,15 +16,11 @@ This is the documentation for SciSalt v\ |release|, last updated |today|.
    :numbered:
 
    introduction
+   programming_mods
    math_mods
    science_mods
-
-There's a list
-
-* utility_mods
-* visualization_mods
-
-
+   utility_mods
+   visualization_mods
 
 Indices and tables
 ==================

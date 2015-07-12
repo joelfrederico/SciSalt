@@ -9,6 +9,15 @@ __all__ = ['githubtunnel']
 
 
 def githubtunnel(user1, server1, user2, server2, port, verbose, stanford=False):
+    """
+    Opens a nested tunnel, first to *user1*@*server1*, then to *user2*@*server2*, for accessing on *port*.
+
+    If *verbose* is true, prints various ssh commands.
+
+    If *stanford* is true, shifts ports up by 1.
+
+    Attempts to get *user1*, *user2* from environment variable ``USER_NAME`` if called from the command line.
+    """
     if stanford:
         port_shift = 1
     else:

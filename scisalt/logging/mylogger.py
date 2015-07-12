@@ -4,6 +4,9 @@ __all__ = ['mylogger', 'log']
 
 
 def mylogger(filename, indent_offset=7):
+    """
+    Sets up logging to *filename*.debug.log, *filename*.log, and the terminal. *indent_offset* attempts to line up the lowest indent level to 0.
+    """
     logger = _logging.getLogger()
     logger.setLevel(_logging.DEBUG)
 

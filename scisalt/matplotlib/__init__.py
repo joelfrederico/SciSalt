@@ -1,7 +1,24 @@
+__all__ = [
+    'NonUniformImage',
+    'NonUniformImage_axes',
+    'addlabel',
+    'parula',
+    'figure',
+    'hist',
+    'hist2d',
+    'imshow_batch',
+    'imshow_slider',
+    'pcolor_axes',
+    'plot_featured',
+    'rgb2gray',
+    'setup_figure',
+    'showfig',
+    ]
+
 from .NonUniformImage import NonUniformImage
 from .NonUniformImage_axes import NonUniformImage_axes
 from .addlabel import addlabel
-from .cmaps import *
+from .cmaps import parula
 from .figure import figure
 from .hist import hist
 from .hist2d import hist2d
