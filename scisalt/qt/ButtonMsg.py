@@ -109,14 +109,13 @@ class ButtonMsg(QtGui.QMessageBox):
         
         return self._clicked
 
-    def _get_clickedArray(self):
+    @property
+    def clickedArray(self):
         clicked = _np.empty(_np.size(self.btnarray), dtype=_np.bool_)
         for i, val in enumerate(self.btnarray):
             clicked[i] = (self.clickedButton() == val)
             
         return clicked
-
-    clickedArray = property(_get_clickedArray)
 
 
 def getOpenFileName(*args, **kwargs):
