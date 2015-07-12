@@ -5,6 +5,11 @@ if not on_rtd:
 
 
 def chisquare(observe, expect, error, ddof, verbose=True):
+    """
+    Finds the reduced chi square difference of *observe* and *expect* with a given *error* and *ddof* degrees of freedom.
+
+    *verbose* flag determines if the reduced chi square is printed to the terminal. 
+    """
     chisq = 0
     error   = error.flatten()
     observe = observe.flatten()

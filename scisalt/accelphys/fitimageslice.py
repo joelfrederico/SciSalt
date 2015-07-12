@@ -8,6 +8,11 @@ from ..numpy.linspacestep import linspacestep
 
 
 def fitimageslice(img, res_x, res_y, xslice, yslice, avg_e_func=None, h5file=None, plot=False):
+    """
+    Fits a gaussian to a slice of an image *img* specified by *xslice* x-coordinates and *yslice* y-coordinates. *res_x* and *res_y* specify image resolution in x and y. *avg_e_func* is a function that returns the energy of the image as a function of x. It should have the form:
+
+    *avg_e_func(x_1, x_2, h5file, res_y)*
+    """
     # ======================================
     # Extract start and end values
     # (NOT necessarily indices!)

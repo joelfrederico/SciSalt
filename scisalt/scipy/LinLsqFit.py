@@ -8,6 +8,11 @@ import copy as _copy
 
 
 class LinLsqFit(object):
+    """
+    Gets the linear least squares for :math:`\\beta` of a problem given :math:`X_{ij} \\beta_{i} = y_j`.
+
+    As input, it takes *y_unweighted* as the measured :math:`y`, *X_unweighted* for :math:`X`, and *y_error* as the measurement error on :math:`y`.
+    """
     _resetlist = _np.array(['_X', '_y', '_beta', '_covar', '_chisq_red', '_y_fit'])
 
     def __init__(self, y_unweighted, X_unweighted, y_error=None):
@@ -37,40 +42,56 @@ class LinLsqFit(object):
     # ======================================
     # y_unweighted
     # ======================================
-    def _get_y_unweighted(self):
+    @property
+    def y_unweighted(self):
+        """
+        The :math:`y` of the problem :math:`X_{ij} \\beta_{i} = y_j`. Setting this attribute forces a recalculation.
+        """
         return self._y_unweighted
 
-    def _set_y_unweighted(self, val):
+    @y_unweighted.setter
+    def y_unweighted(self, val):
         self._force_recalc()
         self._y_unweighted = val
-    y_unweighted = property(_get_y_unweighted, _set_y_unweighted)
 
     # ======================================
     # y_error
     # ======================================
-    def _get_y_error(self):
+    @property
+    def y_error(self):
+        """
+        The measured error of :math:`y` of the problem :math:`X_{ij} \\beta_{i} = y_j`. Setting this attribute forces a recalculation.
+        """
         return self._y_error
 
+    @y_error.setter
     def _set_y_error(self, val):
         self._force_recalc()
         self._y_error = val
-    y_error = property(_get_y_error, _set_y_error)
     
     # ======================================
     # X_unweighted
     # ======================================
-    def _get_X_unweighted(self):
+    @property
+    def X_unweighted(self):
+        """
+        The :math:`X`. Setting this attribute forces a recalculation.
+        """
         return self._X_unweighted
 
+    @X_unweighted.setter
     def _set_X_unweighted(self, val):
         self._force_recalc()
         self._X_unweighted = val
-    X_unweighted = property(_get_X_unweighted, _set_X_unweighted)
 
     # ======================================
     # X (calculated)
     # ======================================
-    def _get_X(self):
+    @property
+    def X(self):
+        """
+        The :math:`X` weighted properly by the errors from *y_error*
+        """
         if self._X is None:
             X = _copy.deepcopy(self.X_unweighted)
             # print 'X shape is {}'.format(X.shape)
@@ -79,50 +100,64 @@ class LinLsqFit(object):
             # print 'New X shape is {}'.format(X.shape)
             self._X = X
         return self._X
-    X = property(_get_X)
 
     # ======================================
     # y (calculated)
     # ======================================
-    def _get_y(self):
+    @property
+    def y(self):
+        """
+        The :math:`X` weighted properly by the errors from *y_error*
+        """
         if self._y is None:
             self._y = self.y_unweighted/self.y_error
         return self._y
-    y = property(_get_y)
 
     # ======================================
     # y_fit (y from fit)
     # ======================================
-    def _get_y_fit(self):
+    @property
+    def y_fit(self):
+        """
+        Using the result of the linear least squares, the result of :math:`X_{ij}\\beta_i`
+        """
         if self._y_fit is None:
             self._y_fit = _np.dot(self.X_unweighted, self.beta)
         return self._y_fit
-    y_fit = property(_get_y_fit)
 
     # ======================================
     # beta (calculated)
     # ======================================
-    def _get_beta(self):
+    @property
+    def beta(self):
+        """
+        The result :math:`\\beta` of the linear least squares
+        """
         if self._beta is None:
             # This is the linear least squares matrix formalism
             self._beta = _np.dot(_np.linalg.pinv(self.X) , self.y)
         return self._beta
-    beta = property(_get_beta)
 
     # ======================================
     # covar (calculated)
     # ======================================
-    def _get_covar(self):
+    @property
+    def covar(self):
+        """
+        The covariance matrix for the result :math:`\\beta`
+        """
         if self._covar is None:
             self._covar = _np.linalg.inv(_np.dot(_np.transpose(self.X), self.X))
         return self._covar
-    covar = property(_get_covar)
     
     # ======================================
     # chisq_red (calculated)
     # ======================================
-    def _get_chisq_red(self):
+    @property
+    def chisq_red(self):
+        """
+        The reduced chi-square of the linear least squares
+        """
         if self._chisq_red is None:
             self._chisq_red = chisquare(self.y_unweighted.transpose(), _np.dot(self.X_unweighted, self.beta), self.y_error, ddof=3, verbose=False)
         return self._chisq_red
-    chisq_red = property(_get_chisq_red)

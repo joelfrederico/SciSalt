@@ -12,6 +12,11 @@ from ..scipy.gaussfit import gaussfit
 
 
 def findpinch(img, xbounds=None, ybounds=None, step=1, verbose=False):
+    """
+    Finds the location of a bunch in an image *img* given bounds *xbounds* and *ybounds* by slicing image in strips of pixels *step* high.
+
+    If *verbose* is :code:`True`, prints results to terminal.
+    """
     # ======================================
     # Translate to clearer variables
     # ======================================

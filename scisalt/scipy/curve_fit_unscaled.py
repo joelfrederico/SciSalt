@@ -7,6 +7,9 @@ from .chisquare import chisquare as _chisquare
 
 
 def curve_fit_unscaled(*args, **kwargs):
+    """
+    Use the reduced chi square to unscale :mod:`scipy`'s scaled :func:`scipy.optimize.curve_fit`. *\*args* and *\*\*kwargs* are passed through to :func:`scipy.optimize.curve_fit`. The tuple *popt, pcov, chisq_red* is returned, where *popt* is the optimal values for the parameters, *pcov* is the estimated covariance of *popt*, and *chisq_red* is the reduced chi square. See http://docs.scipy.org/doc/scipy-0.15.1/reference/generated/scipy.optimize.curve_fit.html.
+    """
     # Extract verbosity
     verbose = kwargs.pop('verbose', False)
 

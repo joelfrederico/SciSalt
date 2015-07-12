@@ -9,6 +9,9 @@ from ..matplotlib.figure import figure as _figure
 
 
 class GaussResults(object):
+    """
+    A class containing the full results of :func:`gaussfit() <scisalt.scipy.gaussfit>`.
+    """
     def __init__(self, x, y, sigma_y, func, popt, pcov=None, chisq_red=None):
         # Populate default info
         self.popt      = popt
@@ -20,6 +23,9 @@ class GaussResults(object):
         self.func      = func
 
     def plot(self, ax, x_mult=None, **kwargs):
+        """
+        Plots the results to axis *ax*, with x-axis scale factor *x_mult*. *\*\*kwargs* is passed through to :meth:`matplotlib.axes.Axes.plot`.
+        """
         xmin = min(self.x)
         xmax = max(self.x)
         x_fit = _np.linspace(xmin, xmax, 1000)
@@ -60,7 +66,21 @@ def _gaussvar_nobg(x, amp, mu, variance):
     return _gaussvar(x, amp, mu, variance)
 
 
-def gaussfit(x, y, sigma_y=None, plot=True, p0=None, verbose=False, variance_bool=False, background_bool=False):
+def gaussfit(x, y, sigma_y=None, plot=True, p0=None, verbose=False, variance_bool=False, background_bool=False, bg=0):
+    """
+    Fits a gaussian to a curve specified by pairs *x* and *y*, with error on *y* of *sigma_y*.
+
+    * *plot*: Determines whether the plot is shown
+    * *p0*: Initial guess given by amplitude *amp*, mean *mu*, and standard deviation *rms*, in the form of:
+
+      * :code:`[amp, mu, rms**2]` if *variance_bool* is true
+      * :code:`[amp, mu, rms]` if *variance_bool* is false
+
+    * *verbose*: If true, prints details to terminal
+    * *background_bool*: If true, uses a background term in the fit, with initial guess *bg*
+
+    Returns full statistical results in the form of an instance of class :class:`GaussResults <scisalt.scipy.GaussResults>`.
+    """
     x       = x.flatten()
     y       = y.flatten()
 
@@ -85,7 +105,6 @@ def gaussfit(x, y, sigma_y=None, plot=True, p0=None, verbose=False, variance_boo
         amp = max(y)
         mu  = sum(x * y) / sum(y)
         rms = _np.sqrt(sum(x**2 * y) / sum(y))
-        bg  = 0
         if variance_bool:
             p0 = _np.array((amp, mu, rms**2))
         else:

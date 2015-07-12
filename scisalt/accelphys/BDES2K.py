@@ -11,6 +11,9 @@ __all__ = ['BDES2K', 'K2BDES']
 
 
 def BDES2K(bdes, quad_length, energy):
+    """
+    Returns the geometric strength for a quadrupole with *bdes* and length *quad_length* for a beam with a given *energy*.
+    """
     # Make sure everything is float
     bdes        = _np.float_(bdes)
     quad_length = _np.float_(quad_length)
@@ -30,6 +33,9 @@ def BDES2K(bdes, quad_length, energy):
 
 
 def K2BDES(K, quad_length, energy):
+    """
+    Returns the BDES for a quadrupole with geometric strength *K* and length *quad_length* for a beam with a given *energy*.
+    """
     # Make sure everything is float
     K           = _np.float_(K)
     quad_length = _np.float_(quad_length)

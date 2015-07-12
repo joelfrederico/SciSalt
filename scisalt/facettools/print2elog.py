@@ -24,7 +24,15 @@ def _copy_file(filepath, fulltime):
 
 
 def print2elog(author='', title='', text='', link=None, file=None, now=None):
-
+    """
+    Prints to the elog given:
+    
+    * An *author*
+    * *title*
+    * *link* path to a thumbnail
+    * *file* path to a file
+    * Time *now*.
+    """
     # ============================
     # Get current time
     # ============================

@@ -10,6 +10,12 @@ from .. import qt
 
 
 def fft(values, freq=None, timestamps=None, fill_missing=False):
+    """
+    Adds options to :func:`scipy.fftpack.rfft`:
+
+    * *freq* is the frequency the samples were taken at
+    * *timestamps* is the time the samples were taken, to help with filling in missing data if *fill_missing* is true
+    """
     # ======================================
     # Get frequency
     # ======================================
@@ -23,7 +29,7 @@ def fft(values, freq=None, timestamps=None, fill_missing=False):
         x_filled = values
         
     num_samples = _np.size(x_filled)
-    xfft = _np.fftpack.rfft(x_filled)
+    xfft = _sp.fftpack.rfft(x_filled)
     
     factor = freq/num_samples
     num_fft = _np.size(xfft)
