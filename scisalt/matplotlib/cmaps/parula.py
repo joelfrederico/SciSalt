@@ -1,5 +1,8 @@
-import matplotlib.pyplot as plt
-import matplotlib.colors as mc
+import os as _os
+on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not on_rtd:
+    import matplotlib.pyplot as _plt
+    import matplotlib.colors as _mc
 
 
 def _x(val):
@@ -72,5 +75,5 @@ cdict = {'red':   [(_x(1)  , 0.0     , _y(53))   ,
                    (_x(62) , _y(24)  , _y(24) )   ,
                    (_x(64) , _y(14)  , _y(14) )]}
 
-parula = mc.LinearSegmentedColormap('parula', cdict)
-plt.register_cmap(cmap=parula)
+parula = _mc.LinearSegmentedColormap('parula', cdict)
+_plt.register_cmap(cmap=parula)
