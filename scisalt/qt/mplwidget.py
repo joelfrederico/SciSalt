@@ -1,10 +1,14 @@
-from PyQt4 import QtGui
-from PyQt4 import QtCore
+import os as _os
+on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not on_rtd:
+    from PyQt4 import QtGui
+    from PyQt4 import QtCore
+    from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as _FigureCanvas
+    from matplotlib.backends.backend_qt4 import NavigationToolbar2QT as _NavigationToolbar
+    import matplotlib as _mpl
+    import numpy as _np
+
 from .Rectangle import Rectangle
-from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as _FigureCanvas
-from matplotlib.backends.backend_qt4 import NavigationToolbar2QT as _NavigationToolbar
-import matplotlib as _mpl
-import numpy as _np
 
 import pdb
 import traceback

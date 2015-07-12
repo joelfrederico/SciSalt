@@ -1,5 +1,8 @@
-import numpy as _np
-import matplotlib as mpl
+import os as _os
+on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not on_rtd:
+    import numpy as _np
+    import matplotlib as mpl
 
 class Rectangle(object):
     def __init__(self,x,y,width,height,axes=None,alpha=0.5,fill=True):
