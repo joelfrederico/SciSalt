@@ -1,10 +1,5 @@
-import os as _os
-on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
-if not on_rtd:
-    import matplotlib.pyplot as _plt
-    import matplotlib.colors as _mc
-else:
-    import re as _mc
+import matplotlib.pyplot as _plt
+import matplotlib.colors as _mc
 
 
 def _x(val):
