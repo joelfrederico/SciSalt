@@ -16,7 +16,7 @@ This is the documentation for SciSalt v\ |release|, last updated |today|.
    :numbered:
 
    introduction
-   data_mods
+   math_mods
 
 There's a list
 

@@ -5,6 +5,9 @@ if not on_rtd:
 
 
 def linspacestep(start, stop, step=1):
+    """
+    Returns a :class:`numpy.ndarray` starting as *start*, with elements every *step*, up to at maximum *stop*.
+    """
     # Find an integer number of steps
     numsteps = _np.int((stop-start)/step)
 

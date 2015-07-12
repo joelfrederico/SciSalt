@@ -6,7 +6,6 @@ __version__ = '0.0.2'
 from . import accelphys
 from . import facettools
 from . import graphics
-from . import h5py
 from . import logging
 from . import matplotlib
 from . import numpy

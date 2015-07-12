@@ -1,0 +1,4 @@
+SciPy
+=====
+
+.. automodule:: scisalt.scipy
