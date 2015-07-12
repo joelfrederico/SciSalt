@@ -1,5 +1,8 @@
-import numpy as _np
-import slactrac as _sltr
+import os as _os
+on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not on_rtd:
+    import numpy as _np
+    import slactrac as _sltr
 
 
 class Plasma(object):

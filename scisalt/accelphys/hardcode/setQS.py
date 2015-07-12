@@ -3,7 +3,10 @@ loggerlevel = logging.DEBUG
 logger      = logging.getLogger(__name__)
 
 from ..BDES2K import K2BDES, BDES2K
-import numpy as np
+import os as _os
+on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not on_rtd:
+    import numpy as np
 energy0    = np.float(20.35)
 QS1_length = np.float(1)
 QS2_length = np.float(1)
