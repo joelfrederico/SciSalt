@@ -19,7 +19,6 @@ class Button(object):
         allargs = _np.array(args, dtype=object)
         allargs = _np.append(allargs, kwargs.values())
 
-
         if argnum == 1:
             if isinstance(allargs[0], QtGui.QMessageBox.StandardButton):
                 self.standardbutton = allargs[0]
@@ -35,14 +34,13 @@ class Button(object):
 
 class getDouble(QtGui.QWidget):
     def __init__(self, **kwargs):
-        app = get_app()
+        app = get_app()  # noqa
         super(getDouble, self).__init__()
 
         title = kwargs.pop('title', '')
         text = kwargs.pop('text', 'Double number:')
 
         self._input, self._ok = QtGui.QInputDialog.getDouble(self, title, text, **kwargs)
-
 
     @property
     def input(self):
@@ -51,11 +49,12 @@ class getDouble(QtGui.QWidget):
         else:
             raise IOError('User may have cancelled')
 
+
 class ButtonMsg(QtGui.QMessageBox):
     def __init__(self, maintext, buttons, title=None, infotext=None):
         self._clicked = None
         self._buttons = buttons
-        app = get_app()
+        app = get_app()  # noqa
 
         super(ButtonMsg, self).__init__()
 
@@ -116,7 +115,7 @@ class ButtonMsg(QtGui.QMessageBox):
 
 
 def getOpenFileName(*args, **kwargs):
-    app = get_app()
+    app = get_app()  # noqa
 
     filepath = QtGui.QFileDialog.getOpenFileName(*args, **kwargs)
     if filepath == '':
@@ -128,7 +127,7 @@ def getOpenFileName(*args, **kwargs):
 
 
 def getExistingDirectory(*args, **kwargs):
-    app = get_app()
+    app = get_app()  # noqa
 
     filepath = QtGui.QFileDialog.getExistingDirectory(*args, **kwargs)
     if filepath == '':
