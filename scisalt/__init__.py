@@ -1,8 +1,9 @@
+__version__ = '1.0.0'
 from . import classes                                    # noqa
 from . import facettools                                 # noqa
 from . import graphics                                   # noqa
 from . import hardcode                                   # noqa
-from . import PWFA                                       # noqa
+# from . import PWFA                                       # noqa
 
 from .BDES2K import *                                    # noqa
 from .LinLsqFit import LinLsqFit                         # noqa

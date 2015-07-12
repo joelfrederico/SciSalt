@@ -2,3 +2,6 @@
 *~
 *.swp
 .nfs*
+build
+dist
+*.egg-info

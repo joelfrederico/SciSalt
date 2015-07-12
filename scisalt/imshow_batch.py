@@ -1,4 +1,3 @@
-import ipdb                              # noqa
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 import numpy as _np
