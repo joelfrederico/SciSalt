@@ -4,9 +4,9 @@ on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
 if not on_rtd:
     import numpy as _np
     import scipy as _sp
+    from .. import qt
 
 from .fill_missing_timestamps import fill_missing_timestamps
-from .. import qt
 
 
 def fft(values, freq=None, timestamps=None, fill_missing=False):
