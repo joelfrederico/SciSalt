@@ -4,7 +4,6 @@ from . import cmaps
 from . import facettools
 from . import graphics
 from . import h5py
-from . import hardcode
 from . import logging
 from . import matplotlib
 from . import numpy

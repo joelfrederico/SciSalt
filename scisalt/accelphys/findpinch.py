@@ -4,9 +4,9 @@ if not on_rtd:
     import numpy as _np
     import matplotlib.pyplot as _plt
 
-from .figure import figure
-from .linspacestep import linspacestep
-from .gaussfit import gaussfit
+from ..matplotlib.figure import figure
+from ..numpy.linspacestep import linspacestep
+from ..scipy.gaussfit import gaussfit
 # import copy
 # import pdb as _pdb
 

@@ -5,6 +5,8 @@ import argparse as _argparse
 import shlex
 from subprocess import call
 
+__all__ = ['githubtunnel']
+
 
 def githubtunnel(user1, server1, user2, server2, port, verbose, stanford=False):
     if stanford:

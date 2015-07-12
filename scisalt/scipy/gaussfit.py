@@ -5,7 +5,7 @@ if not on_rtd:
     import matplotlib.pyplot as _plt
 
 from .curve_fit_unscaled import curve_fit_unscaled as _curve_fit_unscaled
-from .figure import figure as _figure
+from ..matplotlib.figure import figure as _figure
 
 
 class GaussResults(object):

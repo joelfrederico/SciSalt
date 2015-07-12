@@ -3,8 +3,8 @@ on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
 if not on_rtd:
     import numpy as _np
 
-from .gaussfit import gaussfit as _gaussfit
-from .linspacestep import linspacestep
+from ..scipy.gaussfit import gaussfit as _gaussfit
+from ..numpy.linspacestep import linspacestep
 
 
 def fitimageslice(img, res_x, res_y, xslice, yslice, avg_e_func=None, h5file=None, plot=False):
