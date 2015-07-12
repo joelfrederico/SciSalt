@@ -6,7 +6,6 @@
 Welcome to SciSalt v\ |release|
 ===============================
 
-.. automodule:: scisalt
 
 SciSalt Documentation
 ---------------------
@@ -15,15 +14,18 @@ This is the documentation for SciSalt v\ |release|, last updated |today|.
 
 .. toctree::
    :numbered:
-   :maxdepth: 2
 
    introduction
-   data
-   math
-   visualization
-   science
-   programming
-   utilities
+   data_mods
+
+There's a list
+
+* math_mods
+* programming_mods
+* science_mods
+* utility_mods
+* visualization_mods
+
 
 
 Indices and tables
