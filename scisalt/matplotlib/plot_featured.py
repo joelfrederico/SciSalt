@@ -5,7 +5,7 @@ if not on_rtd:
     import matplotlib.pyplot as _plt
 
 from .addlabel import addlabel as _addlabel
-from .figure import _figure
+from .figure import figure as _figure
 
 
 def plot_featured(*args, **kwargs):

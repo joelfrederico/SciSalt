@@ -13,7 +13,7 @@ class LinLsqFit(object):
 
     As input, it takes *y_unweighted* as the measured :math:`y`, *X_unweighted* for :math:`X`, and *y_error* as the measurement error on :math:`y`.
     """
-    _resetlist = _np.array(['_X', '_y', '_beta', '_covar', '_chisq_red', '_y_fit'])
+    _resetlist = ['_X', '_y', '_beta', '_covar', '_chisq_red', '_y_fit']
 
     def __init__(self, y_unweighted, X_unweighted, y_error=None):
 
