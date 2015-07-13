@@ -21,8 +21,6 @@ def NonUniformImage(x, y, z, **kwargs):
     * *scaley* to set the y limits to available data
 
     Returns class :class:`matplotlib.image.NonUniformImage`.
-    
-    *(See http://matplotlib.org/api/image_api.html?highlight=nonuniformimage#matplotlib.image.NonUniformImage.)*
     """
     ax = kwargs.pop('ax')
     im = _mplim.NonUniformImage(ax)
