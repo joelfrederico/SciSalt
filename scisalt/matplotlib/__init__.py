@@ -25,6 +25,7 @@ if not on_rtd:
 
 from .NonUniformImage import NonUniformImage
 from .NonUniformImage_axes import NonUniformImage_axes
+from .RectangleSelector import RectangleSelector
 from .addlabel import addlabel
 from .axesfontsize import axesfontsize
 from .figure import figure

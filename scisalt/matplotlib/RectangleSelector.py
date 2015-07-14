@@ -4,7 +4,7 @@ if not _on_rtd:
     import matplotlib.widgets as _mw
     import matplotlib.pyplot as _plt
 
-__all__ ['RectangleSelector']
+__all__ = ['RectangleSelector']
 
 
 class RectangleSelector(object):
@@ -21,6 +21,6 @@ class RectangleSelector(object):
         self.eclick = eclick
         self.erelease = erelease
 
-    def _toggle(event):
+    def _toggle(self, event):
         if event.key in ['A', 'a']:
             self._rs.set_active(not self._rs.active)
