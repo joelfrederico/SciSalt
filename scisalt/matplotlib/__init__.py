@@ -1,6 +1,7 @@
 __all__ = [
     'NonUniformImage',
     'NonUniformImage_axes',
+    'RectangleSelector',
     'addlabel',
     'axesfontsize',
     'figure',
