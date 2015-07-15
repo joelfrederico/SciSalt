@@ -26,7 +26,7 @@ class Imshow_Slider(object):
         # Create figure
         # ======================================
         self.fig, self.gs = setup_figure(20, 10)
-        self.ax_img = self.fig.add_subplot(self.gs[0:-3, :])
+        self._ax_img = self.fig.add_subplot(self.gs[0:-3, :])
         self.ax_min = self.fig.add_subplot(self.gs[-2, 1:-1])
         self.ax_max = self.fig.add_subplot(self.gs[-1, 1:-1])
 
@@ -36,7 +36,7 @@ class Imshow_Slider(object):
         # ======================================
         # Imshow
         # ======================================
-        self.p = self.ax_img.imshow(self._image, **kwargs)
+        self.p = self._ax_img.imshow(self._image, **kwargs)
 
         # ======================================
         # Add minimum slider
@@ -59,6 +59,13 @@ class Imshow_Slider(object):
         Sets color map to *cmap*.
         """
         self.p.set_cmap(cmap)
+
+    @property
+    def ax(self):
+        """
+        The axis for :func:`matplotlib.axis.imshow`.
+        """
+        return self._ax_img
 
     # ======================================
     # Get min of image
