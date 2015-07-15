@@ -9,7 +9,7 @@ if not on_rtd:
 from .setup_figure import setup_figure   # noqa
 
 
-class imshow_slider(object):
+class Imshow_Slider(object):
     """
     Convenience class for viewing images.
     

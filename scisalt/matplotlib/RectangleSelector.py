@@ -13,13 +13,17 @@ class RectangleSelector(object):
     Add rectangle selection to an already-existing axis *as*. *\*args* and *\*\*kwargs* pass through to :class:`matplotlib.widgets.RectangleSelector`.
 
     Use key *A* or *a* to toggle whether the rectangle is active or not.
+
+    *verbose* controls whether selections are printed to the terminal.
     """
-    def __init__(self, ax, *args, selfunc=None, **kwargs):
+    def __init__(self, ax, *args, selfunc=None, verbose=False, **kwargs):
         # ======================================
         # Store things to class
         # ======================================
-        self._selfunc = selfunc
-        self._ax = ax
+        self._selfunc         = selfunc
+        self._ax              = ax
+        self.verbose          = verbose
+        self._selfunc_results = None
 
         # ======================================
         # Add rectangle selector
@@ -33,8 +37,9 @@ class RectangleSelector(object):
         # ======================================
         self._eclick = eclick
         self._erelease = erelease
-        # print('eclick (x, y):\t\t({}, {})'.format(eclick.xdata, eclick.ydata))
-        # print('erelease (x, y):\t({}, {})'.format(erelease.xdata, erelease.ydata))
+        if self._verbose:
+            print('eclick (x, y):\t\t({}, {})'.format(eclick.xdata, eclick.ydata))
+            print('erelease (x, y):\t({}, {})'.format(erelease.xdata, erelease.ydata))
         try:
             self._rect.remove()
         except:
@@ -51,7 +56,32 @@ class RectangleSelector(object):
         _plt.draw()
 
         if self.selfunc is not None:
-            self.selfunc(self)
+            self._selfunc_results = self.selfunc(self)
+
+    def _toggle(self, event):
+        if event.key in ['A', 'a']:
+            self.RectangleSelector.set_active(not self.RectangleSelector.active)
+        elif event.key in ['D', 'd']:
+            try:
+                self._rect.remove()
+                _plt.draw()
+
+                self._eclick          = None
+                self._erelease        = None
+                self._selfunc_results = None
+            except:
+                pass
+
+    @property
+    def verbose(self):
+        """
+        Determines whether rectangle coordinates are printed to the terminal on selection.
+        """
+        return self._verbose
+
+    @verbose.setter
+    def verbose(self, value):
+        self._verbose = value
 
     @property
     def RectangleSelector(self):
@@ -70,27 +100,36 @@ class RectangleSelector(object):
     @property
     def selfunc(self):
         """
-        The function called on each mouse release.
+        A placeholder for the function called on each mouse release.
         """
         return self._selfunc
 
     @property
+    def selfunc_results(self):
+        """
+        The results of :func:`selfunc(instance) <scisalt.matplotlib.RectangleSelector.selfunc>` where *instance* is this class.
+        """
+        return self._selfunc_results
+
+    @property
     def eclick(self):
         """
-        The starting mouse click from :class:`scisalt.matplotlib.RectangleSelector.RectangleSelector`.
+        The starting mouse click from :class:`RectangleSelector <scisalt.matplotlib.RectangleSelector.RectangleSelector>`.
         """
-        return self._eclick
+        if self._eclick is None:
+            raise IOError('No area was selected')
+        else:
+            return self._eclick
 
     @property
     def erelease(self):
         """
-        The ending mouse click from :class:`scisalt.matplotlib.RectangleSelector.RectangleSelector`.
+        The ending mouse click from :class:`RectangleSelector <scisalt.matplotlib.RectangleSelector.RectangleSelector>`.
         """
-        return self._erelease
-
-    def _toggle(self, event):
-        if event.key in ['A', 'a']:
-            self.RectangleSelector.set_active(not self.RectangleSelector.active)
+        if self._erelease is None:
+            raise IOError('No area was selected')
+        else:
+            return self._erelease
 
     @property
     def x0(self):
