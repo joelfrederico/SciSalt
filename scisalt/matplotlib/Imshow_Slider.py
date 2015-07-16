@@ -14,13 +14,16 @@ class Imshow_Slider(object):
     Convenience class for viewing images.
     
     Plots *image* to a to an instance of :class:`matplotlib.axis.imshow(**kwargs)`, with sliders for controlling bounds.
+
+    *usecbar* determines if a colorbar will be used. Color bars can slow down the viewer significantly.
     """
-    def __init__(self, image, **kwargs):
+    def __init__(self, image, usecbar=False, **kwargs):
         # ======================================
         # Save input info
         # ======================================
         self._image  = image
         self._kwargs = kwargs
+        self.usecbar = usecbar
 
         # ======================================
         # Create figure
@@ -34,23 +37,33 @@ class Imshow_Slider(object):
 
     def _reset(self, **kwargs):
         # ======================================
+        # Strip kwargs for vmin, vmax
+        # in order to set sliders correctly
+        # ======================================
+        minslide = kwargs.get('vmin', self.imgmin)
+        maxslide = kwargs.get('vmax', self.imgmax)
+
+        # ======================================
         # Imshow
         # ======================================
-        self.p = self._ax_img.imshow(self._image, **kwargs)
+        self._AxesImage = self.ax.imshow(self._image, **kwargs)
 
         # ======================================
         # Add minimum slider
         # ======================================
-        self.minslider = _wdg.Slider(self.ax_min, 'Min', self.imgmin, self.imgmax, self.imgmin)
+        self.minslider = _wdg.Slider(self.ax_min, 'Min', self.imgmin, self.imgmax, minslide)
 
         # ======================================
         # Add maximum slider
         # ======================================
-        self.maxslider = _wdg.Slider(self.ax_max, 'Max', self.imgmin, self.imgmax, self.imgmax, slidermin=self.minslider)
+        self.maxslider = _wdg.Slider(self.ax_max, 'Max', self.imgmin, self.imgmax, maxslide, slidermin=self.minslider)
         self.minslider.slidermax = self.maxslider
 
         self.minslider.on_changed(self._update_clim)
         self.maxslider.on_changed(self._update_clim)
+
+        if self.usecbar:
+            self.fig.colorbar(self.AxesImage, ax=self.ax, use_gridspec=True)
 
         self.fig.tight_layout()
 
@@ -58,12 +71,19 @@ class Imshow_Slider(object):
         """
         Sets color map to *cmap*.
         """
-        self.p.set_cmap(cmap)
+        self.AxesImage.set_cmap(cmap)
+
+    @property
+    def AxesImage(self):
+        """
+        The :class:`matplotlib.image.AxesImage` from :meth:`matplotlib.axes.Axes.imshow`.
+        """
+        return self._AxesImage
 
     @property
     def ax(self):
         """
-        The axis for :func:`matplotlib.axis.imshow`.
+        The :class:`matplotlib.axes.Axes` used for :meth:`matplotlib.axes.Axes.imshow`.
         """
         return self._ax_img
 
@@ -94,7 +114,7 @@ class Imshow_Slider(object):
         cmin = self.minslider.val
         cmax = self.maxslider.val
         # print('Cmin: {}, Cmax: {}'.format(cmin, cmax))
-        self.p.set_clim(cmin, cmax)
+        self.AxesImage.set_clim(cmin, cmax)
 
     # ======================================
     # Easily get and set slider
