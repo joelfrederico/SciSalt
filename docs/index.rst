@@ -14,6 +14,7 @@ This is the documentation for SciSalt v\ |release|, last updated |today|.
 
 .. toctree::
    :numbered:
+   :maxdepth: 2
 
    introduction
    programming_mods
@@ -21,6 +22,7 @@ This is the documentation for SciSalt v\ |release|, last updated |today|.
    science_mods
    utility_mods
    visualization_mods
+   changelog
 
 Indices and tables
 ==================

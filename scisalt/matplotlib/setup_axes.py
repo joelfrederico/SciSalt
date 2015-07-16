@@ -7,6 +7,8 @@ from .setup_figure import setup_figure as _setup_figure
 
 def setup_axes(rows=1, cols=1, figsize=(8, 6)):
     """
+    .. versionadded:: 1.2
+
     Sets up a figure of size *figsize* with a number of rows (*rows*) and columns (*cols*).
 
     Returns :code:`fig, axes`:

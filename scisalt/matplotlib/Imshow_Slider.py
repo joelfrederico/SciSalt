@@ -11,7 +11,7 @@ from .setup_figure import setup_figure   # noqa
 
 class Imshow_Slider(object):
     """
-    .. versionchanged:: 1.1.2
+    .. versionchanged:: 1.2
        Name changed, colorbar options added, *p* changed to :class:`AxesImage <scisalt.matplotlib.Imshow_Slider.AxesImage>`.
 
     Convenience class for viewing images.

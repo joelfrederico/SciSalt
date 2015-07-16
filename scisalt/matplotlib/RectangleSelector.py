@@ -10,7 +10,7 @@ __all__ = ['RectangleSelector']
 
 class RectangleSelector(object):
     """
-    .. versionadded:: 1.1.2
+    .. versionadded:: 1.2
 
     Add rectangle selection to an already-existing axis *as*. *\*args* and *\*\*kwargs* pass through to :class:`matplotlib.widgets.RectangleSelector`.
 
