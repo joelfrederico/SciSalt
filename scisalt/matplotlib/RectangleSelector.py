@@ -10,6 +10,8 @@ __all__ = ['RectangleSelector']
 
 class RectangleSelector(object):
     """
+    .. versionadded:: 1.1.2
+
     Add rectangle selection to an already-existing axis *as*. *\*args* and *\*\*kwargs* pass through to :class:`matplotlib.widgets.RectangleSelector`.
 
     Use key *A* or *a* to toggle whether the rectangle is active or not.

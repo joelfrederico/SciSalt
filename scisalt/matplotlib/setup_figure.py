@@ -7,6 +7,9 @@ if not on_rtd:
 
 def setup_figure(rows=1, cols=1, figsize=(8, 6)):
     """
+    .. versionchanged:: 1.1.2
+       Changed *gridspec_x* to *rows*, *gridspec_y* to *cols*, added *figsize* control.
+
     Sets up a figure of size *figsize* with a number of rows (*rows*) and columns (*cols*).
 
     Returns :code:`fig, gs`:
