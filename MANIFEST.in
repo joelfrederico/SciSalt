@@ -1,4 +1,6 @@
+include CHANGELOG.rst
 include DESCRIPTION.rst
+include LICENSE
 
 # Include the test suite (FIXME: does not work yet)
 # recursive-include tests *

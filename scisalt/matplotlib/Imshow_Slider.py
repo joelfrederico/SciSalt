@@ -13,7 +13,7 @@ class Imshow_Slider(object):
     """
     Convenience class for viewing images.
     
-    Plots *image* to a to an instance of :class:`matplotlib.axis.imshow(**kwargs)`, with sliders for controlling bounds.
+    Plots *image* to a to an instance of :class:`matplotlib.axis.imshow(**kwargs)`, with sliders for controlling bounds, with *\*\*kwargs* passed through to :meth:`matplotlib.axes.Axes.imshow`.
 
     *usecbar* determines if a colorbar will be used. Color bars can slow down the viewer significantly.
     """
@@ -93,7 +93,7 @@ class Imshow_Slider(object):
     @property
     def imgmax(self):
         """
-        Maximum of color bar
+        Highest value of input image.
         """
         return _np.max(self._image)
 
@@ -103,7 +103,7 @@ class Imshow_Slider(object):
     @property
     def imgmin(self):
         """
-        Minimum of color bar
+        Lowest value of input image.
         """
         return _np.min(self._image)
 
