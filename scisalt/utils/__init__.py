@@ -1,2 +1,6 @@
-__all__ = ['githubtunnel', ]
+__all__ = [
+    'githubtunnel',
+    'progressbar',
+    ]
 from .githubtunnel import *  # noqa
+from .progressbar import progressbar

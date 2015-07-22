@@ -1,5 +1,8 @@
-from mpl_toolkits import axes_grid1 as _ag1
-import matplotlib.pyplot as _plt
+import os as _os
+_on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not _on_rtd:
+    from mpl_toolkits import axes_grid1 as _ag1
+    import matplotlib.pyplot as _plt
 
 
 def colorbar(ax, im):
