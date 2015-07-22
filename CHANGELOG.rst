@@ -4,7 +4,20 @@ Changelog
 1.3.0 (2015-07-22)
 ------------------
 
-* 
+scisalt.matplotlib
+^^^^^^^^^^^^^^^^^^
+
+* Added colorbar
+* Added contour
+* Added imshow
+* Added quiver
+* Added scaled_figsize
+* Changed setup_figure: Supports *\*\*kwargs* pass-through to matplotlib.figure.Figure.
+
+scisalt.utils
+^^^^^^^^^^^^^
+
+* Added progressbar
 
 1.2.1 (2015-07-15)
 ------------------
@@ -14,7 +27,7 @@ Changelog
 1.2.0 (2015-07-15)
 ------------------
 
-SciSalt.matplotlib
+scisalt.matplotlib
 ^^^^^^^^^^^^^^^^^^
 
 * Imshow_Slider
