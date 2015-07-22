@@ -7,6 +7,8 @@ if not _on_rtd:
 
 def colorbar(ax, im):
     """
+    .. versionadded:: 1.3
+
     Adds a polite colorbar that steals space so :meth:`matplotlib.pyplot.tight_layout` works nicely.
     """
     divider = _ag1.make_axes_locatable(ax)

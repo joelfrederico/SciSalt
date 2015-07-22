@@ -21,6 +21,8 @@ __all__ = [
 
 def imshow(X, ax=None, add_cbar=True, rescale_fig=True, **kwargs):
     """
+    .. versionadded:: 1.3
+
     Plots an array *X* such that the first coordinate is the *x* coordinate and the second coordinate is the *y* coordinate, with the origin at the bottom left corner.
 
     Optional argument *ax* allows an existing axes to be used.
@@ -34,6 +36,8 @@ def imshow(X, ax=None, add_cbar=True, rescale_fig=True, **kwargs):
 
 def contour(X, ax=None, add_cbar=True, rescale_fig=True, **kwargs):
     """
+    .. versionadded:: 1.3
+
     Plots an array *X* such that the first coordinate is the *x* coordinate and the second coordinate is the *y* coordinate, with the origin at the bottom left corner.
 
     Optional argument *ax* allows an existing axes to be used.
@@ -47,6 +51,8 @@ def contour(X, ax=None, add_cbar=True, rescale_fig=True, **kwargs):
 
 def quiver(U, V, ax=None, rescale_fig=True, **kwargs):
     """
+    .. versionadded:: 1.3
+
     Plots an array *X* such that the first coordinate is the *x* coordinate and the second coordinate is the *y* coordinate, with the origin at the bottom left corner.
 
     Optional argument *ax* allows an existing axes to be used.
@@ -83,6 +89,8 @@ def _plot_array(type, *args, ax=None, add_cbar=True, rescale_fig=True, **kwargs)
 
 def scaled_figsize(X, figsize=None):
     """
+    .. versionchanged:: 1.3
+
     Given an array *X*, determine a good size for the figure to be by shrinking it to fit within *figsize*. If not specified, shrinks to fit the figsize specified by the current :attr:`matplotlib.rcParams`.
     """
     if figsize is None:

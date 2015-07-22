@@ -7,8 +7,12 @@ if not on_rtd:
 
 def setup_figure(rows=1, cols=1, **kwargs):
     """
+    .. versionchanged:: 1.3
+       Supports *\*\*kwargs* pass-through to :class:`matplotlib.figure.Figure`.
+       
     .. versionchanged:: 1.2
        Changed *gridspec_x* to *rows*, *gridspec_y* to *cols*, added *figsize* control.
+
 
     Sets up a figure with a number of rows (*rows*) and columns (*cols*), *\*\*kwargs* passes through to :class:`matplotlib.figure.Figure`.
 

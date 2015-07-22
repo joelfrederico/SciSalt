@@ -3,6 +3,8 @@ import sys as _sys
 
 class progressbar(object):
     """
+    .. versionadded:: 1.3
+
     Creates a progress bar with a number of steps *total* and a length of *length*.
     """
     def __init__(self, total, length=20):

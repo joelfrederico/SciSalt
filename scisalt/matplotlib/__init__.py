@@ -29,9 +29,7 @@ __all__.sort()
 import os as _os
 on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
 if not on_rtd:
-    from .cmaps import parula
-    from .cmaps import viridis
-    __all__.append('parula')
+    from .cmaps import *  # noqa
     __all__.append('viridis')
     __all__.sort()
 
