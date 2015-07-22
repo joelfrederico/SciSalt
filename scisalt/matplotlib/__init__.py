@@ -6,11 +6,12 @@ __all__ = [
     'addlabel',
     'axesfontsize',
     'colorbar',
+    'contour',
     'figure',
     'hist',
     'hist2d',
-    'imshow_batch',
     'imshow',
+    'imshow_batch',
     'latexfig',
     'less_labels',
     'pcolor_axes',
@@ -43,6 +44,7 @@ from .hist import hist
 from .hist2d import hist2d
 from .imshow_batch import imshow_batch
 from .imshow import imshow
+from .imshow import contour
 from .imshow import scaled_figsize
 from .latexfig import latexfig
 from .less_labels import less_labels

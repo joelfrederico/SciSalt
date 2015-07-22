@@ -8,8 +8,14 @@ if not _on_rtd:
 from .colorbar import colorbar as _cb
 from .setup_axes import setup_axes as _setup_axes
 
-_CONTOUR=1
-_IMSHOW=2
+_CONTOUR = 1
+_IMSHOW  = 2
+
+__all__ = [
+        'contour',
+        'imshow',
+        'scaled_figsize'
+        ]
 
 
 def imshow(X, ax=None, add_cbar=True, rescale_fig=True, **kwargs):
