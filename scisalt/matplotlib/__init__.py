@@ -18,7 +18,7 @@ __all__ = [
     'plot_featured',
     'rgb2gray',
     'savefig',
-    'scaled_figsize'
+    'scaled_figsize',
     'setup_axes',
     'setup_figure',
     'showfig',
