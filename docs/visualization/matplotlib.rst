@@ -1,7 +1,7 @@
 matplotlib
 ==========
 
-The :mod:`scisalt.matplotlib` module adds many useful wrappers for `matplotlib <http://matplotlib.org/contents.html>`_ classes and functions. In particular, it adds the color map `viridis <https://github.com/BIDS/colormap/blob/master/option_d.py>`_ as described in a presentation on YouTube, which will become the `new default <http://matplotlib.org/style_changes.html>`_ in `matplotlib <http://matplotlib.org/contents.html>`_:
+The :mod:`scisalt.matplotlib` module adds many useful wrappers for `matplotlib <http://matplotlib.org/contents.html>`_ classes and functions. In particular, it adds the color map `viridis <https://github.com/BIDS/colormap/blob/master/option_d.py>`_ as described in a `presentation on YouTube <https://www.youtube.com/watch?v=xAoljeRJ3lU>`_, which will become the `new default <http://matplotlib.org/style_changes.html>`_ in `matplotlib <http://matplotlib.org/contents.html>`_.
 
 .. raw:: html
 
