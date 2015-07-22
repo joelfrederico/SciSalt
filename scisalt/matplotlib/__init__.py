@@ -16,6 +16,7 @@ __all__ = [
     'less_labels',
     'pcolor_axes',
     'plot_featured',
+    'quiver',
     'rgb2gray',
     'savefig',
     'scaled_figsize',
@@ -23,6 +24,8 @@ __all__ = [
     'setup_figure',
     'showfig',
     ]
+__all__.sort()
+
 import os as _os
 on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
 if not on_rtd:
@@ -45,6 +48,7 @@ from .hist2d import hist2d
 from .imshow_batch import imshow_batch
 from .imshow import imshow
 from .imshow import contour
+from .imshow import quiver
 from .imshow import scaled_figsize
 from .latexfig import latexfig
 from .less_labels import less_labels
