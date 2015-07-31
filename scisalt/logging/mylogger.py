@@ -3,30 +3,35 @@ import inspect as _inspect
 __all__ = ['mylogger', 'log']
 
 
-def mylogger(filename, indent_offset=7):
+def mylogger(name=None, filename=None, indent_offset=7):
     """
     Sets up logging to *filename*.debug.log, *filename*.log, and the terminal. *indent_offset* attempts to line up the lowest indent level to 0.
     """
-    logger = _logging.getLogger()
+    if name is not None:
+        logger = _logging.getLogger(name)
+    else:
+        logger = _logging.getLogger()
+
     logger.setLevel(_logging.DEBUG)
 
     fmtr         = IndentFormatter(indent_offset=indent_offset)
-    fmtr_msgonly = IndentFormatter('%(indent)s%(message)s')
-
-    debugh = _logging.FileHandler(filename='{}_debug.log'.format(filename), mode='w')
-    debugh.setLevel(_logging.ERROR)
-    debugh.setFormatter(fmtr_msgonly)
-    logger.addHandler(debugh)
+    fmtr_msgonly = IndentFormatter('%(funcName)s:%(lineno)d: %(message)s')
 
     ch = _logging.StreamHandler()
     ch.setLevel(_logging.DEBUG)
     ch.setFormatter(fmtr_msgonly)
     logger.addHandler(ch)
 
-    fh = _logging.FileHandler(filename='{}.log'.format(filename), mode='w')
-    fh.setLevel(1)
-    fh.setFormatter(fmtr)
-    logger.addHandler(fh)
+    if filename is not None:
+        debugh = _logging.FileHandler(filename='{}_debug.log'.format(filename), mode='w')
+        debugh.setLevel(_logging.ERROR)
+        debugh.setFormatter(fmtr_msgonly)
+        logger.addHandler(debugh)
+
+        fh = _logging.FileHandler(filename='{}.log'.format(filename), mode='w')
+        fh.setLevel(1)
+        fh.setFormatter(fmtr)
+        logger.addHandler(fh)
 
     return logger
 

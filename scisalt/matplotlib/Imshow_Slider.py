@@ -4,9 +4,13 @@ import os as _os
 on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
 if not on_rtd:
     import matplotlib.widgets as _wdg
+    import matplotlib as _mpl
     import numpy as _np
+    import matplotlib.pyplot as _plt
 
 from .setup_figure import setup_figure   # noqa
+from .imshow import imshow
+from .imshow import scaled_figsize
 
 
 class Imshow_Slider(object):
@@ -31,6 +35,7 @@ class Imshow_Slider(object):
         # ======================================
         # Create figure
         # ======================================
+        # self.fig, self.gs = setup_figure(20, 10, figsize=scaled_figsize(self.image))
         self.fig, self.gs = setup_figure(20, 10)
         self._ax_img = self.fig.add_subplot(self.gs[0:-3, :])
         self.ax_min = self.fig.add_subplot(self.gs[-2, 1:-1])
@@ -49,17 +54,36 @@ class Imshow_Slider(object):
         # ======================================
         # Imshow
         # ======================================
-        self._AxesImage = self.ax.imshow(self._image, **kwargs)
+        # self._AxesImage = self.ax.imshow(self.image, **kwargs)
+        self._AxesImage = imshow(self.image, ax=self.ax, **kwargs)
+        
+        shape_x, shape_y = self.image.shape
+        ratio = shape_x / shape_y
+        figsize = kwargs.get('figsize', _mpl.rcParams['figure.figsize'])
+        figsize_ratio = figsize[0]/figsize[1]
+        if ratio > figsize_ratio:
+            x_lim = [0, shape_x]
+            y_lim = shape_x / figsize_ratio
+            y_lim = [(shape_y-y_lim)/2, (shape_y+y_lim)/2]
+        else:
+            x_lim = shape_y * figsize_ratio
+            x_lim = [(shape_x-x_lim)/2, (shape_x+x_lim)/2]
+            y_lim = [0, shape_y]
+
+        self.ax.set_xlim(x_lim)
+        self.ax.set_ylim(y_lim)
 
         # ======================================
         # Add minimum slider
         # ======================================
-        self.minslider = _wdg.Slider(self.ax_min, 'Min', self.imgmin, self.imgmax, minslide)
+        # self.minslider = _wdg.Slider(self.ax_min, 'Min', self.imgmin, self.imgmax, minslide)
+        self.minslider = _wdg.Slider(self.ax_min, 'Min', 0, self.imgmax, minslide)
 
         # ======================================
         # Add maximum slider
         # ======================================
-        self.maxslider = _wdg.Slider(self.ax_max, 'Max', self.imgmin, self.imgmax, maxslide, slidermin=self.minslider)
+        # self.maxslider = _wdg.Slider(self.ax_max, 'Max', self.imgmin, self.imgmax, maxslide, slidermin=self.minslider)
+        self.maxslider = _wdg.Slider(self.ax_max, 'Max', 0, self.imgmax, maxslide, slidermin=self.minslider)
         self.minslider.slidermax = self.maxslider
 
         self.minslider.on_changed(self._update_clim)
@@ -98,7 +122,7 @@ class Imshow_Slider(object):
         """
         Highest value of input image.
         """
-        return _np.max(self._image)
+        return _np.max(self.image)
 
     # ======================================
     # Get max of image
@@ -108,7 +132,7 @@ class Imshow_Slider(object):
         """
         Lowest value of input image.
         """
-        return _np.min(self._image)
+        return _np.min(self.image)
 
     # ======================================
     # Update the clims
@@ -143,3 +167,7 @@ class Imshow_Slider(object):
     @clim_max.setter
     def clim_max(self, val):
         self.maxslider.set_val(val)
+
+    @property
+    def image(self):
+        return self._image

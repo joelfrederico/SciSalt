@@ -7,4 +7,5 @@ __all__.sort()
 
 from .githubtunnel import *  # noqa
 from .progressbar import progressbar
-from .keys import keys
+from .h5 import keys
+from .h5 import get

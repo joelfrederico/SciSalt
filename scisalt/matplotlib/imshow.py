@@ -7,6 +7,7 @@ if not _on_rtd:
 
 from .colorbar import colorbar as _cb
 from .setup_axes import setup_axes as _setup_axes
+from .addlabel import addlabel as _addlabel
 
 _CONTOUR = 1
 _IMSHOW  = 2
@@ -65,11 +66,13 @@ def quiver(U, V, ax=None, rescale_fig=True, **kwargs):
 
 
 def _plot_array(type, *args, ax=None, add_cbar=True, rescale_fig=True, **kwargs):
-
+    # ======================================
+    # Get an ax
+    # ======================================
     if ax is None:
         if rescale_fig:
-            figsize = scaled_figsize(X)
-            fig, ax = _setup_axes(figsize=figsize)
+            figsize = scaled_figsize(args[0])
+        fig, ax = _setup_axes(figsize=figsize)
 
     if type == _IMSHOW:
         im = ax.imshow(_np.transpose(*args), origin='lower', **kwargs)

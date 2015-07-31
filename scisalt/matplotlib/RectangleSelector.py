@@ -18,14 +18,19 @@ class RectangleSelector(object):
 
     *verbose* controls whether selections are printed to the terminal.
     """
-    def __init__(self, ax, *args, selfunc=None, verbose=False, **kwargs):
+    def __init__(self, ax, *args, selfunc=None, parent=None, verbose=False, **kwargs):
         # ======================================
         # Store things to class
         # ======================================
+        self._parent          = parent
         self._selfunc         = selfunc
         self._ax              = ax
         self.verbose          = verbose
         self._selfunc_results = None
+        self._x0 = 0
+        self._x1 = 1
+        self._y0 = 0
+        self._y1 = 1
 
         # ======================================
         # Add rectangle selector
@@ -42,10 +47,22 @@ class RectangleSelector(object):
         if self._verbose:
             print('eclick (x, y):\t\t({}, {})'.format(eclick.xdata, eclick.ydata))
             print('erelease (x, y):\t({}, {})'.format(erelease.xdata, erelease.ydata))
+
+        self._x0 = min([self.erelease.xdata, self.eclick.xdata])
+        self._x1 = max([self.erelease.xdata, self.eclick.xdata])
+        self._y0 = min([self.erelease.ydata, self.eclick.ydata])
+        self._y1 = max([self.erelease.ydata, self.eclick.ydata])
+
+        self._set_rect()
+
+        self._selfunc_results = self.selfunc(self)
+
+    def _set_rect(self):
         try:
             self._rect.remove()
         except:
             pass
+
         self._rect = self._ax.add_patch(
             _mp.Rectangle(
                 xy     = (self.x0, self.y0),
@@ -55,10 +72,9 @@ class RectangleSelector(object):
                 fc     = 'none'
                 )
             )
+
         _plt.draw()
 
-        if self.selfunc is not None:
-            self._selfunc_results = self.selfunc(self)
 
     def _toggle(self, event):
         if event.key in ['A', 'a']:
@@ -73,6 +89,10 @@ class RectangleSelector(object):
                 self._selfunc_results = None
             except:
                 pass
+
+    @property
+    def parent(self):
+        return self._parent
 
     @property
     def verbose(self):
@@ -111,7 +131,8 @@ class RectangleSelector(object):
         """
         The results of :func:`selfunc(instance) <scisalt.matplotlib.RectangleSelector.selfunc>` where *instance* is this class.
         """
-        return self._selfunc_results
+        if self.selfunc is not None:
+            return self.selfunc(self)
 
     @property
     def eclick(self):
@@ -131,35 +152,75 @@ class RectangleSelector(object):
         if self._erelease is None:
             raise IOError('No area was selected')
         else:
+
             return self._erelease
+
 
     @property
     def x0(self):
         """
         Minimum x coordinate of rectangle.
         """
-        return min([self.erelease.xdata, self.eclick.xdata])
+        return self._x0
+
+    @x0.setter
+    def x0(self, val):
+        self._x0 = val
+        self._set_rect()
 
     @property
     def x1(self):
         """
         Maximum x coordinate of rectangle.
         """
-        return max([self.erelease.xdata, self.eclick.xdata])
+        return self._x1
+
+    @x1.setter
+    def x1(self, val):
+        self._x1 = val
+        self._set_rect()
 
     @property
     def y0(self):
         """
         Minimum y coordinate of rectangle.
         """
-        return min([self.erelease.ydata, self.eclick.ydata])
+        return self._y0
+
+    @y0.setter
+    def y0(self, val):
+        self._y0 = val
+        self._set_rect()
 
     @property
     def y1(self):
         """
         Maximum y coordinate of rectangle.
         """
-        return max([self.erelease.ydata, self.eclick.ydata])
+        return self._y1
+
+    @y1.setter
+    def y1(self, val):
+        self._y1 = val
+        self._set_rect()
+
+    @property
+    def xslice(self):
+        return [self.x0, self.x1]
+
+    @xslice.setter
+    def xslice(self, val):
+        self._x0, self._x1 = val
+        self._set_rect()
+
+    @property
+    def yslice(self):
+        return [self.y0, self.y1]
+
+    @yslice.setter
+    def yslice(self, val):
+        self._y0, self._y1 = val
+        self._set_rect()
 
     @property
     def width(self):

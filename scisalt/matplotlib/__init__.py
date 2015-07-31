@@ -52,6 +52,7 @@ from .latexfig import latexfig
 from .less_labels import less_labels
 from .pcolor_axes import pcolor_axes
 from .plot_featured import plot_featured
+from .plot import plot
 from .rgb2gray import rgb2gray
 from .savefig import savefig
 from .setup_axes import setup_axes

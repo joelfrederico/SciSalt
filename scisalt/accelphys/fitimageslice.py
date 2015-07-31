@@ -3,7 +3,7 @@ on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
 if not on_rtd:
     import numpy as _np
 
-from ..scipy.gaussfit import gaussfit as _gaussfit
+from .. import scipy as _sp
 from ..numpy.linspacestep import linspacestep
 
 
@@ -50,16 +50,14 @@ def fitimageslice(img, res_x, res_y, xslice, yslice, avg_e_func=None, h5file=Non
     # plotbool = False
     # varbool  = False
     varbool  = True
-    gaussout = _gaussfit(x, histdata, sigma_y=_np.ones(xbins),
-            plot            = plot,
-            variance_bool   = varbool,
-            verbose         = False,
-            background_bool = True,
-            p0              = [16000, 0.003, 1e-6, 0]
-            )
-
-    # if plot:
-    #         _plt.show()
+    gaussout = _sp.GaussResults(
+        x,
+        histdata,
+        sigma_y    = _np.ones(xbins),
+        variance   = varbool,
+        background = True,
+        p0         = [16000, 0.003, 1e-6, 0]
+        )
 
     if avg_e_func is not None:
         # ======================================
