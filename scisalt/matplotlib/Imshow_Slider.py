@@ -170,4 +170,7 @@ class Imshow_Slider(object):
 
     @property
     def image(self):
+        """
+        The image loaded.
+        """
         return self._image

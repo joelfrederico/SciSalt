@@ -7,7 +7,6 @@ if not _on_rtd:
 
 from .colorbar import colorbar as _cb
 from .setup_axes import setup_axes as _setup_axes
-from .addlabel import addlabel as _addlabel
 
 _CONTOUR = 1
 _IMSHOW  = 2

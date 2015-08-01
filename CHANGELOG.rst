@@ -1,6 +1,46 @@
 Changelog
 =========
 
+1.4.0 (2015-07-31)
+------------------
+
+scisalt.accelphys
+^^^^^^^^^^^^^^^^^
+
+* Moved findpinch to OneShot
+
+scisalt.logging
+^^^^^^^^^^^^^^^
+
+* mylogger only uses console handlers if not given a filename
+
+scisalt.matplotlib
+^^^^^^^^^^^^^^^^^^
+
+* Imshow_Slider
+
+  * Now centers images within the axes automatically
+  * Sliders now go down to zero
+  * Image is now accessible as an attribute
+
+* RectangleSelector
+
+  * Can store its parent
+  * Window is now settable progammatically
+
+* imshow rescaling bug fixed
+* plot added
+
+scisalt.scipy
+^^^^^^^^^^^^^
+
+* Gauss fits are now accessed solely through GaussResults
+
+scisalt.utils
+^^^^^^^^^^^^^
+
+* Methods *get*, *keys* added for making development with h5py easier
+
 1.3.0 (2015-07-22)
 ------------------
 
