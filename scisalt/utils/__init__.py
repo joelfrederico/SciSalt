@@ -1,11 +1,10 @@
 __all__ = [
     'githubtunnel',
     'progressbar',
-    'printkeys',
+    'h5'
     ]
 __all__.sort()
 
 from .githubtunnel import *  # noqa
 from .progressbar import progressbar
-from .h5 import keys
-from .h5 import get
+from . import h5
