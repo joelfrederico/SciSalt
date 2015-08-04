@@ -1,4 +1,7 @@
-import numpy as _np
+import os as _os
+_on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not _on_rtd:
+    import numpy as _np
 
 
 def keys(f):
