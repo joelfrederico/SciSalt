@@ -16,12 +16,8 @@ This is the documentation for SciSalt v\ |release|, last updated |today|.
    :numbered:
    :maxdepth: 2
 
-   introduction
-   programming_mods
-   math_mods
-   science_mods
-   utility_mods
-   visualization_mods
+   manual/manual
+   fulldoc/fulldoc
    changelog
 
 Indices and tables
