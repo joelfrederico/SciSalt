@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.4.3 (2015-08-05)
+------------------
+
+* Fixed colorbar in scisalt.matplotlib.imshow
+* Updated documentation with the start of a new manual
+
 1.4.0 (2015-07-31)
 ------------------
 
