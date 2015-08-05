@@ -13,10 +13,10 @@ _IMSHOW  = 2
 _QUIVER  = 3
 
 __all__ = [
-        'contour',
-        'imshow',
-        'scaled_figsize'
-        ]
+    'contour',
+    'imshow',
+    'scaled_figsize'
+    ]
 
 
 def imshow(X, ax=None, add_cbar=True, rescale_fig=True, **kwargs):
@@ -29,7 +29,8 @@ def imshow(X, ax=None, add_cbar=True, rescale_fig=True, **kwargs):
 
     *\*\*kwargs* are passed on to :meth:`matplotlib.axes.Axes.imshow`.
 
-    Returns :class:`matplotlib.image.AxesImage`.
+    * Returns :code:`fig, ax, im` if axes aren't specified.
+    * Returns :code:`im` if axes are specified.
     """
     return _plot_array(_IMSHOW, X, ax=ax, add_cbar=add_cbar, rescale_fig=rescale_fig, **kwargs)
 
@@ -71,25 +72,27 @@ def _plot_array(type, *args, ax=None, add_cbar=True, rescale_fig=True, **kwargs)
     if ax is None:
         if rescale_fig:
             figsize = scaled_figsize(args[0])
-        fig, ax = _setup_axes(figsize=figsize)
+        fig, ax_h = _setup_axes(figsize=figsize)
+    else:
+        ax_h = ax
 
     if type == _IMSHOW:
-        im = ax.imshow(_np.transpose(*args), origin='lower', **kwargs)
+        im = ax_h.imshow(_np.transpose(*args), origin='lower', **kwargs)
     elif type == _CONTOUR:
-        im = ax.contour(_np.transpose(*args), origin='lower', **kwargs)
+        im = ax_h.contour(_np.transpose(*args), origin='lower', **kwargs)
     elif type == _QUIVER:
-        im = ax.quiver(args[1], args[0], **kwargs)
+        im = ax_h.quiver(args[1], args[0], **kwargs)
 
     if add_cbar:
-        _cb(ax, im)
+        _cb(ax_h, im)
 
     if ax is None:
-        return fig, ax, im
+        return fig, ax_h, im
     else:
         return im
 
 
-def scaled_figsize(X, figsize=None):
+def scaled_figsize(X, figsize=None, h_pad=None, v_pad=None):
     """
     .. versionadded:: 1.3
 
