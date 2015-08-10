@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.4.4 (2015-08-10)
+------------------
+
+* Can now run githubtunnel from the command line
+
 1.4.3 (2015-08-05)
 ------------------
 
