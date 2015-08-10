@@ -4,6 +4,7 @@ import os as _os
 import argparse as _argparse
 import shlex
 from subprocess import call
+import ipdb as pdb
 
 __all__ = ['githubtunnel']
 
@@ -43,47 +44,19 @@ def githubtunnel(user1, server1, user2, server2, port, verbose, stanford=False):
 
 
 # ================================
-# Access environment variables
+# Get info one way or another
 # ================================
-def checkvar(envvar):
-    try:
-        value = _os.environ[envvar]
-    except:
-        value = None
-    # print(value)
-    return value
+def environvar(prompt, val):
+    if val is None:
+        val = input(prompt + ' ')
+
+    return val
 
 
-# Email variable class
-class emailprefs(object):
-    """Preferences for email notification."""
-    def __init__(self, requested=False, environvar=None, value=None):
-        self.requested = requested
-        self.environvar = environvar
-        if value is None:
-            self.value = checkvar(environvar)
-        else:
-            self.value = value
-        if self.value is None:
-            self.value = _os.environ['PHYSICS_USER']
-            print('Using current fphysics login: ' + self.value)
-
-        # raise ValueError('problem')
-
-
-# Adds action to load email from $NOTIFY_EMAIL if possible
-class note_address(_argparse.Action):
-    def __call__(self, parser, namespace, values, option_string=None):
-        # print getattr(namespace, self.dest).environvar
-        # print values
-        if values is None:
-            out = emailprefs(True, getattr(namespace, self.dest).environvar)
-        else:
-            out = emailprefs(True, getattr(namespace, self.dest).environvar, values)
-        setattr(namespace, self.dest, out)
-
-
-if __name__ == '__main__':
+def _script():
+    # ================================
+    # Access command line arguments
+    # ================================
     parser = _argparse.ArgumentParser(description=
             'Creates a tunnel primarily for Git.')
     parser.add_argument('-V', action='version', version='%(prog)s v0.1')
@@ -91,17 +64,31 @@ if __name__ == '__main__':
             help='Verbose mode.')
     parser.add_argument('-p', '--port', default=7777, type=int,
             help='Local port to listen on.')
-    parser.add_argument('-u1', '--user1', default=emailprefs(True, 'USER_NAME'), action=note_address,
-            help='User name to use for login.')
     parser.add_argument('-s1', '--server1', default='mcclogin',
             help='First server hop.')
-    parser.add_argument('-u2', '--user2', default=emailprefs(True, 'USER_NAME'), action=note_address,
-            help='User name to use for login.')
     parser.add_argument('-s2', '--server2', default='iris.slac.stanford.edu',
             help='Second server hop.')
     parser.add_argument('-su', '--stanford', action='store_true',
             help='Tunnel through Stanford')
+    parser.add_argument('-u1', '--user1', default=_os.environ.get('PHYSICS_USER'),
+            help='User name to use for login.')
+    parser.add_argument('-u2', '--user2', default=_os.environ.get('PHYSICS_USER'),
+            help='User name to use for login.')
 
     arg = parser.parse_args()
 
-    githubtunnel(arg.user1.value, arg.server1, arg.user2.value, arg.server2, arg.port, arg.verbose, stanford=arg.stanford)
+    # ================================
+    # Ask user for logins if needed
+    # ================================
+    prompt1 = 'User name for server {}?'.format(arg.server1)
+    prompt2 = 'User name for server {}?'.format(arg.server2)
+    user1 = environvar(prompt1, arg.user1)
+    user2 = environvar(prompt2, arg.user2)
+
+    # ================================
+    # Run with command line arguments
+    # ================================
+    githubtunnel(user1, arg.server1, user2, arg.server2, arg.port, arg.verbose, stanford=arg.stanford)
+
+if __name__ == '__main__':
+    _script()
