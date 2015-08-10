@@ -52,6 +52,19 @@ class Imshow_Slider(object):
         maxslide = kwargs.get('vmax', self.imgmax)
 
         # ======================================
+        # Slider Logic
+        # ======================================
+        if self.imgmin > 0:
+            slidermin = kwargs.pop('smin', 0)
+        else:
+            slidermin = kwargs.pop('smin', self.imgmin)
+
+        if self.imgmax < 0:
+            slidermax = kwargs.pop('smax', 0)
+        else:
+            slidermax = kwargs.pop('smax', self.imgmax)
+
+        # ======================================
         # Imshow
         # ======================================
         # self._AxesImage = self.ax.imshow(self.image, **kwargs)
@@ -76,14 +89,12 @@ class Imshow_Slider(object):
         # ======================================
         # Add minimum slider
         # ======================================
-        # self.minslider = _wdg.Slider(self.ax_min, 'Min', self.imgmin, self.imgmax, minslide)
-        self.minslider = _wdg.Slider(self.ax_min, 'Min', 0, self.imgmax, minslide)
+        self.minslider = _wdg.Slider(self.ax_min, 'Min', slidermin, slidermax, minslide)
 
         # ======================================
         # Add maximum slider
         # ======================================
-        # self.maxslider = _wdg.Slider(self.ax_max, 'Max', self.imgmin, self.imgmax, maxslide, slidermin=self.minslider)
-        self.maxslider = _wdg.Slider(self.ax_max, 'Max', 0, self.imgmax, maxslide, slidermin=self.minslider)
+        self.maxslider = _wdg.Slider(self.ax_max, 'Max', slidermin, slidermax, maxslide, slidermin=self.minslider)
         self.minslider.slidermax = self.maxslider
 
         self.minslider.on_changed(self._update_clim)
