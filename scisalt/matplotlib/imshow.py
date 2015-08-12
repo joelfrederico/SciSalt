@@ -4,6 +4,7 @@ if not _on_rtd:
     import matplotlib.pyplot as _plt
     import matplotlib as _mpl
     import numpy as _np
+    import pdb as pdb
 
 from .colorbar import colorbar as _cb
 from .setup_axes import setup_axes as _setup_axes
@@ -65,7 +66,7 @@ def quiver(U, V, ax=None, rescale_fig=True, **kwargs):
     return _plot_array(_QUIVER, U, V, ax=ax, add_cbar=False, rescale_fig=rescale_fig, **kwargs)
 
 
-def _plot_array(type, *args, ax=None, add_cbar=True, rescale_fig=True, **kwargs):
+def _plot_array(plottype, *args, ax=None, add_cbar=True, rescale_fig=True, **kwargs):
     # ======================================
     # Get an ax
     # ======================================
@@ -76,12 +77,15 @@ def _plot_array(type, *args, ax=None, add_cbar=True, rescale_fig=True, **kwargs)
     else:
         ax_h = ax
 
-    if type == _IMSHOW:
+    if plottype == _IMSHOW:
         im = ax_h.imshow(_np.transpose(*args), origin='lower', **kwargs)
-    elif type == _CONTOUR:
+    elif plottype == _CONTOUR:
         im = ax_h.contour(_np.transpose(*args), origin='lower', **kwargs)
-    elif type == _QUIVER:
-        im = ax_h.quiver(args[1], args[0], **kwargs)
+    elif plottype == _QUIVER:
+        if len(args) == 2:
+            im = ax_h.quiver(_np.transpose(args[0]), _np.transpose(args[1]), **kwargs)
+        else:
+            raise NotImplementedError('Only quiver(U, V, **kw) supported at the moment.')
 
     if add_cbar:
         _cb(ax_h, im)

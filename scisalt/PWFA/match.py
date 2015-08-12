@@ -3,7 +3,7 @@ on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
 if not on_rtd:
     import numpy as _np
     import slactrac as _sltr
-from .plasma import *
+    import scipy.constants as _spc
 
 
 class Match(object):
@@ -42,7 +42,7 @@ class Match(object):
         """
         Spot size of matched beam
         """
-        return _np.power(2*_sltr.GeV2joule(self.E)*_sltr.epsilon_0 / (self.plasma.n_p * _np.power(_sltr.e, 2)) , 0.25) * _np.sqrt(self.emit)
+        return _np.power(2*_sltr.GeV2joule(self.E)*_spc.epsilon_0 / (self.plasma.n_p * _np.power(_spc.elementary_charge, 2)) , 0.25) * _np.sqrt(self.emit)
 
     def beta(self, E):
         """
