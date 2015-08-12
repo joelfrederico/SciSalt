@@ -4,7 +4,6 @@ import os as _os
 import argparse as _argparse
 import shlex
 from subprocess import call
-import ipdb as pdb
 
 __all__ = ['githubtunnel']
 
