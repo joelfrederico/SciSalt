@@ -1,0 +1,8 @@
+text.latex.preamble : \usepackage{booktabs},\usepackage{color},\usepackage{siunitx}
+
+figure.figsize : 8, 6
+figure.autolayout : True
+image.cmap : viridis
+image.interpolation : nearest
+
+image.origin : 'lower'
