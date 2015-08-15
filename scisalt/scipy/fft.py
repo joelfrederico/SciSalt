@@ -4,7 +4,6 @@ on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
 if not on_rtd:
     import numpy as _np
     import scipy as _sp
-    from .. import qt
 
 from .fill_missing_timestamps import fill_missing_timestamps
 
@@ -20,6 +19,7 @@ def fft(values, freq=None, timestamps=None, fill_missing=False):
     # Get frequency
     # ======================================
     if freq is None:
+        from .. import qt
         freq = qt.getDouble(title='Fourier Analysis', text='Frequency samples taken at:', min=0, decimals=2, value=1.0)
         freq = freq.input
     
