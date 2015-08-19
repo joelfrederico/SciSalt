@@ -33,7 +33,7 @@ def imshow(X, ax=None, add_cbar=True, rescale_fig=True, **kwargs):
     * Returns :code:`fig, ax, im` if axes aren't specified.
     * Returns :code:`im` if axes are specified.
     """
-    return _plot_array(_IMSHOW, X, ax=ax, add_cbar=add_cbar, rescale_fig=rescale_fig, **kwargs)
+    return _plot_array(X, plottype=_IMSHOW, ax=ax, add_cbar=add_cbar, rescale_fig=rescale_fig, **kwargs)
 
 
 def contour(X, ax=None, add_cbar=True, rescale_fig=True, **kwargs):
@@ -48,10 +48,10 @@ def contour(X, ax=None, add_cbar=True, rescale_fig=True, **kwargs):
 
     Returns :class:`matplotlib.image.AxesImage`.
     """
-    return _plot_array(_CONTOUR, X, ax=ax, add_cbar=add_cbar, rescale_fig=rescale_fig, **kwargs)
+    return _plot_array(X, plottype=_CONTOUR, ax=ax, add_cbar=add_cbar, rescale_fig=rescale_fig, **kwargs)
 
 
-def quiver(U, V, ax=None, rescale_fig=True, **kwargs):
+def quiver(*args, ax=None, rescale_fig=True, **kwargs):
     """
     .. versionadded:: 1.3
 
@@ -63,10 +63,10 @@ def quiver(U, V, ax=None, rescale_fig=True, **kwargs):
 
     Returns :class:`matplotlib.image.AxesImage`.
     """
-    return _plot_array(_QUIVER, U, V, ax=ax, add_cbar=False, rescale_fig=rescale_fig, **kwargs)
+    return _plot_array(*args, plottype=_QUIVER, ax=ax, add_cbar=False, rescale_fig=rescale_fig, **kwargs)
 
 
-def _plot_array(plottype, *args, ax=None, add_cbar=True, rescale_fig=True, **kwargs):
+def _plot_array(*args, plottype, ax=None, add_cbar=True, rescale_fig=True, **kwargs):
     # ======================================
     # Get an ax
     # ======================================
@@ -84,8 +84,14 @@ def _plot_array(plottype, *args, ax=None, add_cbar=True, rescale_fig=True, **kwa
     elif plottype == _QUIVER:
         if len(args) == 2:
             im = ax_h.quiver(_np.transpose(args[0]), _np.transpose(args[1]), **kwargs)
+        elif len(args) == 4:
+            x_new = _np.transpose(args[0])
+            y_new = _np.transpose(args[1])
+            u_new = _np.transpose(args[2])
+            v_new = _np.transpose(args[3])
+            im = ax_h.quiver(x_new, y_new, u_new, v_new, **kwargs)
         else:
-            raise NotImplementedError('Only quiver(U, V, **kw) supported at the moment.')
+            raise NotImplementedError('Only quiver(U, V, **kw) and quiver(X, Y, U, V, *kw) supported at the moment.')
 
     if add_cbar:
         _cb(ax_h, im)
