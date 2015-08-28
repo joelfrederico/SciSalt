@@ -20,7 +20,7 @@ def hist2d(x, y, bins=10, labels=None, aspect="auto", plot=True, fig=None, range
     """
 
     h, xe, ye = _np.histogram2d(x, y, bins=bins, range=range)
-    extent    = [xe[0], xe[-1], ye[-1], ye[0]]
+    extent    = [xe[0], xe[-1], ye[0], ye[-1]]
     # fig     = plt.figure()
     if plot:
         if ax is None:
