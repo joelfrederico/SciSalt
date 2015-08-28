@@ -8,3 +8,9 @@ from .curve_fit_unscaled import *        # noqa
 from .fft import *                       # noqa
 from .fill_missing_timestamps import *   # noqa
 from .gaussfit import *                  # noqa
+
+import pyximport
+import numpy as _np
+pyximport.install(setup_args={"include_dirs": _np.get_include()})
+
+from .hough_ellipse import hough_ellipse
