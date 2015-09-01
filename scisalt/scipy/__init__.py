@@ -16,4 +16,4 @@ if not _on_rtd:
     import numpy as _np
     pyximport.install(setup_args={"include_dirs": _np.get_include()})
 
-from .hough_ellipse import hough_ellipse
+    from .hough_ellipse import hough_ellipse
