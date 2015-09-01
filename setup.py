@@ -18,6 +18,8 @@ if not _on_rtd:
         'h5py',
         'matplotlib'
         ]
+else:
+    install_requires = []
 
 here = path.abspath(path.dirname(__file__))
 
