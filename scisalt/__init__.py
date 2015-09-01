@@ -10,6 +10,7 @@ from . import matplotlib
 from . import numpy
 from . import scipy
 from . import utils
+from . import PWFA
 
 # class Error(Exception):
 #     """Base class for exceptions in this module."""
