@@ -1,5 +1,6 @@
 __all__ = [
     'Imshow_Slider',
+    'Imshow_Slider_Array',
     'NonUniformImage',
     'NonUniformImage_axes',
     'RectangleSelector',
@@ -34,6 +35,7 @@ if not on_rtd:
     __all__.sort()
 
 from .Imshow_Slider import Imshow_Slider
+from .Imshow_Slider_Array import Imshow_Slider_Array
 from .NonUniformImage import NonUniformImage
 from .NonUniformImage_axes import NonUniformImage_axes
 from .RectangleSelector import RectangleSelector
@@ -43,16 +45,16 @@ from .colorbar import colorbar
 from .figure import figure
 from .hist import hist
 from .hist2d import hist2d
-from .imshow_batch import imshow_batch
-from .imshow import imshow
 from .imshow import contour
+from .imshow import imshow
 from .imshow import quiver
 from .imshow import scaled_figsize
+from .imshow_batch import imshow_batch
 from .latexfig import latexfig
 from .less_labels import less_labels
 from .pcolor_axes import pcolor_axes
-from .plot_featured import plot_featured
 from .plot import plot
+from .plot_featured import plot_featured
 from .rgb2gray import rgb2gray
 from .savefig import savefig
 from .setup_axes import setup_axes

@@ -32,7 +32,7 @@ def colorbar(ax, im, loc="right", size="5%", pad="3%"):
 
     divider = _ag1.make_axes_locatable(ax)
     cax = divider.append_axes(loc, size=size, pad=pad)
-    return _plt.colorbar(im, cax=cax)
+    return cax, _plt.colorbar(im, cax=cax)
 
 
 def _pc2f(str):
