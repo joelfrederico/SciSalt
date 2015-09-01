@@ -9,7 +9,6 @@ cimport cython
 
 from libc.math cimport abs, fabs, sqrt, ceil, atan2, M_PI
 from libc.stdlib cimport rand
-import pdb
 import logging as _logging
 
 _logger = _logging.getLogger(__name__)
