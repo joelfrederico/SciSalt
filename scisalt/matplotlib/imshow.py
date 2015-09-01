@@ -73,6 +73,8 @@ def _plot_array(*args, plottype, ax=None, add_cbar=True, rescale_fig=True, **kwa
     if ax is None:
         if rescale_fig:
             figsize = scaled_figsize(args[0])
+        else:
+            figsize = None
         fig, ax_h = _setup_axes(figsize=figsize)
     else:
         ax_h = ax

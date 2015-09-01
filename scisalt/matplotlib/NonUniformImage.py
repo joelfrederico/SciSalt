@@ -3,7 +3,6 @@ on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
 if not on_rtd:
     import matplotlib.image as _mplim
     import numpy as _np
-# import ipdb
 
 from .setup_axes import setup_axes as _setup_axes
 

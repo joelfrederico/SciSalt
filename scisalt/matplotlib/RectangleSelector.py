@@ -12,7 +12,7 @@ class RectangleSelector(object):
     """
     .. versionadded:: 1.2
 
-    Add rectangle selection to an already-existing axis *as*. *\*args* and *\*\*kwargs* pass through to :class:`matplotlib.widgets.RectangleSelector`.
+    Add rectangle selection to an already-existing axis *ax*. *\*args* and *\*\*kwargs* pass through to :class:`matplotlib.widgets.RectangleSelector`.
 
     Use key *A* or *a* to toggle whether the rectangle is active or not.
 
@@ -74,7 +74,6 @@ class RectangleSelector(object):
             )
 
         _plt.draw()
-
 
     def _toggle(self, event):
         if event.key in ['A', 'a']:
@@ -154,7 +153,6 @@ class RectangleSelector(object):
         else:
 
             return self._erelease
-
 
     @property
     def x0(self):
