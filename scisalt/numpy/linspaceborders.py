@@ -1,7 +1,7 @@
 # from .linspacestep import linspacestep as _linspacestep
 import os as _os
-on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
-if not on_rtd:
+_on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
+if not _on_rtd:
     import numpy as _np
 
 

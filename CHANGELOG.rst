@@ -1,6 +1,16 @@
 Changelog
 =========
 
+1.5.0 (2015-08-31)
+------------------
+
+* Added personal ellipse fitting scisalt.scipy.hough_ellipse.
+* Added an Imshow_Slider_Array for perusing an array of images.
+* More config options for scisalt.logging.mylogger.
+* Added gaussian function at scisalt.numpy.
+* Behind-the-scenes updates and bug fixes.
+* Progressbar now includes times, percentages.
+
 1.4.4 (2015-08-10)
 ------------------
 
