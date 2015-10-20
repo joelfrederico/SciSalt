@@ -10,6 +10,7 @@ from .setup_axes import setup_axes as _setup_axes
 def plot(*args, ax=None, **kwargs):
     """
     .. versionadded:: 1.4
+
     Plots but automatically resizes x axis.
     """
     if ax is None:

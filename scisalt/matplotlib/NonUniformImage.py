@@ -2,12 +2,14 @@ import os as _os
 on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
 if not on_rtd:
     import matplotlib.image as _mplim
+    import matplotlib.cm as _cm
     import numpy as _np
 
+from .colorbar import colorbar as _cb
 from .setup_axes import setup_axes as _setup_axes
 
 
-def NonUniformImage(x, y, z, ax=None, cmap=None, alpha=None, scalex=True, scaley=True, **kwargs):
+def NonUniformImage(x, y, z, ax=None, cmap=None, alpha=None, scalex=True, scaley=True, add_cbar=True, **kwargs):
     """
     Plots a set of coordinates where:
 
@@ -34,6 +36,12 @@ def NonUniformImage(x, y, z, ax=None, cmap=None, alpha=None, scalex=True, scaley
 
     if cmap is not None:
         im.set_cmap(cmap)
+
+    m = _cm.ScalarMappable(cmap=im.get_cmap())
+    m.set_array(z)
+
+    if add_cbar:
+        _cb(ax=ax, im=m)
 
     if alpha is not None:
         im.set_alpha(alpha)

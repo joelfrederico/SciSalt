@@ -16,6 +16,7 @@ __all__ = [
     'latexfig',
     'less_labels',
     'pcolor_axes',
+    'plot',
     'plot_featured',
     'quiver',
     'rgb2gray',

@@ -9,7 +9,7 @@ def setup_axes(rows=1, cols=1, figsize=(8, 6), expand=True, **kwargs):
     """
     .. versionadded:: 1.2
 
-    Sets up a figure of size *figsize* with a number of rows (*rows*) and columns (*cols*).
+    Sets up a figure of size *figsize* with a number of rows (*rows*) and columns (*cols*). \*\*kwargs passed through to :meth:`matplotlib.figure.Figure.add_subplot`.
 
     Returns :code:`fig, axes`:
     

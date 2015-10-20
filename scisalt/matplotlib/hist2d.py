@@ -6,6 +6,7 @@ if not on_rtd:
 
 from .addlabel import addlabel as _addlabel
 from .figure import figure as _figure
+from .colorbar import colorbar as _colorbar
 
 
 def hist2d(x, y, bins=10, labels=None, aspect="auto", plot=True, fig=None, range=None, ax=None, interpolation='none', **kwargs):
@@ -30,7 +31,7 @@ def hist2d(x, y, bins=10, labels=None, aspect="auto", plot=True, fig=None, range
             ax.clear()
 
         img = ax.imshow(h.transpose(), extent=extent, interpolation=interpolation, aspect=aspect, **kwargs)
-        _plt.colorbar(img)
+        _colorbar(ax=ax, im=img)
 
         if labels is not None:
             _addlabel(labels[0], labels[1], labels[2])
