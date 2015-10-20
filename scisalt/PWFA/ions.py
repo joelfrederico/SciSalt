@@ -19,7 +19,7 @@ amu    = _spc.atomic_mass     # AMU in kg
 
 class Ions(object):
     """
-    .. versionadded:: 2.3.2
+    .. versionadded:: 2.4
 
     A class to facilitate calculating ion motion in PWFA ion columns due to cylindrical, infinitely-long gaussian beams.
     """
