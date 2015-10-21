@@ -5,16 +5,17 @@ if not _on_rtd:
     import numpy as _np
     import scipy as _sp
 
+    # ============================
+    # Constants
+    # ============================
+    e      = _spc.e               # Elementary charge
+    c      = _spc.speed_of_light  # Speed of light
+    e0     = _spc.epsilon_0       # Vacuum permittivity
+    amu    = _spc.atomic_mass     # AMU in kg
+
 import logging as _logging
 _logger = _logging.getLogger(__name__)
 
-# ============================
-# Constants
-# ============================
-e      = _spc.e               # Elementary charge
-c      = _spc.speed_of_light  # Speed of light
-e0     = _spc.epsilon_0       # Vacuum permittivity
-amu    = _spc.atomic_mass     # AMU in kg
 
 
 class Ions(object):
