@@ -9,7 +9,7 @@ from .figure import figure as _figure
 from .colorbar import colorbar as _colorbar
 
 
-def hist2d(x, y, bins=10, labels=None, aspect="auto", plot=True, fig=None, range=None, ax=None, interpolation='none', **kwargs):
+def hist2d(x, y, bins=10, labels=None, aspect="auto", plot=True, fig=None, ax=None, interpolation='none', **kwargs):
     """
     Creates a 2-D histogram of data *x*, *y* with *bins*, *labels* = :code:`[title, xlabel, ylabel]`, aspect ration *aspect*. Attempts to use axis *ax* first, then the current axis of *fig*, then the last axis, to use an already-created window.
     
@@ -19,8 +19,11 @@ def hist2d(x, y, bins=10, labels=None, aspect="auto", plot=True, fig=None, range
 
     Returns a handle and extent as :code:`h, extent`
     """
+    h_range   = kwargs.pop('range')
+    h_normed  = kwargs.pop('normed')
+    h_weights = kwargs.pop('normed')
 
-    h, xe, ye = _np.histogram2d(x, y, bins=bins, range=range)
+    h, xe, ye = _np.histogram2d(x, y, bins=bins, range=h_range, normed=h_normed, weights=h_weights)
     extent    = [xe[0], xe[-1], ye[0], ye[-1]]
     # fig     = plt.figure()
     if plot:
