@@ -96,12 +96,15 @@ def _plot_array(*args, plottype, ax=None, add_cbar=True, rescale_fig=True, **kwa
             raise NotImplementedError('Only quiver(U, V, **kw) and quiver(X, Y, U, V, *kw) supported at the moment.')
 
     if add_cbar:
-        _cb(ax_h, im)
+        cb = _cb(ax_h, im)
 
     if ax is None:
         return fig, ax_h, im
     else:
-        return im
+        if add_cbar:
+            return im, cb
+        else:
+            return im
 
 
 def scaled_figsize(X, figsize=None, h_pad=None, v_pad=None):
