@@ -3,12 +3,16 @@ The :mod:`numpy <scisalt.numpy>` module contains a few convenience functions mos
 """
 __all__ = [
     'frexp10',
+    'gaussian',
     'linspaceborders',
     'linspacestep',
-    'gaussian'
+    'piecewise',
     ]
 
+__all__.sort()
+
 from .frexp10 import *
+from .functions import gaussian
 from .linspaceborders import *
 from .linspacestep import *
-from .functions import gaussian
+from .piecewise import piecewise
