@@ -7,9 +7,10 @@ if not on_rtd:
 
 from .colorbar import colorbar as _cb
 from .setup_axes import setup_axes as _setup_axes
+from .SciImage import SciImage as _SI
 
 
-def NonUniformImage(x, y, z, ax=None, cmap=None, alpha=None, scalex=True, scaley=True, add_cbar=True, **kwargs):
+def NonUniformImage(x, y, z, ax=None, fig=None, cmap=None, alpha=None, scalex=True, scaley=True, add_cbar=True, **kwargs):
     """
     Plots a set of coordinates where:
 
@@ -25,8 +26,12 @@ def NonUniformImage(x, y, z, ax=None, cmap=None, alpha=None, scalex=True, scaley
 
     Returns class :class:`matplotlib.image.NonUniformImage`.
     """
-    if ax is None:
+    if ax is None and fig is None:
         fig, ax = _setup_axes()
+    elif ax is None:
+        ax = fig.gca()
+    elif fig is None:
+        fig = ax.get_figure()
 
     im = _mplim.NonUniformImage(ax, **kwargs)
 
@@ -41,7 +46,7 @@ def NonUniformImage(x, y, z, ax=None, cmap=None, alpha=None, scalex=True, scaley
     m.set_array(z)
 
     if add_cbar:
-        _cb(ax=ax, im=m)
+        cax, cb = _cb(ax=ax, im=m, fig=fig)
 
     if alpha is not None:
         im.set_alpha(alpha)
@@ -59,4 +64,4 @@ def NonUniformImage(x, y, z, ax=None, cmap=None, alpha=None, scalex=True, scaley
         ymax = max(y)
         ax.set_ylim(ymin, ymax)
 
-    return im
+    return _SI(im=im, cb=cb, cax=cax)

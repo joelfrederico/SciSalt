@@ -10,13 +10,14 @@ _logger = _logging.getLogger(__name__)
 import pdb as _pdb
 
 
-def colorbar(ax, im, loc="right", size="5%", pad="3%"):
+def colorbar(ax, im, fig=None, loc="right", size="5%", pad="3%"):
     """
     .. versionadded:: 1.3
 
     Adds a polite colorbar that steals space so :meth:`matplotlib.pyplot.tight_layout` works nicely.
     """
-    fig = ax.get_figure()
+    if fig is None:
+        fig = ax.get_figure()
 
     # _pdb.set_trace()
     if loc == "left" or loc == "right":
