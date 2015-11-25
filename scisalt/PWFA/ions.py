@@ -15,11 +15,21 @@ if not _on_rtd:
 
 
 class Ions(object):
-    def __init__(self, dims, species, N_e, sig_xi):
+    def __init__(self, dims, species, N_e, sig_xi, rtol=None, atol=None):
         self._dims    = dims
         self._species = species
         self._N_e     = N_e
         self._sig_xi  = sig_xi
+        self._rtol = rtol
+        self._atol = atol
+
+    @property
+    def rtol(self):
+        return self._rtol
+
+    @property
+    def atol(self):
+        return self._atol
 
     @property
     def species(self):
@@ -81,7 +91,7 @@ class Ions(object):
         y0_0 = 0
         y0   = [y0_0, y1_0]
 
-        y = _sp.integrate.odeint(self._func, y0, x, Dfun=self._gradient)
+        y = _sp.integrate.odeint(self._func, y0, x, Dfun=self._gradient, rtol=self.rtol, atol=self.atol)
 
         return y[:, 1]
 
