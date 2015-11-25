@@ -84,3 +84,7 @@ class Ions(object):
         y = _sp.integrate.odeint(self._func, y0, x, Dfun=self._gradient)
 
         return y[:, 1]
+
+    @property
+    def q_label(self):
+        return 'q'

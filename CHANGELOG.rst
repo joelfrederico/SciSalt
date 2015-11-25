@@ -1,8 +1,14 @@
 Changelog
 =========
 
-1.7.0 (2015-08-31)
+1.7.1 (2015-11-24)
 ------------------
+
+* Added git checking
+
+1.7.0 (2015-11-24)
+------------------
+
 * Updates to ion modeling (2D, etc.)
 * Updates to NonUniformImage, support code
 * Add periodictable dependency
@@ -11,6 +17,7 @@ Changelog
 
 1.6.0 (2015-08-31)
 ------------------
+
 * Added ion modeling
 
 1.5.0 (2015-08-31)

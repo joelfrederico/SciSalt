@@ -111,3 +111,7 @@ class Ions1D(_Ions):
     # ============================
     def _gradient(self, y, t):
         return [[0, self._delyp2(y[1])], [1, 0]]
+
+    @property
+    def q_label(self):
+        return 'y'

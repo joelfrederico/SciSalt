@@ -149,3 +149,7 @@ class Ions2D(_Ions):
     # ============================
     def h(self, q):
         return _np.abs(q)
+
+    @property
+    def q_label(self):
+        return 'r'
