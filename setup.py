@@ -35,7 +35,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='1.7.2',
+    version='1.7.3',
 
     description='Tools to make scientific data analysis easier',
     long_description=long_description,
