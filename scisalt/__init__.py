@@ -12,19 +12,31 @@ from . import scipy
 from . import utils
 from . import PWFA
 
-# class Error(Exception):
-#     """Base class for exceptions in this module."""
-#     pass
-#
-#
-# class ArgumentError(Error):
-#     """Exception raised for errors in function arguments.
-#
-#     Attributes:
-#         arg -- input argument in which the error occurred
-#         msg -- explanation of the error
-#     """
-#
-#     def __init__(self, arg, msg):
-#         self.arg = arg
-#         self.msg = msg
+
+# ============================
+# Check if master, dev, or tag
+# ============================
+import git as _git
+import os as _os
+
+_path = _os.path.dirname(_os.path.dirname(__file__))
+
+def _test_git():
+    try:
+        _repo = _git.Repo(_path)
+        _hexsha = _repo.head.object.hexsha
+
+        if _repo.is_dirty():
+            import warnings as _warnings
+            _warnings.warn('SciSalt repo is dirty, version not well-defined.', category=SyntaxWarning, stacklevel=3)
+    
+        for _tag in _repo.tags:
+            if _tag.object.hexsha == _hexsha:
+                return
+    
+        import warnings as _warnings
+        _warnings.warn('SciSalt not currently on a tag, version not well-defined. Head: {}'.format(repo.head.ref.name), category=SyntaxWarning, stacklevel=3)
+    except _git.InvalidGitRepositoryError:
+        pass
+
+_test_git()

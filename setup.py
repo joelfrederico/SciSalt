@@ -17,7 +17,8 @@ if not _on_rtd:
         'scipy',
         'h5py',
         'matplotlib',
-        'periodictable'
+        'periodictable',
+        'gitpython'
         ]
 else:
     install_requires = []
