@@ -35,7 +35,7 @@ def _test_git():
                 return
     
         import warnings as _warnings
-        _warnings.warn('SciSalt not currently on a tag, version not well-defined. Head: {}'.format(repo.head.ref.name), category=SyntaxWarning, stacklevel=3)
+        _warnings.warn('SciSalt not currently on a tag, version not well-defined. Head: {}'.format(_repo.head.ref.name), category=SyntaxWarning, stacklevel=3)
     except _git.InvalidGitRepositoryError:
         pass
 
