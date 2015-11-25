@@ -25,11 +25,11 @@ class Ions2D(_Ions):
 
     A class to facilitate calculating ion motion in PWFA ion columns due to cylindrical, infinitely-long gaussian beams.
     """
-    def __init__(self, species, N_e, sig_r, sig_xi, r0_big=None, n_samp=1000, order=5):
+    def __init__(self, species, N_e, sig_r, sig_xi, r0_big=None, n_samp=1000, order=5, rtol=None, atol=None):
         # ============================
         # Experiment Parameters
         # ============================
-        super().__init__(dims=2, species=species, N_e=N_e, sig_xi=sig_xi)
+        super().__init__(dims=2, species=species, N_e=N_e, sig_xi=sig_xi, rtol=rtol, atol=atol)
         self._sig_r  = sig_r   # Transverse R.M.S. width
 
     def _basic_shape(self, r0_big=None, order=4, n_samp=None):

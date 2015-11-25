@@ -25,11 +25,11 @@ class Ions1D(_Ions):
 
     A class to facilitate calculating ion motion in PWFA ion columns due to planar, infinitely-long gaussian beams.
     """
-    def __init__(self, species, N_e, sig_x, sig_y, sig_xi, r0_big=None, n_samp=1000, order=5):
+    def __init__(self, species, N_e, sig_x, sig_y, sig_xi, r0_big=None, n_samp=1000, order=5, rtol=None, atol=None):
         # ============================
         # Experiment Parameters
         # ============================
-        super().__init__(dims=1, species=species, N_e=N_e, sig_xi=sig_xi)
+        super().__init__(dims=1, species=species, N_e=N_e, sig_xi=sig_xi, rtol=rtol, atol=atol)
         if sig_x < sig_y:
             raise ValueError('Assumption that (sig_x = {}) > (sig_y = {}) not met.'.format(sig_x, sig_y))
         else:
