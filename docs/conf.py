@@ -67,7 +67,7 @@ author = 'Joel Frederico'
 # built documents.
 #
 # The full version, including alpha/beta/rc tags.
-release = '1.7.1'
+release = '1.7.2'
 # The short X.Y version.
 match = re.match('\w*\.\w*', release)
 if match:
