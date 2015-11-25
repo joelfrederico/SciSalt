@@ -13,28 +13,24 @@ if not _on_rtd:
     e0     = _spc.epsilon_0       # Vacuum permittivity
     amu    = _spc.atomic_mass     # AMU in kg
 
+from .ions import Ions as _Ions
+
 import logging as _logging
 _logger = _logging.getLogger(__name__)
 
 
-
-class Ions(object):
+class Ions2D(_Ions):
     """
     .. versionadded:: 1.6
 
     A class to facilitate calculating ion motion in PWFA ion columns due to cylindrical, infinitely-long gaussian beams.
     """
-    def __init__(self, A, N_e, sig_r, sig_xi, r0_big=None, n_samp=1000, order=5):
+    def __init__(self, species, N_e, sig_r, sig_xi, r0_big=None, n_samp=1000, order=5):
         # ============================
         # Experiment Parameters
         # ============================
-        self._A      = A       # Atomic weight in amu
-        self._N_e    = N_e     # Number of electrons in bunch
+        super().__init__(dims=2, species=species, N_e=N_e, sig_xi=sig_xi)
         self._sig_r  = sig_r   # Transverse R.M.S. width
-        self._sig_xi = sig_xi  # Longitudinal R.M.S. width
-
-    def _cos(self, x, n, lam):
-        return _np.cos(n*x*2*_np.pi/lam)
 
     def _basic_shape(self, r0_big=None, order=4, n_samp=None):
         if r0_big is None:
@@ -74,11 +70,8 @@ class Ions(object):
         return x, y_num, out
 
     @property
-    def lambda_small(self):
-        """
-        The wavelength for small (:math:`r_0 < \\sigma_r`) oscillations.
-        """
-        return 2*_np.pi*_np.sqrt(2/self.k)*self.sig_r
+    def nb0(self):
+        return self.N_e / ( (2*_np.pi)**(3/2) * self.sig_r**2 * self.sig_xi)
 
     def lambda_large(self, r0):
         """
@@ -97,32 +90,6 @@ class Ions(object):
         Approximate trajectory function for large (:math:`r_0 > \\sigma_r`) oscillations.
         """
         return r0*_np.cos(x*self.omega_big(r0))
-
-    def r(self, x, r0):
-        """
-        Numerically solved trajectory function for initial conditons :math:`r(0) = r_0` and :math:`r'(0) = 0`.
-        """
-        y1_0 = r0
-        y0_0 = 0
-        y0   = [y0_0, y1_0]
-
-        y = _sp.integrate.odeint(self._func, y0, x, Dfun=self._gradient)
-
-        return y[:, 1]
-
-    # ============================
-    # Omega for large r(0)
-    # ============================
-    def omega_big(self, r0):
-        omega_r0 = _np.sqrt(_np.pi*self.k/2)
-        return omega_r0/r0
-
-    @property
-    def m(self):
-        """
-        Ion mass
-        """
-        return amu * self.A
 
     @property
     def k(self):
@@ -145,32 +112,11 @@ class Ions(object):
         return self.k / (2*self.sig_r**2)
 
     @property
-    def A(self):
-        """
-        Ion mass in units of AMU
-        """
-        return self._A
-
-    @property
-    def N_e(self):
-        """
-        Number of electrons in bunch
-        """
-        return self._N_e
-
-    @property
     def sig_r(self):
         """
         Transverse R.M.S. width
         """
         return self._sig_r
-
-    @property
-    def sig_xi(self):
-        """
-        Longitudinal R.M.S. width
-        """
-        return self._sig_xi
 
     # ============================
     # Force equation
@@ -197,3 +143,9 @@ class Ions(object):
     # ============================
     def _gradient(self, y, t):
         return [[0, self._delrp2(y[1])], [1, 0]]
+
+    # ============================
+    # Scale factor function
+    # ============================
+    def h(self, q):
+        return _np.abs(q)
