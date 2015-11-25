@@ -1,6 +1,14 @@
 Changelog
 =========
 
+1.7.0 (2015-08-31)
+------------------
+* Updates to ion modeling (2D, etc.)
+* Updates to NonUniformImage, support code
+* Add periodictable dependency
+* Color updates
+* Better piecewise function
+
 1.6.0 (2015-08-31)
 ------------------
 * Added ion modeling
