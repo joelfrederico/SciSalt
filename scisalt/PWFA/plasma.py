@@ -16,7 +16,9 @@ class Plasma(object):
     * Plasma density *n_p* in SI units
     * Plasma density *n_p_cgs* in CGS units
     """
-    def __init__(self, n_p=None, n_p_cgs=None, species=_pt.H):
+    def __init__(self, n_p=None, n_p_cgs=None, species=None):
+        if species is None:
+            species = _pt.H
         # ============================
         # Reconcile n_p, n_p_cgs
         # ============================
