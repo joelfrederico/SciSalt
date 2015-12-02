@@ -9,7 +9,7 @@ if not on_rtd:
     import matplotlib.pyplot as plt
 
 
-def savefig(filename, path="figs", fig=None, ext='eps', **kwargs):
+def savefig(filename, path="figs", fig=None, ext='eps', verbose=False, **kwargs):
     """
     Save the figure *fig* (optional, if not specified, latest figure in focus) to *filename* in the path *path* with extension *ext*.
 
@@ -22,6 +22,9 @@ def savefig(filename, path="figs", fig=None, ext='eps', **kwargs):
     final_path = os.path.dirname(final_filename)
     if not os.path.exists(final_path):
         os.makedirs(final_path)
+
+    if verbose:
+        print('Saving file: {}'.format(final_filename))
 
     if fig is not None:
         fig.savefig(final_filename, bbox_inches='tight', **kwargs)
