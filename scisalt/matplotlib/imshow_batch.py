@@ -18,7 +18,7 @@ def imshow_batch(images, cbar=True, show=True, pdf=None, figsize=(16, 12), rows=
 
     * *cmap*: Specifies color map
     * *cbar*: Add color bars
-    * *show*: If false, dismisses each window after is created and optionally saved
+    * *show*: If false, dismisses each window after it is created and optionally saved
     * *pdf*: Save to a pdf of filename *pdf*
     * *\*\*kwargs* passed to :class:`matplotlib.axis.imshow`
     """
