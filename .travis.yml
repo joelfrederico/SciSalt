@@ -18,7 +18,7 @@ before_install:
 
 install:
   - conda install --yes python=$TRAVIS_PYTHON_VERSION atlas numpy scipy matplotlib nose cython
-  - pip install gitpython cython jinja2 slactrac periodictable
+  - pip install cython jinja2 slactrac periodictable
   # Coverage packages are on my binstar channel
   # - pip install tox
 
