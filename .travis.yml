@@ -1,46 +1,41 @@
 language: python
 
 python: 3.5
-env:
-  TOXENV=py35
-  TRAV_DIST="sdist bdist_wheel"
 
-# Setup anaconda
+env: TOXENV=py35 TRAV_DIST="sdist bdist_wheel"
+
 before_install:
   - wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
   - chmod +x miniconda.sh
-  - ./miniconda.sh -b
+  - "./miniconda.sh -b"
   - export PATH=/home/travis/miniconda3/bin:$PATH
   - conda update --yes conda
-  # The next couple lines fix a crash with multiprocessing on Travis and are not specific to using Miniconda
   - sudo rm -rf /dev/shm
   - sudo ln -s /run/shm /dev/shm
 
 install:
-  - conda install --yes python=$TRAVIS_PYTHON_VERSION atlas numpy scipy matplotlib nose cython
+  - conda install --yes python=$TRAVIS_PYTHON_VERSION atlas numpy scipy matplotlib nose
+    cython
   - pip install cython jinja2 slactrac periodictable
-  # Coverage packages are on my binstar channel
-  # - pip install tox
 
 script:
-  - ./nosetest.py
+  - "./nosetest.py"
 
 deploy:
+  - provider: releases
+    api_key:
+      secure: M2G0UTyB5Yk9f4gTsUaTkaJSW6cejScthH+hToNW2YLAWxSFsG9bIt8z+or+q7To+Zv/qJFcCOyKI17Qf1f3QOTw1NHYEydSNqgl2HaVjOwJvtHnSlHTpaAc8SiZlHMIhLZh9DPp5V+N/vLAKW1rk17jBJv9Ro7LEQshjz+FedWQ2i8ZsrExXdDAf4GGvDNBSEqX/UFyCdUi/XmJW3AHYOS4ykBk9H8N6QaLXz1uD4rtSdw5VVCtt/RXSGPO/n6jOHk762ElHYwJ70Pg9vO3w+neTZTkbA8O6vQpWExWYWYcM05ESs61tlnod2btSE/YJ4g8iC+rYKgDQXmFy3MCV/cc3tcinXQgWsXW1vvGH41YDmuWxCDLEeC7N2OsQvBI43sIMkumsjqi706iGByqc5ycOZk5joc7ybhOROv+TN1tnNUTpd/FFe3qeL+4I99H01ignDOFnWu5LfcmLGIlGJhceEyarfyO0TpMvT97MvGYlkbJS8mQH0+x3dh5MWUi7iV7rmrgS7h7G/CbT9/0nWeDQ4tqM2c0ToxsgCY2nPVSu5/gI9rPoC+lbQvf9ng7x3d5XdU3FlA1dmCCqF8ByeXaW1EW1QqpIP49zvJN6F9iPurho3R9OZha6TDUkA9YcG6VN+J6Dh0kp55T0NasfzzlDnPf7qKz9gCrLK1Ox7I=
+    on:
+      repo: joelfrederico/SciSalt
   - provider: pypi
     user: JoelFrederico
     password:
-      secure: P5WR5NcuUBTv7ln+khLSaU/olyILOzGbrTNaV33AxkSVyfB1Q4izARZL/aLA32tARgM2cNzy6OTUpmnj/tdQ7kEL4tgwcWtV21fY58PWLwzRw7/gkzF7WOd12qW8UCrkebGVvfewZm8bn6vfGYBHu6hqR9a8SW5lcKtCVeihqOi0Hf7h4LDnxLjRHZB+HEDiHdKxYTRJFw5AFNMVgCpl35wbScUtrob1eMf3uW90lknLyMYm17DXKtQn+vMRXsozm79ImC7QzW3U4V0qZnTaAoNIBLBpBqkJG9wyqZvQMM9+qhmQpb11poW3PEi9yQOJIoINdsZfHfcet/ZwPRtpvpNL/S9Y8E70F1bzB6kpzhuSpS+O5pUcEWN7mh7ZB2B/DR6Otb4yMOUpyXhKnh1tZUzNZHXU4O4pmZlpaWnP6W+jIbuKc1mGdsdbaJ6ryUbPAK+a3GTdxK6XU06vIHluo4BRH7Er9U5BOshDvd6jL4c/ztbFib8gwMxSV/T4qe/USPKrfjlhKoOIwN3vwljsUB7FYFaD7J2jbB0AU6SqqnpgB/DacAoj8lFhcR6FzqJEIC3VaTrVCfpBNBE1EIn5F56nemhQ3pYJWL0SRkxi0LTaUvCVXLYBgR+S2UhIjizl1DpOaYUZt5iM5iNWO0+1DZOsDnYO+9bhMgZhAnL+4UA=
-    distributions: $TRAV_DIST
+      secure: qD5FnuSCkJhPq+kSP9gnKrkdIlXcfGEBB24UoHOnpLBNXh+Cl2Rcc7mnlYYVlnncol+ed6vPH4vFOLByA4trPPDlOWPSsFhIsIT7Lh7KXbBcmyw11IMNb/yeU5Sdh/TVvsqzdIaoryaHjcqGOS8Z9kenrvA++k2/nL60vcZThV43siR8tmLSL0yy/DjCqf7P5+fSErObiRBc73ffruNNwJoLW02LoPrm56Cd0vOCxJ2pwaJSEtX8Mgezdjgp5E9wyIv2YASArbJVh5qgWJQe7FxtaNH8MWtS1M8Yq/P4gOUSLfXgd+jPCg2J3CcIw++6EvprsuEDyAnicP2vRYncLvHxg4qHWw/Ph4NN3/7L2K2V4XT/cB03twTEH8OaVaehW4q1jk+9gAAaYnY3QCVG/4WzHJ1ufbbH1bDL4fTwIJH6trEWEtgfNQom2XoYINlWn+dl1X05XiMV3BDVF+Odkxexi+xQCysnlKAeR+EiT/MW1Dt2C9yCl6sOUhGXgtcmqIL7rAfoPG3PKT9znue2xmMO/wJQ6D65q2UWJjoNozQEld2uxVIo7MVYmOBbsgXBbtrz7lWrDEHMXtufWbqXV9MRA9C7Da+V8NSWZEKzrlsLgvWgqG/GtEDZRKdbcwCd4KFUzRRbDK6gl+TCveHra95yHq1rPIlzLEf2J/23j9s=
     on:
       tags: true
-  - provider: releases
-    api_key:
-      secure: j2XuqIdsYh0kWxoqIpvR0LIWOX24KLRI1plCQWmb1yywULPyz3KWCemqyC80dSbDJKUWEwk2yYa9iKxIqxibEunhMXewZuwd3Es0hyHjqfbH7DnSu1TFetdH1XUvaFJW7cHG+AHPBgPz+TplTHsK019MePUNF0QiwTLWsD9fAS9/qHVy4CGdzALx7E1O2iUK5IsrTYiTqP0Jtat6ivvm+WvIXK0l+RD+SGkr2F/kRKwZJHvtYcmopd5jr0HRyu9sqk1+Ge+ou5zPEFnt3ypv/lkNZjdP6lzCMxq3ccvWQ7rewtBi4D2T7MSrVijd3kDZRWyLWcbGFS1dPvUNBWpSvOGsMRn2CtdIsLTAFHCJ3eEzkdps+3GfeZzYCJ+pNQ9xrJ0UahRKug/eGAvW4neaye9fSWmYwbiqbJSNbaxBEPaw9FWx2WIM1UjpwtOyEm9IkYtcm5j9eccTuobbTNjmjEMhtHhDZ29Ywc2mHqjmRuKLMo5GOaO8+O66q1KkiHycGRUwkdmO3us/RRL51Pk55YJj96EbUYHYTHgcfBkcDE8MqjIVo0I+3lfYXbBFE1qdGcwhHrughrXJkPHocH1uDC5oGJviHjrI0F8SQLBv+JtHKwnSmldJM//xDZ/E+daJDW+GzF9uXmUS24jw7g3a7xKo9msbWoaEOjZzogB5lro=
-    on:
-      python: 3.5
-      tags: true
+      repo: joelfrederico/SciSalt
 
 notifications:
   slack:
-    secure: uK9CfHjfJ5KxJH60pz9jHnDtuqINbYPV2h3Pdetwdgm0WMYwbVU08sGLrymjz4Gc4QPQiakiKhpwyUH2y5dkw86sefqGiLCfAyue6GviqZNiP4tIwApEgIO+SqjFbzFRLdeat99LH3QS/Ov+TenIr39Tn5NMg6poR3MEjWwIa708qAOZRC3uvrbhTJEo/ISm0ntb87XTrI9p0HQe3clSBcpRaa3ElDbWemet6dS5PVFmXkdrBPWZboqt4TNN7USfqpocXtnON5e0GZu1Ktil+j7mpOzZa2r79kbotrPp+bF+FNCf4SFIWlaRmA1o1g6CTwCkVFK0MYM8r5J0+RlHIR+4wFKvfIbpnLGO6T7RfPJb/Guepw6srAiRHZA1TKHmwGqy4RSlVxtiZ7B0owMzGQuMjhksI4aRESBW7gvJKtoVzOK7VJOGRpKfmWXuUiLBtPnSSzjmF/Y+nP6IMhwKThCPqxXBUtRzCYUv+ugD42mecuToQWVCeKrvRNVf0f62i11MvZ9hF/PHZP+mwSgXXiZ96Nf4nc6Uwko/gQFFewuGAH50u44X8Tf8W3uV8hvZaqx+R/ZJhJr52BXSJ7HDANVeg3HvqHOt93niR4iQP3pSkE2KbnjIDFzMLqHply/kFgPb2Hi8m6XyOUt1rq3zA5dwm4yfyr+TQ7J39TJfrnQ=
+    secure: mlAjgO3qjPz3Vj+QY21BFmbEw0T5/DMBAQq7av3cM2KVAVocJXkBU8lQmZ0umyXnr04Ldqu2+4g/NleOlRmLceklEwUBxkeMPsm8SEjJlU7Cjuh9phWrdqtfkOmhFXqgLCRqAU68k+KkLllD0s3mfDqFHx5Dv/So4YPPqixsoGxfxM64vEyt6CE3zeNdFmtzECx3avqLZC+64jE5sLDgEsxD+OxxHU9fZjFDf708Mq122JK1WBVN1hMpOG8/0X4Fpj5LF9lcm0TRkdamSa9NKFWyprllgs/8+d6c7nMlqNswsh3e0VugwMnSDTi4lmmkFLZqsy8tBlU7rb5fVbdAOkFxegc6l3yCkorP0cv3wWNm8r0nY2spX1zJD4KpaTiinqsYDKAuUrscVJ5kr7oshrKpHwsyqkV4a3FyMIebQGiZTsdclLZQaEMc8onZE+xA0V27fOH6kuBTODnrGFpZfuzOp+PIXGB2RdSZ5Q7VhWlcLTw5eVaq2oStfX91DahLoR7ZWdHel3kRDWw4aEox0k/RxkRIkopHVuG6aKUc/DvIuYEFExOKkNHzVxt8bIEfJEigXeFFQwoClIA2WlQ2T6uTHT+LHCrDQIrpDzWBgf4wdKHXUrPc4732S+vIuLNVb4PwdRJyqjFKmqLYkFmrGEVs+WQ4LmF5OBWWjjkfQ/8=
   email: false
