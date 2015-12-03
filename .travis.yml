@@ -17,7 +17,7 @@ before_install:
   - sudo ln -s /run/shm /dev/shm
 
 install:
-  - conda install --yes python=$TRAVIS_PYTHON_VERSION atlas numpy scipy matplotlib nose 
+  - conda install --yes python=$TRAVIS_PYTHON_VERSION atlas numpy scipy matplotlib nose cython
   - pip install gitpython cython jinja2 slactrac
   # Coverage packages are on my binstar channel
   # - pip install tox
