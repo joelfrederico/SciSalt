@@ -27,6 +27,7 @@ deploy:
       secure: M2G0UTyB5Yk9f4gTsUaTkaJSW6cejScthH+hToNW2YLAWxSFsG9bIt8z+or+q7To+Zv/qJFcCOyKI17Qf1f3QOTw1NHYEydSNqgl2HaVjOwJvtHnSlHTpaAc8SiZlHMIhLZh9DPp5V+N/vLAKW1rk17jBJv9Ro7LEQshjz+FedWQ2i8ZsrExXdDAf4GGvDNBSEqX/UFyCdUi/XmJW3AHYOS4ykBk9H8N6QaLXz1uD4rtSdw5VVCtt/RXSGPO/n6jOHk762ElHYwJ70Pg9vO3w+neTZTkbA8O6vQpWExWYWYcM05ESs61tlnod2btSE/YJ4g8iC+rYKgDQXmFy3MCV/cc3tcinXQgWsXW1vvGH41YDmuWxCDLEeC7N2OsQvBI43sIMkumsjqi706iGByqc5ycOZk5joc7ybhOROv+TN1tnNUTpd/FFe3qeL+4I99H01ignDOFnWu5LfcmLGIlGJhceEyarfyO0TpMvT97MvGYlkbJS8mQH0+x3dh5MWUi7iV7rmrgS7h7G/CbT9/0nWeDQ4tqM2c0ToxsgCY2nPVSu5/gI9rPoC+lbQvf9ng7x3d5XdU3FlA1dmCCqF8ByeXaW1EW1QqpIP49zvJN6F9iPurho3R9OZha6TDUkA9YcG6VN+J6Dh0kp55T0NasfzzlDnPf7qKz9gCrLK1Ox7I=
     on:
       repo: joelfrederico/SciSalt
+      tags: true
   - provider: pypi
     user: JoelFrederico
     password:
