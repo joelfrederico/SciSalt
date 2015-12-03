@@ -2,6 +2,11 @@ include CHANGELOG.rst
 include DESCRIPTION.rst
 include LICENSE
 
+# Stuff for facet logs
+recursive-include scisalt/facettools/StyleSheets *
+recursive-include scisalt/facettools/resources *
+recursive-include scisalt *.pyx
+
 # Include the test suite (FIXME: does not work yet)
 # recursive-include tests *
 

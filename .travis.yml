@@ -1,7 +1,9 @@
 language: python
 
 python: 3.5
-env: TOXENV=py35 TRAV_DIST="sdist bdist_wheel"
+env:
+  TOXENV=py35
+  TRAV_DIST="sdist bdist_wheel"
 
 install: pip install tox
 
