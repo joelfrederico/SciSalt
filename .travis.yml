@@ -5,17 +5,21 @@ env:
   TOXENV=py35
   TRAV_DIST="sdist bdist_wheel"
 
-# Setup anaconda
-before_install:
-  - sudo apt-get install libblas-dev
-  - sudo apt-get install liblapack-dev
-  - sudo apt-get install gfortran
-
 install:
-  - sudo apt-get install scipy
-  - pip install tox
+  # Install conda
+  - sudo pip install conda
+  # install deps
+  - sudo conda init
+  - sudo conda update conda --yes
+  - deps='pip numpy pandas requests nose numpydoc sphinx'
+  - conda create -p $HOME/py --yes $deps "python=$TRAVIS_PYTHON_VERSION"
+  - export PATH=$HOME/py/bin:$PATH
+  # install your own package into the environment
+  - python setup.py install
+  # - pip install tox
 
-script: tox
+script:
+  - nosetest.py
 
 deploy:
   - provider: pypi
