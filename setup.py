@@ -16,7 +16,7 @@ if not _on_rtd:
         'numpy',
         'scipy',
         'h5py',
-        'matplotlib',
+        'matplotlib>=1.5',
         'periodictable'
         ]
 else:
