@@ -67,13 +67,13 @@ class Plasma(object):
         """
         Plasma frequency :math:`\\omega_p` for given plasma density
         """
-        return _np.sqrt(self.n_p * _np.power(_sltr.e, 2) / (_sltr.m_e * _sltr.epsilon_0))
+        return _np.sqrt(self.n_p * _np.power(_spc.e, 2) / (_spc.m_e * _spc.epsilon_0))
 
     def k_ion(self, E):
         """
         Geometric focusing force due to ion column for given plasma density as a function of *E*
         """
-        return self.n_p * _np.power(_sltr.e, 2) / (2*_sltr.GeV2joule(E) * _sltr.epsilon_0)
+        return self.n_p * _np.power(_spc.e, 2) / (2*_sltr.GeV2joule(E) * _spc.epsilon_0)
 
     @property
     def n_p_cgs(self):
