@@ -12,9 +12,26 @@ import pdb as _pdb
 
 def colorbar(ax, im, fig=None, loc="right", size="5%", pad="3%"):
     """
+    Adds a polite colorbar that steals space so :func:`matplotlib.pyplot.tight_layout` works nicely.
+
     .. versionadded:: 1.3
 
-    Adds a polite colorbar that steals space so :meth:`matplotlib.pyplot.tight_layout` works nicely.
+    Parameters
+    ----------
+
+    ax : :class:`matplotlib.axis.Axis`
+        The axis to plot to.
+    im : :class:`matplotlib.image.AxesImage`
+        The plotted image to use for the colorbar.
+    fig : :class:`matplotlib.figure.Figure`, optional
+        The figure to plot to.
+    loc : str, optional
+        The location to place the axes.
+    size : str, optional
+        The size to allocate for the colorbar.
+    pad : str, optional
+        The amount to pad the colorbar.
+
     """
     if fig is None:
         fig = ax.get_figure()

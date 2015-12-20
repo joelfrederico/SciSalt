@@ -1,15 +1,62 @@
+.. _scisalt.visualization.matplotlib:
+
+**********
 matplotlib
-==========
+**********
 
-The :mod:`scisalt.matplotlib` module adds many useful wrappers for `matplotlib <http://matplotlib.org/contents.html>`_ classes and functions. In particular, it adds the color map `viridis <https://github.com/BIDS/colormap/blob/master/option_d.py>`_ as described in a `presentation on YouTube <https://www.youtube.com/watch?v=xAoljeRJ3lU>`_, which will become the `new default <http://matplotlib.org/style_changes.html>`_ in `matplotlib <http://matplotlib.org/contents.html>`_.
+.. currentmodule:: scisalt.matplotlib
 
-.. raw:: html
+The matplotlib module adds many useful wrappers for `matplotlib <http://matplotlib.org/contents.html>`_ classes and functions. It requires matplotlib>=1.5.
 
-   <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/xAoljeRJ3lU?rel=0" frameborder="0" allowfullscreen></iframe>
+Setting Up
+``````````
 
-.. automodule:: scisalt.matplotlib
-   :members:
+.. autosummary::
+   :toctree: ./generated/
 
-.. method:: scisalt.matplotlib.tile
+   setup_axes
+   setup_figure
 
-   Tile open figures. Finnicky on various OS's, so not imported by default.
+Plotting
+````````
+
+.. autosummary::
+   :toctree: ./generated/
+
+   NonUniformImage
+   NonUniformImage_axes
+   addlabel
+   axesfontsize
+   colorbar
+   contour
+   figure
+   hist
+   hist2d
+   imshow
+   imshow_batch
+   less_labels
+   pcolor_axes
+   plot
+   plot_featured
+   quiver
+
+Interactive Plotting
+````````````````````
+
+.. autosummary::
+   :toctree: ./generated/
+
+   Imshow_Slider
+   Imshow_Slider_Array
+   RectangleSelector
+
+Utilities
+`````````
+
+.. autosummary::
+   :toctree: ./generated/
+
+   rgb2gray
+   savefig
+   scaled_figsize
+   showfig

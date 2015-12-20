@@ -10,13 +10,28 @@ __all__ = ['RectangleSelector']
 
 class RectangleSelector(object):
     """
-    .. versionadded:: 1.2
-
-    Add rectangle selection to an already-existing axis *ax*. *\*args* and *\*\*kwargs* pass through to :class:`matplotlib.widgets.RectangleSelector`.
+    Add rectangle selection to an already-existing axis. *\*args* and *\*\*kwargs* pass through to :class:`matplotlib.widgets.RectangleSelector`.
 
     Use key *A* or *a* to toggle whether the rectangle is active or not.
 
     *verbose* controls whether selections are printed to the terminal.
+
+    .. versionadded:: 1.2
+
+    Parameters
+    ----------
+    ax : :class:`matplotlib.axis.Axis`
+        The axis to plot to.
+    args :
+        Passed on to :class:`matplotlib.widgets.RectangleSelector`.
+    selfunc : function, optional
+        A function to be executed on rectangle selection.
+    parent : object, optional
+        Stores the parent object.
+    verbose : bool, optional
+        Determines whether verbose output is used.
+    kwargs :
+        Passed on to :class:`matplotlib.widgets.RectangleSelector`.
     """
     def __init__(self, ax, *args, selfunc=None, parent=None, verbose=False, **kwargs):
         # ======================================
@@ -91,6 +106,9 @@ class RectangleSelector(object):
 
     @property
     def parent(self):
+        """
+        The parent object.
+        """
         return self._parent
 
     @property
@@ -204,6 +222,9 @@ class RectangleSelector(object):
 
     @property
     def xslice(self):
+        """
+        A list `[x0, x1]`.
+        """
         return [self.x0, self.x1]
 
     @xslice.setter
@@ -213,6 +234,9 @@ class RectangleSelector(object):
 
     @property
     def yslice(self):
+        """
+        A list `[y0, y1]`.
+        """
         return [self.y0, self.y1]
 
     @yslice.setter

@@ -13,19 +13,21 @@ from .imshow import imshow
 from .imshow import scaled_figsize
 from .colorbar import colorbar
 
-import pdb as pdb
-
 
 class Imshow_Slider_Array(object):
     """
-    .. versionchanged:: 1.5
-       Name changed, colorbar options added, *p* changed to :class:`AxesImage <scisalt.matplotlib.Imshow_Slider.AxesImage>`.
-
     Convenience class for viewing images.
     
-    Plots *image* to a to an instance of :class:`matplotlib.axis.imshow(**kwargs)`, with sliders for controlling bounds, with *\*\*kwargs* passed through to :meth:`matplotlib.axes.Axes.imshow`.
+    Plots images to an instance of :class:`matplotlib.axes.Axes`, with sliders for controlling bounds, with *\*\*kwargs* passed through to :meth:`matplotlib.axes.Axes.imshow`.
 
-    *usecbar* determines if a colorbar will be used. Color bars can slow down the viewer significantly.
+    Parameters
+    ----------
+    images :
+        An array of images.
+    usecbar : bool
+        Determines if colorbar is shown. Color bars can slow down the viewer significantly.
+    kwargs :
+        Passed through to :meth:`matplotlib.axes.Axes.imshow`.
     """
     def __init__(self, images, usecbar=False, **kwargs):
         # ======================================
@@ -189,7 +191,6 @@ class Imshow_Slider_Array(object):
         self.ax.set_xlim(xlim)
         self.ax.set_ylim(ylim)
 
-        
     def set_cmap(self, cmap):
         """
         Sets color map to *cmap*.
@@ -198,6 +199,9 @@ class Imshow_Slider_Array(object):
 
     @property
     def num_imgs(self):
+        """
+        The number of images.
+        """
         return self._num_imgs
 
     @property

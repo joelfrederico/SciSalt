@@ -5,9 +5,16 @@ import datetime as _dt
 
 class progressbar(object):
     """
+    Creates an animated progress bar.
+
     .. versionadded:: 1.3
 
-    Creates a progress bar with a number of steps *total* and a length of *length*.
+    Parameters
+    ----------
+    total : int
+        Total number of steps.
+    length : int
+        Number of characters long.
     """
     def __init__(self, total, length=20):
         print('')

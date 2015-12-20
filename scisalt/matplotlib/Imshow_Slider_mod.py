@@ -15,14 +15,23 @@ from .imshow import scaled_figsize
 
 class Imshow_Slider(object):
     """
+    Convenience class for viewing images.
+    
+    Plots *image* to a to an instance of :class:`matplotlib.axes.Axes`, with sliders for controlling bounds, with *\*\*kwargs* passed through to :meth:`matplotlib.axes.Axes.imshow`.
+
+    *usecbar* determines if a colorbar will be used. Color bars can slow down the viewer significantly.
+
     .. versionchanged:: 1.2
        Name changed, colorbar options added, *p* changed to :class:`AxesImage <scisalt.matplotlib.Imshow_Slider.AxesImage>`.
 
-    Convenience class for viewing images.
-    
-    Plots *image* to a to an instance of :class:`matplotlib.axis.imshow(**kwargs)`, with sliders for controlling bounds, with *\*\*kwargs* passed through to :meth:`matplotlib.axes.Axes.imshow`.
-
-    *usecbar* determines if a colorbar will be used. Color bars can slow down the viewer significantly.
+    Parameters
+    ----------
+    image : array
+        An array representing an image.
+    usecbar : bool
+        Determines if colorbar is shown. Color bars can slow down the viewer significantly.
+    kwargs :
+        Passed through to :meth:`matplotlib.axes.Axes.imshow`.
     """
     def __init__(self, image, usecbar=False, **kwargs):
         # ======================================

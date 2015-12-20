@@ -55,7 +55,7 @@ source_suffix = '.rst'
 # source_encoding = 'utf-8-sig'
 
 # The master toctree document.
-master_doc = 'index'
+# master_doc = 'index'
 
 # General information about the project.
 project = 'SciSalt'
@@ -251,9 +251,12 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
+_stdauthor = 'Written by Joel Frederico'
 latex_documents = [
-    (master_doc, 'SciSalt.tex', 'SciSalt Documentation',
-    'Joel Frederico, SLAC National Accelerator Laboratory', 'manual'),
+  ('reference/index', 'numpy-ref.tex', 'NumPy Reference',
+   _stdauthor, 'manual'),
+  ('user/index', 'numpy-user.tex', 'NumPy User Guide',
+   _stdauthor, 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -281,10 +284,10 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [
-    (master_doc, 'scisalt', 'SciSalt Documentation',
-     [author], 1)
-]
+# man_pages = [
+#     (master_doc, 'scisalt', 'SciSalt Documentation',
+#      [author], 1)
+# ]
 
 # If true, show URL addresses after external links.
 # man_show_urls = False
@@ -296,9 +299,10 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'SciSalt', 'SciSalt Documentation',
-   author, 'SciSalt', 'Tools to make scientific data analysis easier.',
-   'Miscellaneous'),
+  ("contents", 'numpy', 'Numpy Documentation', _stdauthor, 'Numpy',
+   "NumPy: array processing for numbers, strings, records, and objects.",
+   'Programming',
+   1),
 ]
 
 # Documents to append as an appendix to all manuals.

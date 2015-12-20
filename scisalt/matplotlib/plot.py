@@ -9,9 +9,18 @@ from .setup_axes import setup_axes as _setup_axes
 
 def plot(*args, ax=None, **kwargs):
     """
-    .. versionadded:: 1.4
-
     Plots but automatically resizes x axis.
+
+    Parameters
+    ----------
+    args
+        Passed on to :meth:`matplotlib.axis.Axis.plot`.
+    ax : :class:`matplotlib.axis.Axis`, optional
+        The axis to plot to.
+    kwargs
+        Passed on to :meth:`matplotlib.axis.Axis.plot`.
+
+    .. versionadded:: 1.4
     """
     if ax is None:
         fig, ax = _setup_axes()

@@ -7,14 +7,29 @@ from .setup_figure import setup_figure as _setup_figure
 
 def setup_axes(rows=1, cols=1, figsize=(8, 6), expand=True, **kwargs):
     """
-    .. versionadded:: 1.2
-
     Sets up a figure of size *figsize* with a number of rows (*rows*) and columns (*cols*). \*\*kwargs passed through to :meth:`matplotlib.figure.Figure.add_subplot`.
 
-    Returns :code:`fig, axes`:
+    .. versionadded:: 1.2
+
+    Parameters
+    ----------
+
+    rows : int
+        Number of rows to create.
+    cols : int
+        Number of columns to create.
+    figsize : tuple
+        Size of figure to create.
+    expand : bool
+        Make the entire figure with size `figsize`.
+
+    Returns
+    -------
     
-    * *fig*: The figure
-    * *axes*: An array of all of the axes. (Unless there's only one axis, in which case it returns an object instance :class:`matplotlib.axis.Axis`.)
+    fig : :class:`matplotlib.figure.Figure`
+        The figure.
+    axes : :class:`numpy.ndarray`
+        An array of all of the axes. (Unless there's only one axis, in which case it returns an object instance :class:`matplotlib.axis.Axis`.)
     """
 
     if expand:

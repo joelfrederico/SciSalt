@@ -34,11 +34,11 @@ if not on_rtd:
     from .cmaps import *  # noqa
     __all__.sort()
 
-from .Imshow_Slider import Imshow_Slider
-from .Imshow_Slider_Array import Imshow_Slider_Array
+from .Imshow_Slider_mod import Imshow_Slider
+from .Imshow_Slider_Array_mod import Imshow_Slider_Array
 from .NonUniformImage import NonUniformImage
 from .NonUniformImage_axes import NonUniformImage_axes
-from .RectangleSelector import RectangleSelector
+from .RectangleSelector_mod import RectangleSelector
 from .addlabel import addlabel
 from .axesfontsize import axesfontsize
 from .colorbar import colorbar

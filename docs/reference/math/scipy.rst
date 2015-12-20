@@ -1,11 +1,35 @@
+.. _scisalt.math.scipy:
+
+*****
 scipy
-=====
+*****
 
-.. automodule:: scisalt.scipy
-   :members:
+.. currentmodule:: scisalt.scipy
 
-   .. autoclass:: scisalt.scipy.GaussResults
-      :members:
+The scipy module contains a few convenience functions mostly designed to make fitting easier.
 
-   .. autoclass:: scisalt.scipy.LinLsqFit
-      :members:
+Fitting and Modeling
+````````````````````
+
+.. autosummary::
+   :toctree: ./generated/
+
+   GaussResults
+   LinLsqFit
+
+Statistics
+``````````
+
+.. autosummary::
+   :toctree: ./generated/
+
+   chisquare
+   curve_fit_unscaled
+
+Fourier Analysis
+````````````````
+
+.. autosummary::
+   :toctree: ./generated/
+
+   fft

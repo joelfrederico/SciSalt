@@ -6,5 +6,5 @@ __all__ = [
 __all__.sort()
 
 from .githubtunnel import *  # noqa
-from .progressbar import progressbar
+from .progressbar_mod import progressbar
 from . import h5

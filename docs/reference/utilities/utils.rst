@@ -1,15 +1,34 @@
+.. _utility.utils:
+
+*****
 utils
-=====
+*****
 
-.. automodule:: scisalt.utils
-   :members:
-   :undoc-members:
+.. currentmodule:: scisalt.utils
 
-h5
---
+This contains a collection of utilities useful in the \*nix environment.
 
-Utility functions designed to work with h5py.
+SSH
+```
 
-.. automodule:: scisalt.utils.h5
-   :members:
-   :undoc-members:
+.. autosummary::
+   :toctree: ./generated/
+
+   githubtunnel
+
+Programming
+```````````
+
+.. autosummary::
+   :toctree: ./generated/
+
+   progressbar
+
+
+Data
+````
+
+.. autosummary::
+   :toctree: ./generated/
+
+   h5

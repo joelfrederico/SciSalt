@@ -22,23 +22,26 @@ __all__ = [
 
 def imshow(X, ax=None, add_cbar=True, rescale_fig=True, **kwargs):
     """
-    .. versionadded:: 1.3
-
     Plots an array *X* such that the first coordinate is the *x* coordinate and the second coordinate is the *y* coordinate, with the origin at the bottom left corner.
 
     Optional argument *ax* allows an existing axes to be used.
 
     *\*\*kwargs* are passed on to :meth:`matplotlib.axes.Axes.imshow`.
 
-    * Returns :code:`fig, ax, im` if axes aren't specified.
-    * Returns :code:`im` if axes are specified.
+    .. versionadded:: 1.3
+
+    Returns
+    -------
+    fig, ax, im :
+        if axes aren't specified.
+    im :
+        if axes are specified.
     """
     return _plot_array(X, plottype=_IMSHOW, ax=ax, add_cbar=add_cbar, rescale_fig=rescale_fig, **kwargs)
 
 
 def contour(X, ax=None, add_cbar=True, rescale_fig=True, **kwargs):
     """
-    .. versionadded:: 1.3
 
     Plots an array *X* such that the first coordinate is the *x* coordinate and the second coordinate is the *y* coordinate, with the origin at the bottom left corner.
 
@@ -46,14 +49,17 @@ def contour(X, ax=None, add_cbar=True, rescale_fig=True, **kwargs):
 
     *\*\*kwargs* are passed on to :meth:`matplotlib.axes.Axes.contour`.
 
-    Returns :class:`matplotlib.image.AxesImage`.
+    .. versionadded:: 1.3
+
+    Returns
+    -------
+    im : :class:`matplotlib.image.AxesImage`.
     """
     return _plot_array(X, plottype=_CONTOUR, ax=ax, add_cbar=add_cbar, rescale_fig=rescale_fig, **kwargs)
 
 
 def quiver(*args, ax=None, rescale_fig=True, **kwargs):
     """
-    .. versionadded:: 1.3
 
     Plots an array *X* such that the first coordinate is the *x* coordinate and the second coordinate is the *y* coordinate, with the origin at the bottom left corner.
 
@@ -61,7 +67,11 @@ def quiver(*args, ax=None, rescale_fig=True, **kwargs):
 
     *\*\*kwargs* are passed on to :meth:`matplotlib.axes.Axes.quiver`.
 
-    Returns :class:`matplotlib.image.AxesImage`.
+    .. versionadded:: 1.3
+
+    Returns
+    -------
+    im : :class:`matplotlib.image.AxesImage`.
     """
     return _plot_array(*args, plottype=_QUIVER, ax=ax, add_cbar=False, rescale_fig=rescale_fig, **kwargs)
 
@@ -109,9 +119,9 @@ def _plot_array(*args, plottype, ax=None, add_cbar=True, rescale_fig=True, **kwa
 
 def scaled_figsize(X, figsize=None, h_pad=None, v_pad=None):
     """
-    .. versionadded:: 1.3
-
     Given an array *X*, determine a good size for the figure to be by shrinking it to fit within *figsize*. If not specified, shrinks to fit the figsize specified by the current :attr:`matplotlib.rcParams`.
+
+    .. versionadded:: 1.3
     """
     if figsize is None:
         figsize = _mpl.rcParams['figure.figsize']

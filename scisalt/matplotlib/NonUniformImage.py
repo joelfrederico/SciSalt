@@ -12,19 +12,34 @@ from .SciImage import SciImage as _SI
 
 def NonUniformImage(x, y, z, ax=None, fig=None, cmap=None, alpha=None, scalex=True, scaley=True, add_cbar=True, **kwargs):
     """
-    Plots a set of coordinates where:
+    Used to plot a set of coordinates.
 
-    * *x* and *y* are 1-D ndarrays of lengths N and M, respectively, specifying pixel centers
-    * *z* is an (M, N) ndarray or masked array of values to be colormapped, or a (M, N, 3) RGB array, or a (M, N, 4) RGBA array.
 
-    *\*\*kwargs* can contain keywords:
-    
-    * *cmap* for set the colormap
-    * *alpha* to set transparency
-    * *scalex* to set the x limits to available data
-    * *scaley* to set the y limits to available data
+    Parameters
+    ----------
+    x, y : :class:`numpy.ndarray`
+        1-D ndarrays of lengths N and M, respectively, specifying pixel centers
+    z : :class:`numpy.ndarray`
+        An (M, N) ndarray or masked array of values to be colormapped, or a (M, N, 3) RGB array, or a (M, N, 4) RGBA array.
+    ax : :class:`matplotlib.axes.Axes`, optional
+        The axis to plot to.
+    fig : :class:`matplotlib.figure.Figure`, optional
+        The figure to plot to.
+    cmap : :class:`matplotlib.colors.Colormap`, optional
+        The colormap to use.
+    alpha : float, optional
+        The transparency to use.
+    scalex : bool, optional
+        To set the x limits to available data
+    scaley : bool, optional
+        To set the y limits to available data
+    add_cbar : bool, optional
+        Whether ot add a colorbar or not.
 
-    Returns class :class:`matplotlib.image.NonUniformImage`.
+    Returns
+    -------
+    img : :class:`matplotlib.image.NonUniformImage`
+        Object representing the :class:`matplotlib.image.NonUniformImage`.
     """
     if ax is None and fig is None:
         fig, ax = _setup_axes()
