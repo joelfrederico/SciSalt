@@ -17,10 +17,14 @@ if not _on_rtd:
         'scipy',
         'h5py',
         'matplotlib>=1.5',
-        'periodictable'
+        'periodictable',
+        'numpydoc'
         ]
 else:
-    install_requires = []
+    install_requires = [
+        'numpydoc',
+        'sphinx>=1.3.3'
+        ]
 
 here = path.abspath(path.dirname(__file__))
 
