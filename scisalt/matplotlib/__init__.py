@@ -32,7 +32,6 @@ import os as _os
 on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
 if not on_rtd:
     from .cmaps import *  # noqa
-    __all__.append('viridis')
     __all__.sort()
 
 from .Imshow_Slider import Imshow_Slider

@@ -4,6 +4,8 @@ if not _on_rtd:
     import numpy as _np
     import slactrac as _sltr
     import scipy.constants as _spc
+    import periodictable as _pt
+    from .plasma import Plasma as _Plasma
 
 
 class Match(object):
@@ -29,13 +31,20 @@ class Match(object):
     @property
     def emit_n(self):
         """
-        Emittance of beam
+        Normalized emittance of beam :math:`\\epsilon_n = \\gamma\\epsilon`
         """
         return self.emit * self.gamma
 
     @emit_n.setter
     def emit_n(self, value):
-        self.emit = value / self.gamma
+        self._emit = value / self.gamma
+
+    @property
+    def emit(self):
+        """
+        Emittance of the beam, :math:`\\epsilon = \\sqrt{ \\langle x^2 \\rangle \\langle {x'}^2 \\rangle - \\langle x x' \\rangle^2 }`
+        """
+        return self._emit
 
     @property
     def sigma(self):
@@ -51,10 +60,28 @@ class Match(object):
         return 1.0 / _np.sqrt(self.plasma.k_ion(E))
         # return 1.0 / _np.sqrt(2)
 
+    @property
+    def sigma_prime(self):
+        """
+        Divergence of matched beam
+        """
+        return _np.sqrt(self.emit/self.beta(self.E))
+
 
 class MatchPlasma(object):
     """
-    Given a beam of energy *E* in GeV with normalized emittance *emit_n* in SI units and spot size *sigma*, calculates plasma parameters
+    Given a beam of energy *E* in GeV with normalized emittance
+    *emit_n* in SI units and spot size *sigma*, calculates plasma
+    parameters
+
+    Parameters
+    ----------
+    E : float
+        Beam energy in GeV.
+    emit_n : float
+        Specified beam emittance :math:`\\epsilon`.
+    sigma : float
+        Specified beam spot size :math:`\\sigma`.
     """
     def __init__(self, E, emit_n, sigma):
         self.E = E
@@ -75,22 +102,41 @@ class MatchPlasma(object):
     @property
     def emit_n(self):
         """
-        Emittance of beam
+        Specified beam emittance :math:`\\epsilon`.
         """
         return self.emit * self.gamma
 
     @emit_n.setter
     def emit_n(self, value):
+        """
+        Specified normalized beam emittance :math:`\\gamma \\epsilon`.
+        """
         self.emit = value / self.gamma
 
     @property
     def beta(self):
+        """
+        The Courant-Snyder parameter :math:`\\beta` that is matched.
+        """
         return self.sigma**2/self.emit
 
     @property
     def n_p(self):
+        """
+        The plasma density in SI units.
+        """
         return 2*_sltr.GeV2joule(self.E)*_spc.epsilon_0 / (self.beta*_spc.elementary_charge)**2
 
     @property
     def n_p_cgs(self):
+        """
+        The plasma density in CGS units.
+        """
         return self.n_p*1e-6
+
+    @property
+    def plasma(self, species=_pt.hydrogen):
+        """
+        The matched :class:`Plasma`.
+        """
+        return _Plasma(self.n_p, species=species)

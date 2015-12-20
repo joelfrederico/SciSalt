@@ -21,9 +21,9 @@ _logger = _logging.getLogger(__name__)
 
 class Ions2D(_Ions):
     """
-    .. versionadded:: 1.6
-
     A class to facilitate calculating ion motion in PWFA ion columns due to cylindrical, infinitely-long gaussian beams.
+
+    .. versionadded:: 1.6
     """
     def __init__(self, species, N_e, sig_r, sig_xi, r0_big=None, n_samp=1000, order=5, rtol=None, atol=None):
         # ============================
@@ -71,6 +71,9 @@ class Ions2D(_Ions):
 
     @property
     def nb0(self):
+        """
+        On-axis beam density :math:`n_{b,0}`.
+        """
         return self.N_e / ( (2*_np.pi)**(3/2) * self.sig_r**2 * self.sig_xi)
 
     def lambda_large(self, r0):

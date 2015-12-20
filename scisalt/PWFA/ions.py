@@ -33,12 +33,19 @@ class Ions(object):
 
     @property
     def species(self):
+        """
+        The species of gas used (see :class:`periodictable.core.Element`).
+
+        For instance:
+
+            >>> periodictable.hydrogen
+        """
         return self._species
     
     @property
     def dims(self):
         """
-        Number of dimensions
+        Number of dimensions.
         """
         return self._dims
 
@@ -58,28 +65,28 @@ class Ions(object):
     @property
     def m(self):
         """
-        Ion mass
+        Ion mass.
         """
         return amu * self.species.mass
 
     @property
     def A(self):
         """
-        Ion mass in units of AMU
+        Ion mass in units of AMU.
         """
         return self.species.mass
 
     @property
     def N_e(self):
         """
-        Number of electrons in bunch
+        Number of electrons in bunch.
         """
         return self._N_e
 
     @property
     def sig_xi(self):
         """
-        Longitudinal R.M.S. width
+        Longitudinal R.M.S. width :math:`\\sigma_\\xi`.
         """
         return self._sig_xi
 

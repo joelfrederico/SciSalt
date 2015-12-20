@@ -11,12 +11,19 @@ class Plasma(object):
     """
     A class for relating plasma density to plasma frequency :math:`\\omega_p` and ion focusing force.
 
-    Input either:
+    Input plasma density either `n_p` in SI units, or `n_p_cgs` in CGS units.
 
-    * Plasma density *n_p* in SI units
-    * Plasma density *n_p_cgs* in CGS units
+    Parameters
+    ----------
+
+    n_p : float
+        Plasma density in SI units.
+    n_p_cgs : float
+        Plasma density in CGS units.
+    species : periodictable.core.Element
+        The species of gas used (see :class:`periodictable.core.Element`).
     """
-    def __init__(self, n_p=None, n_p_cgs=None, species=None):
+    def __init__(self, n_p=None, n_p_cgs=None, species=_pt.hydrogen):
         if species is None:
             species = _pt.H
         # ============================
@@ -45,16 +52,22 @@ class Plasma(object):
 
     @property
     def m(self):
+        """
+        Mass of the ion in AMU.
+        """
         return self._species.mass * _spc.m_u
 
     @property
     def E_rest(self):
+        """
+        Rest energy of the plasma ion.
+        """
         return self.m * _spc.c**2
 
     @property
     def n_p(self):
         """
-        Plasma density in SI units
+        Plasma density in SI units.
         """
         return self._n_p
 

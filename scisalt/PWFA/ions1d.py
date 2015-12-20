@@ -21,9 +21,9 @@ _logger = _logging.getLogger(__name__)
 
 class Ions1D(_Ions):
     """
-    .. versionadded:: 1.7
-
     A class to facilitate calculating ion motion in PWFA ion columns due to planar, infinitely-long gaussian beams.
+
+    .. versionadded:: 1.7
     """
     def __init__(self, species, N_e, sig_x, sig_y, sig_xi, r0_big=None, n_samp=1000, order=5, rtol=None, atol=None):
         # ============================
@@ -57,14 +57,23 @@ class Ions1D(_Ions):
 
     @property
     def sig_x(self):
+        """
+        The R.M.S. width :math:`\\sigma_x`.
+        """
         return self._sig_x
 
     @property
     def sig_y(self):
+        """
+        The R.M.S. width :math:`\\sigma_y`.
+        """
         return self._sig_y
 
     @property
     def nb0(self):
+        """
+        On-axis beam density :math:`n_{b,0}`.
+        """
         return self.N_e / (4*_np.sqrt(3) * _np.pi * self.sig_x * self.sig_y * self.sig_xi)
 
     @property
