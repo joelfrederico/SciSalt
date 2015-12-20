@@ -6,7 +6,6 @@ if not _on_rtd:
     import scipy.constants as _spc
     import periodictable as _pt
     from .plasma import Plasma as _Plasma
-
 else:
     import unittest.mock as _mock
     _pt = _mock.MagicMock()

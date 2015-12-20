@@ -5,6 +5,9 @@ if not _on_rtd:
     import slactrac as _sltr
     import periodictable as _pt
     import scipy.constants as _spc
+else:
+    import unittest.mock as _mock
+    _pt = _mock.MagicMock()
 
 
 class Plasma(object):
