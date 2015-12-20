@@ -19,11 +19,9 @@ if not _on_rtd:
         'h5py',
         'matplotlib>=1.5',
         'periodictable',
-        'numpydoc'
         ]
 else:
     install_requires = [
-        'numpydoc',
         'sphinx>=1.3.3'
         ]
 
