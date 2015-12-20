@@ -7,6 +7,10 @@ if not _on_rtd:
     import periodictable as _pt
     from .plasma import Plasma as _Plasma
 
+else:
+    import unittest.mock as _mock
+    _pt = _mock.MagicMock()
+
 
 class Match(object):
     """
