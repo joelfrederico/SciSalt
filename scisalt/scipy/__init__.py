@@ -1,6 +1,3 @@
-"""
-The :mod:`scipy <scisalt.scipy>` module contains a few convenience functions mostly designed to make fitting easier.
-"""
 __all__ = [
     'LinLsqFit',
     'chisquare',
