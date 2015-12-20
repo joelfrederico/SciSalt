@@ -122,6 +122,7 @@ todo_include_todos = True
 
 # -- Options for HTML output ----------------------------------------------
 themedir = os.path.join(os.curdir, 'scipy-sphinx-theme', '_theme')
+print('Theme directory is: {}'.format(themedir))
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
