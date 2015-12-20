@@ -21,7 +21,7 @@ import sys
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-# sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('./numpydoc'))
 
 # -- General configuration ------------------------------------------------
 
@@ -90,7 +90,7 @@ language = None
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build', 'scipy-sphinx-theme']
+exclude_patterns = ['_build', 'scipy-sphinx-theme', 'numpydoc']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
