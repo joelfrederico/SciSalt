@@ -1,0 +1,26 @@
+.. _scisalt.utilities.h5:
+
+**
+h5
+**
+
+.. currentmodule:: scisalt.h5
+
+This module contains methods useful for working directly with
+h5 objects.
+
+Exploration
+```````````
+
+.. autosummary::
+   :toctree: ./generated/
+
+   keys
+
+Extraction
+```````````
+
+.. autosummary::
+   :toctree: ./generated/
+
+   get

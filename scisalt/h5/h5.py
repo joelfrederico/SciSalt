@@ -4,20 +4,32 @@ if not _on_rtd:
     import numpy as _np
 
 
-def keys(f):
+def keys(obj):
     """
+    Returns an array of strings of the keys like Python 2 used to do.
+
     .. versionadded:: 1.4
 
-    Returns an array of strings of the keys like Python 2 used to do.
+    Parameters
+    ----------
+
+    obj : object
+        Object to get keys from.
+
+    Returns
+    -------
+    
+    keys : list
+        List of keys.
     """
-    return [key for key in f.keys()]
+    return [key for key in obj.keys()]
 
 
 def get(f, key, default=None):
     """
-    .. versionadded:: 1.4
-
     Gets an array from datasets.
+
+    .. versionadded:: 1.4
     """
 
     if key in f.keys():

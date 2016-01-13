@@ -12,7 +12,22 @@ __all__ = ['BDES2K', 'K2BDES']
 
 def BDES2K(bdes, quad_length, energy):
     """
-    Returns the geometric strength for a quadrupole with *bdes* and length *quad_length* for a beam with a given *energy*.
+    Converts a quadrupole :math:`B_des` into a geometric focusing strength :math:`K`.
+
+    Parameters
+    ----------
+
+    bdes : float
+        The magnet value of :math:`B_des`.
+    quad_length : float
+        The length of the quadrupole in meters.
+    energy : float
+        The design energy of the beam in GeV.
+
+    Returns
+    -------
+    K : float
+        The geometric focusing strength :math:`K`.
     """
     # Make sure everything is float
     bdes        = _np.float_(bdes)
@@ -35,6 +50,21 @@ def BDES2K(bdes, quad_length, energy):
 def K2BDES(K, quad_length, energy):
     """
     Returns the BDES for a quadrupole with geometric strength *K* and length *quad_length* for a beam with a given *energy*.
+    Converts a geometric focusing strength :math:`K` into a quadrupole :math:`B_des`.
+
+    Parameters
+    ----------
+    K : float
+        The geometric focusing strength :math:`K`.
+    quad_length : float
+        The length of the quadrupole in meters.
+    energy : float
+        The design energy of the beam in GeV.
+
+    Returns
+    -------
+    bdes : float
+        The magnet value of :math:`B_des`.
     """
     # Make sure everything is float
     K           = _np.float_(K)

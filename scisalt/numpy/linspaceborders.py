@@ -7,9 +7,19 @@ if not _on_rtd:
 
 def linspaceborders(array):
     """
-    Given a 1-D *array*, generate a new array with numbers between the numbers of the input *array*. Adds elements to the left and right sides to get the exterior border as well.
+    Generate a new array with numbers interpolated between the numbers of the input array. Extrapolates elements to the left and right sides to get the exterior border as well.
+    
+    Parameters
+    ----------
 
-    Returns a :class:`numpy.ndarray`.
+    array : :class:`numpy.ndarray`
+        The original array.
+
+    Returns
+    -------
+
+    array : :class:`numpy.ndarray`
+        The interpolated/extrapolated array.
     """
     # Get and set left side
     dela = array[1] - array[0]

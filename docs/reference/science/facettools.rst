@@ -1,5 +1,17 @@
-facettools
-==========
+.. _scisalt.science.facettools:
 
-.. automodule:: scisalt.facettools
-   :members:
+**********
+facettools
+**********
+
+.. currentmodule:: scisalt.facettools
+
+Useful tools for the facet-srvXX cluster machines.
+
+Elog
+````
+
+.. autosummary::
+   :toctree: ./generated/
+
+   print2elog

@@ -1,4 +1,4 @@
-.. _utility.utils:
+.. _scisalt.utilities.utils:
 
 *****
 utils
@@ -23,12 +23,3 @@ Programming
    :toctree: ./generated/
 
    progressbar
-
-
-Data
-````
-
-.. autosummary::
-   :toctree: ./generated/
-
-   h5

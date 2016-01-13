@@ -12,3 +12,4 @@ The modules in this chapter are more akin to scripts, to make working on \*nix e
    :maxdepth: 2
 
    utilities/utils
+   utilities/h5

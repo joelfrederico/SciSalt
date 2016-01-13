@@ -1,6 +1,17 @@
-imageprocess
-============
+.. _scisalt.visualization.imageprocess:
 
-.. automodule:: scisalt.imageprocess
-   :members:
-   :undoc-members:
+************
+imageprocess
+************
+
+.. currentmodule:: scisalt.imageprocess
+
+This module contains various image processing functions.
+
+Conversion
+``````````
+
+.. autosummary::
+   :toctree: ./generated/
+
+   pdf2png

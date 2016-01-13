@@ -16,8 +16,8 @@ For learning how to use VCheck, see also :ref:`user`.
 .. toctree::
    :maxdepth: 2
 
-   programming_mods
-   math_mods
-   science_mods
-   utility_mods
    visualization_mods
+   science_mods
+   programming_mods
+   utility_mods
+   math_mods

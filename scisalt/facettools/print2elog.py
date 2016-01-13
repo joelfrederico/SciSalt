@@ -25,13 +25,21 @@ def _copy_file(filepath, fulltime):
 
 def print2elog(author='', title='', text='', link=None, file=None, now=None):
     """
-    Prints to the elog given:
+    Prints to the elog.
     
-    * An *author*
-    * *title*
-    * *link* path to a thumbnail
-    * *file* path to a file
-    * Time *now*.
+    Parameters
+    ----------
+
+    author : str, optional
+        Author of the elog.
+    title : str, optional
+        Title of the elog.
+    link : str, optional
+        Path to a thumbnail.
+    file : str, optional
+        Path to a file.
+    now : :class:`datetime.datetime`
+        Time of the elog.
     """
     # ============================
     # Get current time
