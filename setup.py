@@ -16,6 +16,8 @@ if not _on_rtd:
     install_requires = [
         'numpy',
         'scipy',
+        'jinja2',
+        'slactrac',
         'h5py',
         'matplotlib>=1.5',
         'periodictable',
