@@ -11,6 +11,8 @@ def plot(*args, ax=None, **kwargs):
     """
     Plots but automatically resizes x axis.
 
+    .. versionadded:: 1.4
+
     Parameters
     ----------
     args
@@ -20,7 +22,6 @@ def plot(*args, ax=None, **kwargs):
     kwargs
         Passed on to :meth:`matplotlib.axis.Axis.plot`.
 
-    .. versionadded:: 1.4
     """
     if ax is None:
         fig, ax = _setup_axes()
