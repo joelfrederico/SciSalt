@@ -18,6 +18,7 @@ Beam Classes
 
    RoundBeam
    EllipseBeam
+   GaussPartBeam
 
 Ion Classes
 ```````````
@@ -45,3 +46,10 @@ Plasma Class
 
    Plasma
 
+Simulation Classes
+``````````````````
+
+.. autosummary::
+   :toctree: ./generated/
+
+   SimBeam

@@ -10,6 +10,25 @@ from .particles import GaussPartBeam as _GaussPartBeam
 
 
 class SimBeam(object):
+    """
+    Simulates beam particles in a plasma, given certain initial conditions.
+
+    Parameters
+    ----------
+
+    E0 : float
+        Mean beam energy.
+    n_p_cgs : float
+        Plasma density in CGS units.
+    nparts : int
+        Number of particles to use in simulation
+    sig_delta : float
+        R.M.S. beam energy.
+    beta_mismatch : float
+        Factor to mismatch distribution in beta by.
+    s_pts : int
+        Number of points to simulate in s.
+    """
     def __init__(self, E0, n_p_cgs, nparts, sig_delta, beta_mismatch, s_pts):
         self._E0            = E0
         self._n_p_cgs       = n_p_cgs

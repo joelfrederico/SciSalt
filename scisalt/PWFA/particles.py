@@ -9,6 +9,29 @@ from .beam import _store_emit
 
 
 class GaussPartBeam(object):
+    """
+    Generates a Gaussian distribution of particles.
+
+    Parameters
+    ----------
+
+    nparts : int
+        Number of particles to use.
+    q_tot : float
+        Total charge of beam.
+    E : float
+        Average beam energy in GeV.
+    sig_delta : float
+        R.M.S. beam energy.
+    beta : float
+        Beam beta function.
+    alpha : float
+        Beam alpha function.
+    emit : float
+        Beam emittance.
+    emit_n : float
+        Normalized beam emittance.
+    """
     def __init__(self, nparts, q_tot, E, sig_delta, beta, alpha, emit=None, emit_n=None):
         self._nparts    = _np.int(nparts)
         self._q_tot     = q_tot
