@@ -6,22 +6,23 @@ if not _on_rtd:
     pass
 
 
+def _store_emit(self, emit=None, emit_n=None):
+    if (emit is None) and (emit_n is None):
+        raise TypeError('Either emit or emit_n must be specified.')
+    elif (emit is not None) and (emit_n is not None):
+        raise TypeError('Emit and emit_n cannot be specified simultaneously.')
+    elif emit is not None:
+        self._emit = emit
+    elif emit_n is not None:
+        self._emit = emit_n/_sltr.GeV2gamma(self.E)
+    else:
+        raise TypeError('Something has gone wrong.')
+
+
 class BeamBase(object):
     def __init__(self, nb0, E=20.35, dE=0.01, emit=None, emit_n=None):
         self._store_defaults(nb0, E, dE)
-        self._store_emit(emit=emit, emit_n=emit_n)
-
-    def _store_emit(self, emit=None, emit_n=None):
-        if (emit is None) and (emit_n is None):
-            raise TypeError('Either emit or emit_n must be specified.')
-        elif (emit is not None) and (emit_n is not None):
-            raise TypeError('Emit and emit_n cannot be specified simultaneously.')
-        elif emit is not None:
-            self._emit = emit
-        elif emit_n is not None:
-            self._emit = emit_n/_sltr.GeV2gamma(self.E)
-        else:
-            raise TypeError('Something has gone wrong.')
+        _store_emit(emit=emit, emit_n=emit_n)
 
     def _store_defaults(self, nb0, E, dE):
         self._nb0 = nb0
