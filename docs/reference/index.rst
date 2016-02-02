@@ -10,8 +10,8 @@ SciSalt Reference
 .. module:: scisalt
 
 This reference manual details functions, modules, and objects
-included in VCheck, describing what they are and what they do.
-For learning how to use VCheck, see also :ref:`user`.
+included in SciSalt, describing what they are and what they do.
+For learning how to use SciSalt, see also :ref:`user`.
 
 .. toctree::
    :maxdepth: 2
