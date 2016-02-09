@@ -32,11 +32,12 @@ class GaussPartBeam(object):
     emit_n : float
         Normalized beam emittance.
     """
-    def __init__(self, nparts, q_tot, E, sig_delta, beta, alpha, emit=None, emit_n=None):
+    def __init__(self, nparts, q_tot, E, sig_delta, sig_xi, beta, alpha, emit=None, emit_n=None):
         self._nparts    = _np.int(nparts)
         self._q_tot     = q_tot
         self._E         = E
         self._sig_delta = sig_delta
+        self._sig_xi    = sig_xi
         self._beta      = beta
         self._alpha     = alpha
         _store_emit(self, emit=emit, emit_n=emit_n)
@@ -55,6 +56,25 @@ class GaussPartBeam(object):
             self._delta = _np.zeros(nparts)
         else:
             self._delta = _np.random.normal(scale=self.sig_delta, size=self.nparts)
+
+        if sig_xi == 0:
+            self._xi = _np.zeros(nparts)
+        else:
+            self._xi = _np.random.normal(scale=self.sig_xi, size=self.nparts)
+
+    @property
+    def sig_xi(self):
+        """
+        Std. dev. of :math:`\\xi`: :math:`\\sigma_\\xi`.
+        """
+        return self._sig_xi
+
+    @property
+    def xi(self):
+        """
+        Particle coordinates :math:`\\xi`.
+        """
+        return self._xi
 
     @property
     def mean(self):

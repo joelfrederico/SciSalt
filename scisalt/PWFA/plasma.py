@@ -91,6 +91,9 @@ class Plasma(object):
         """
         return self.n_p * _np.power(_spc.e, 2) / (2*_sltr.GeV2joule(E) * _spc.epsilon_0)
 
+    def beta_matched(self, E):
+        return 1/_np.sqrt(self.k_ion(E))
+
     @property
     def n_p_cgs(self):
         """

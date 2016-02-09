@@ -7,6 +7,7 @@ if not _on_rtd:
 
 from .plasma import Plasma as _Plasma
 from .particles import GaussPartBeam as _GaussPartBeam
+import scipy.constants as spc
 
 
 class SimBeam(object):
@@ -16,35 +17,31 @@ class SimBeam(object):
     Parameters
     ----------
 
+    plasma : 
     E0 : float
         Mean beam energy.
     n_p_cgs : float
         Plasma density in CGS units.
     nparts : int
         Number of particles to use in simulation
-    sig_delta : float
-        R.M.S. beam energy.
     beta_mismatch : float
         Factor to mismatch distribution in beta by.
     s_pts : int
         Number of points to simulate in s.
     """
-    def __init__(self, E0, n_p_cgs, nparts, sig_delta, beta_mismatch, s_pts):
+    def __init__(self, plasma, beam, E0, n_p_cgs, nparts, beta_mismatch, s_pts):
         self._E0            = E0
         self._n_p_cgs       = n_p_cgs
         self._nparts        = nparts
-        self._sig_delta     = sig_delta
         self._beta_mismatch = beta_mismatch
         self._s_pts         = s_pts
-
-        self._plas = _Plasma(n_p_cgs=n_p_cgs)
-        self._beta = 1/_np.sqrt(self.plas.k_ion(E0))
-        self._beam = _GaussPartBeam(nparts=nparts, q_tot=2e10, E=E0, sig_delta=sig_delta, beta=self.beta*beta_mismatch, alpha=0, emit_n=50e-6)
+        self._plasma        = plasma
+        self._beam          = beam
 
         # ==================================
         # Set up coordinate arrays
         # ==================================
-        s = _np.linspace(0, 20*2*_np.pi*self.beta, s_pts)
+        s = _np.linspace(0, 20*2*_np.pi*self.plasma.beta_matched(E0), s_pts)
         self._s = s
         y = _np.empty([nparts, s.shape[0], 2])
         self._phi = _np.empty([nparts, s.shape[0]])
@@ -52,15 +49,21 @@ class SimBeam(object):
         # ==================================
         # Defaults of motion
         # ==================================
-        k0 = self.plas.k_ion(E0)
+        k0 = self.plasma.k_ion(E0)
         rtk0 = _np.sqrt(k0)
+
+        k_xi = _np.sqrt(spc.elementary_charge**2 * self._n_p_cgs / (4*_np.pi*spc.epsilon_0*spc.electron_mass*spc.speed_of_light**2) ) / _np.cos(self.beam.xi) 
+
+        self._k_xi = k_xi
         
         # ==================================
         # Get particle coordinates
         # ==================================
         for i, delta in enumerate(self.beam.delta):
             E = self.beam.E * (1+delta)
-            k = self.plas.k_ion(E)
+            plas = _Plasma(n_p_cgs=self._n_p_cgs/(_np.cos(k_xi[i] * self.beam.xi[i])**2))
+            k = plas.k_ion(E)
+            # k = self.plasma.k_ion(E)
             rtk = _np.sqrt(k)
             x0 = self.beam.x[i]
             xp0 = self.beam.xp[i]
@@ -77,6 +80,14 @@ class SimBeam(object):
         self._xp = y[:, :, 0]
 
     @property
+    def k_xi(self):
+        """
+        Ion focusing wavenumber :math:`k_\\xi`.
+        """
+        return self._k_xi
+
+
+    @property
     def phi(self):
         """
         Particle phases :math:`\\phi`.
@@ -89,6 +100,13 @@ class SimBeam(object):
         Initial beam object.
         """
         return self._beam
+
+    @property
+    def plasma(self):
+        """
+        Initial plasma object.
+        """
+        return self._plasma
 
     @property
     def s(self):
@@ -117,21 +135,7 @@ class SimBeam(object):
     def ion_force(self, y, t, E):
         xp = y[0]
         x  = y[1]
-        return [-self.plas.k_ion(E)*x, xp]
-
-    @property
-    def beta(self):
-        """
-        Default beta function for default energy.
-        """
-        return self._beta
-
-    @property
-    def plas(self):
-        """
-        Plasma used in simulation.
-        """
-        return self._plas
+        return [-self.plasma.k_ion(E)*x, xp]
 
     @property
     def spotsq(self):
@@ -155,7 +159,7 @@ class SimBeam(object):
         return _np.mean(self.x*self.xp, axis=0)
     
     @property
-    def emit(self):
+    def emit_measured(self):
         """
         The beam emittance :math:`\\langle x x' \\rangle`.
         """

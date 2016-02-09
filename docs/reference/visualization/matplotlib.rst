@@ -4,6 +4,7 @@
 matplotlib
 **********
 
+.. module:: scisalt.matplotlib
 .. currentmodule:: scisalt.matplotlib
 
 The matplotlib module adds many useful wrappers for `matplotlib <http://matplotlib.org/contents.html>`_ classes and functions. It requires matplotlib>=1.5.
