@@ -3,11 +3,10 @@ _on_rtd = _os.environ.get('READTHEDOCS', None) == 'True'
 if not _on_rtd:
     import slactrac as _sltr
     import numpy as _np
-    pass
+    import scipy.constants as spc
 
 from .plasma import Plasma as _Plasma
 from .particles import GaussPartBeam as _GaussPartBeam
-import scipy.constants as spc
 
 
 class SimBeam(object):
@@ -85,7 +84,6 @@ class SimBeam(object):
         Ion focusing wavenumber :math:`k_\\xi`.
         """
         return self._k_xi
-
 
     @property
     def phi(self):
