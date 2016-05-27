@@ -19,6 +19,11 @@ __all__ = [
     'scaled_figsize'
     ]
 
+class smplot(object):
+    def __init__(self, **kwargs):
+        for key in kwargs:
+            setattr(self, key, kwargs[key])
+
 
 def imshow(X, ax=None, add_cbar=True, rescale_fig=True, **kwargs):
     """
@@ -109,12 +114,12 @@ def _plot_array(*args, plottype, ax=None, add_cbar=True, rescale_fig=True, **kwa
         cb = _cb(ax_h, im)
 
     if ax is None:
-        return fig, ax_h, im
+        return smplot(fig=fig, ax=ax_h, ax_h=ax_h, im=im)
     else:
         if add_cbar:
-            return im, cb
+            return smplot(im=im, cb=cb)
         else:
-            return im
+            return smplot(im=im)
 
 
 def scaled_figsize(X, figsize=None, h_pad=None, v_pad=None):

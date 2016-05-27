@@ -41,12 +41,12 @@ def colorbar(ax, im, fig=None, loc="right", size="5%", pad="3%"):
         width = fig.get_figwidth()
         new = width * (1 + _pc2f(size) + _pc2f(pad))
         _logger.debug('Setting new figure width: {}'.format(new))
-        fig.set_size_inches(new, fig.get_figheight(), forward=True)
+        # fig.set_size_inches(new, fig.get_figheight(), forward=True)
     elif loc == "top" or loc == "bottom":
         height = fig.get_figheight()
         new = height * (1 + _pc2f(size) + _pc2f(pad))
         _logger.debug('Setting new figure height: {}'.format(new))
-        fig.set_figheight(fig.get_figwidth(), new, forward=True)
+        # fig.set_figheight(fig.get_figwidth(), new, forward=True)
 
     divider = _ag1.make_axes_locatable(ax)
     cax = divider.append_axes(loc, size=size, pad=pad)
