@@ -5,7 +5,7 @@ if not _on_rtd:
 from .setup_figure import setup_figure as _setup_figure
 
 
-def setup_axes(rows=1, cols=1, figsize=(8, 6), expand=True, **kwargs):
+def setup_axes(rows=1, cols=1, figsize=(8, 6), expand=True, tight_layout=None, **kwargs):
     """
     Sets up a figure of size *figsize* with a number of rows (*rows*) and columns (*cols*). \*\*kwargs passed through to :meth:`matplotlib.figure.Figure.add_subplot`.
 
@@ -35,7 +35,13 @@ def setup_axes(rows=1, cols=1, figsize=(8, 6), expand=True, **kwargs):
     if expand:
         figsize = (figsize[0]*cols, figsize[1]*rows)
 
-    fig, gs = _setup_figure(rows=rows, cols=cols, figsize=figsize)
+    figargs = {}
+    if isinstance(tight_layout, dict):
+        figargs["tight_layout"] = tight_layout
+    elif tight_layout == "pdf":
+        figargs["tight_layout"] = {"rect": (0, 0, 1, 0.95)}
+
+    fig, gs = _setup_figure(rows=rows, cols=cols, figsize=figsize, **figargs)
 
     axes = _np.empty(shape=(rows, cols), dtype=object)
 
