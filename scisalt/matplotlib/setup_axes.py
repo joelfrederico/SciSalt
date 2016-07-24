@@ -41,7 +41,9 @@ def setup_axes(rows=1, cols=1, figsize=(8, 6), expand=True, tight_layout=None, *
     elif tight_layout == "pdf":
         figargs["tight_layout"] = {"rect": (0, 0, 1, 0.95)}
 
-    fig, gs = _setup_figure(rows=rows, cols=cols, figsize=figsize, **figargs)
+    dpi = kwargs.pop('dpi', None)
+
+    fig, gs = _setup_figure(rows=rows, cols=cols, figsize=figsize, dpi=dpi, **figargs)
 
     axes = _np.empty(shape=(rows, cols), dtype=object)
 

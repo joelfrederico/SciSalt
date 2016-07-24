@@ -7,7 +7,8 @@ __all__ = [
     'MatchPlasma',
     'Plasma',
     'GaussPartBeam',
-    'SimBeam'
+    'SimBeam',
+    'EmitEllipse'
     ]
 __all__.sort()
 
@@ -18,3 +19,4 @@ from .plasma import *     # noqa
 from .beam import *       # noqa
 from .particles import *  # noqa
 from .sim import SimBeam
+from .emit_ellipse import EmitEllipse
