@@ -94,6 +94,13 @@ def _plot_array(*args, plottype, ax=None, add_cbar=True, rescale_fig=True, **kwa
     else:
         ax_h = ax
 
+    if ((plottype == _IMSHOW) or (plottype == _CONTOUR)):
+        divergemap = kwargs.pop('divergemap', False)
+        if divergemap:
+            mag = _np.max(_np.abs(args[0]))
+            kwargs['vmin'] = -mag
+            kwargs['vmax'] = mag
+
     if plottype == _IMSHOW:
         im = ax_h.imshow(_np.transpose(*args), origin='lower', **kwargs)
     elif plottype == _CONTOUR:
