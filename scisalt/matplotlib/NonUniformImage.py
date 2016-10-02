@@ -48,16 +48,18 @@ def NonUniformImage(x, y, z, ax=None, fig=None, cmap=None, alpha=None, scalex=Tr
     elif fig is None:
         fig = ax.get_figure()
 
+    norm = kwargs.get('norm', None)
+
     im = _mplim.NonUniformImage(ax, **kwargs)
 
     vmin = kwargs.pop('vmin', _np.min(z))
     vmax = kwargs.pop('vmax', _np.max(z))
-    im.set_clim(vmin=vmin, vmax=vmax)
+    # im.set_clim(vmin=vmin, vmax=vmax)
 
     if cmap is not None:
         im.set_cmap(cmap)
 
-    m = _cm.ScalarMappable(cmap=im.get_cmap())
+    m = _cm.ScalarMappable(cmap=im.get_cmap(), norm=norm)
     m.set_array(z)
 
     if add_cbar:
